@@ -2,6 +2,7 @@ package Ui;
 
 import Members.AllMembers;
 import Members.MembersList;
+import Models.Controller;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -10,6 +11,7 @@ public class UserInterface {
     private final Scanner scanner = new Scanner(System.in); // Final scanner to use in the UI.
     private final MembersList membersList = new MembersList(); // Initializing Memberslist so it won't give an error when adding it to the ArrayList.
 
+    Controller controller = new Controller();
 
     public void startProgram() {
         System.out.println("Welcome to the Dolphin swimming club!");
@@ -30,25 +32,60 @@ public class UserInterface {
                 userInput = scanner.next().toLowerCase();
                 switch (userInput) {
                     case "add" -> {
-                        System.out.println("Adding member to swimming club...");
-                        System.out.println("\nName: ");
-                        scanner.nextLine();
-                        String name = scanner.nextLine().toLowerCase(); // We read the name from the user.
 
-                        // This is where we add the status of the new member of the dolphin club:
-                        System.out.println("Type out the status of the new swimming member of the Dolphin swimming club:");
-                        System.out.println("Your options are: ");
-                        System.out.println("Junior membership.\nSenior membership.\nWorkout swimmer.\nCompetitive swimmer.");
-                        String status = scanner.nextLine().toLowerCase();
+                        System.out.println("Is the swimmer competitive? (yes/no)");
+
+                        String compOrNot = scanner.next();
+
+                        if(compOrNot.equalsIgnoreCase("yes")) {
+
+                            System.out.print("\nName: ");
+                            scanner.nextLine();
+                            String name = scanner.nextLine().toLowerCase(); // We read the name from the user.
+
+                            System.out.print("Status type; Passive, Active: ");
+                            String status = scanner.next();
+
+                            // This is where we add the age of the new member of the dolphin club.
+                            System.out.print("Age: ");
+                            int age = scanner.nextInt();
+                            scanner.nextLine(); // Removes the extra step that, for some reason, is there when trying to add age.
 
 
-                        // This is where we add the age of the new member of the dolphin club.
-                        System.out.println("Type out the age of the new member:");
-                        int age = scanner.nextInt();
-                        scanner.nextLine(); // Removes the extra step that, for some reason, is there when trying to add age.
+                            System.out.println("Type in your best time (in seconds) for the following Swimming techniques. \n" +
+                                    "If you don't have a time yet, enter 0: ");
+                            System.out.print("Breaststroke time: ");
+                            double breastTime = scanner.nextDouble();
+                            System.out.print("Crawl: ");
+                            double crawlTime = scanner.nextDouble();
+                            System.out.print("Back Crawl: ");
+                            double backCrawlTime = scanner.nextDouble();
+                            System.out.print("Butterfly: ");
+                            double butterfly = scanner.nextDouble();
 
-                        membersList.addMember(name, status, age);
-                        System.out.println(name + ", " + age + ", " + status + ": is now added to the dolphin swimming club. ");
+                            controller.addCompetitive(name, status, age, breastTime, crawlTime, backCrawlTime, butterfly);
+
+                        } else {
+
+                            System.out.print("\nName: ");
+                            scanner.nextLine();
+                            String name = scanner.nextLine().toLowerCase(); // We read the name from the user.
+
+                            System.out.print("Status type; Passive, Active: ");
+                            String status = scanner.next();
+
+                            // This is where we add the age of the new member of the dolphin club.
+                            System.out.print("Age: ");
+                            int age = scanner.nextInt();
+                            scanner.nextLine(); // Removes the extra step that, for some reason, is there when trying to add age.
+
+                            controller.addWorkout(name, status, age);
+                        }
+
+                        System.out.println("Adding new member to swimming club...");
+                    }
+                    case "list" -> {
+                        controller.getMembers();
                     }
 
                     case "exit" -> {
@@ -59,7 +96,6 @@ public class UserInterface {
                         System.out.println("Enter the name you want to remove from the swimming club: ");
                         scanner.nextLine(); // Scans the line of whoever the leader wants to remove.
                         String name = scanner.nextLine();
-                        DET ER HER VI ER NÅET TIL!!!
 
                     }
                 }
