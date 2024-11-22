@@ -1,6 +1,6 @@
 package Members;
 
-public class AllMembers {
+public abstract class AllMembers {
 
     private String name;
     private String status;
