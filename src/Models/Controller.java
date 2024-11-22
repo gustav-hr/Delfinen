@@ -5,6 +5,8 @@ import Members.CompetitionSwimmer;
 import Members.MembersList;
 import Members.WorkoutSwimmer;
 
+import java.util.ArrayList;
+
 public class Controller {
 
     MembersList membersList = new MembersList();
@@ -12,22 +14,19 @@ public class Controller {
     public void addCompetitive(String name, String status, int age, double breastTime, double crawlTime, double backCrawlTime, double butterflyTime ) {
 
         if(age >= 18) {
-
-            AllMembers competitive = new CompetitionSwimmer(name, status, age, "Joachim", breastTime, crawlTime, backCrawlTime, butterflyTime);
-
+            membersList.addCompetitionSwimmer(name, status, age, "Joachim", breastTime, crawlTime, backCrawlTime, butterflyTime);
         }
         else {
-            AllMembers competitive = new CompetitionSwimmer(name, status, age, "Sara", breastTime, crawlTime, backCrawlTime, butterflyTime);
+            membersList.addCompetitionSwimmer(name, status, age, "Sara", breastTime, crawlTime, backCrawlTime, butterflyTime);
         }
     }
 
     public void addWorkout(String name, String status, int age) {
-
-        AllMembers workout = new WorkoutSwimmer(name, status, age);
+        membersList.addWorkoutSwimmer(name, status, age);
     }
 
-    public void getMembers() {
-        membersList.getMembers();
+    public ArrayList<AllMembers> getMembers() {
+       return membersList.membersListArray();
     }
 
 

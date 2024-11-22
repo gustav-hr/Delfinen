@@ -64,4 +64,29 @@ public class CompetitionSwimmer extends AllMembers {
         this.backCrawlTime = backCrawlTime;
     }
 
+    MembersList membersList = new MembersList();
+
+    @Override
+    public String toString() {
+        String result = "";
+        for (AllMembers competitionSwimmer : membersList.membersListArray()) {
+            if (competitionSwimmer instanceof CompetitionSwimmer) {
+                CompetitionSwimmer compswimmer = (CompetitionSwimmer) competitionSwimmer;
+
+                result += "Name: " + getName() +
+                        "\nStatus: " + competitionSwimmer.getStatus() +
+                        "\nCoach :" + getCoach() +
+                        "\nBreaststroke time: " + getBreastTime() +
+                        "\nCrawl time: " + getCrawlTime() +
+                        "\nBack crawl time :" + getBackCrawlTime() +
+                        "\nButterfly time" + getButterflyTime() +
+                        "_____________________________________________";
+            }
+        }
+        return result;
+
+    }
+
+
 }
+
