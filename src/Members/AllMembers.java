@@ -6,7 +6,7 @@ public class AllMembers {
     private String status;
     private int age;
 
-    public void Member (String name, String status, int age) {
+    public AllMembers (String name, String status, int age) {
         this.name=name;
         this.status=status;
         this.age=age;

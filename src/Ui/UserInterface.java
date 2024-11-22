@@ -1,12 +1,14 @@
 package Ui;
 
 import Members.AllMembers;
+import Members.MembersList;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
     private final Scanner scanner = new Scanner(System.in); // Final scanner to use in the UI.
+    private final MembersList membersList = new MembersList(); // Initializing Memberslist so it won't give an error when adding it to the ArrayList.
 
 
     public void startProgram() {
@@ -30,32 +32,40 @@ public class UserInterface {
                     case "add" -> {
                         System.out.println("Adding member to swimming club...");
                         System.out.println("\nName: ");
-                        String name = scanner.nextLine().toLowerCase();
+                        scanner.nextLine();
+                        String name = scanner.nextLine().toLowerCase(); // We read the name from the user.
 
                         // This is where we add the status of the new member of the dolphin club:
                         System.out.println("Type out the status of the new swimming member of the Dolphin swimming club:");
                         System.out.println("Your options are: ");
-                        System.out.println("Junior membership.\n Senior membership.\n Workout swimmer.\n Competitive swimmer.");
+                        System.out.println("Junior membership.\nSenior membership.\nWorkout swimmer.\nCompetitive swimmer.");
                         String status = scanner.nextLine().toLowerCase();
 
 
                         // This is where we add the age of the new member of the dolphin club.
                         System.out.println("Type out the age of the new member:");
                         int age = scanner.nextInt();
+                        scanner.nextLine(); // Removes the extra step that, for some reason, is there when trying to add age.
 
-                        System.out.println(name + "Is now added to the dolphin swimming club. ");
-
-
+                        membersList.addMember(name, status, age);
+                        System.out.println(name + ", " + age + ", " + status + ": is now added to the dolphin swimming club. ");
                     }
 
                     case "exit" -> {
                         System.out.println("You are now exiting the program...");
                         System.exit(0);
+                    }
+                    case "remove" -> {
+                        System.out.println("Enter the name you want to remove from the swimming club: ");
+                        scanner.nextLine(); // Scans the line of whoever the leader wants to remove.
+                        String name = scanner.nextLine();
+                        DET ER HER VI ER NÅET TIL!!!
 
                     }
                 }
+
             }
-        } else if (userInput.equalsIgnoreCase("treasurer")){
+        } else if (userInput.equalsIgnoreCase("treasurer")) {
             System.out.println("You have now logged in as the treasurer of the Dolphin swimming club.");
 
         } else if (userInput.equalsIgnoreCase("coach")) {
@@ -65,3 +75,4 @@ public class UserInterface {
         } else System.out.println("You need to pick a profile to enter this program.");
     }
 }
+
