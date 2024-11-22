@@ -37,7 +37,7 @@ public class UserInterface {
 
                         String compOrNot = scanner.next();
 
-                        if(compOrNot.equalsIgnoreCase("yes")) {
+                        if (compOrNot.equalsIgnoreCase("yes")) {
 
                             System.out.print("\nName: ");
                             scanner.nextLine();
@@ -87,16 +87,12 @@ public class UserInterface {
                     case "list" -> {
                         System.out.println(controller.getMembers());
                     }
-
                     case "exit" -> {
                         System.out.println("You are now exiting the program...");
                         System.exit(0);
                     }
                     case "remove" -> {
-                        System.out.println("Enter the name you want to remove from the swimming club: ");
-                        scanner.nextLine(); // Scans the line of whoever the leader wants to remove.
-                        String name = scanner.nextLine();
-
+                        removeMember();
                     }
                 }
 
@@ -110,5 +106,21 @@ public class UserInterface {
 
         } else System.out.println("You need to pick a profile to enter this program.");
     }
+
+    private void removeMember() {
+        System.out.println("Enter the name of the member you want to remove from the swimming club.");
+        scanner.nextLine();
+        String name = scanner.nextLine();
+        if (controller.removeMember(name)) {
+            System.out.println("(Former) swimming club member: " + name + " is now removed from the members list.");
+        } else {
+            System.out.println("Member not found, try again.");
+
+        }
+
+    }
+
 }
+
+
 

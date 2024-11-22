@@ -12,13 +12,11 @@ public class Controller {
     MembersList membersList = new MembersList();
     AllMembers allMembers;
 
+    public void addCompetitive(String name, String status, int age, double breastTime, double crawlTime, double backCrawlTime, double butterflyTime) {
 
-    public void addCompetitive(String name, String status, int age, double breastTime, double crawlTime, double backCrawlTime, double butterflyTime ) {
-
-        if(age >= 18) {
+        if (age >= 18) {
             membersList.addCompetitionSwimmer(name, status, age, "Joachim", breastTime, crawlTime, backCrawlTime, butterflyTime);
-        }
-        else {
+        } else {
             membersList.addCompetitionSwimmer(name, status, age, "Sara", breastTime, crawlTime, backCrawlTime, butterflyTime);
         }
     }
@@ -27,35 +25,20 @@ public class Controller {
         membersList.addWorkoutSwimmer(name, status, age);
     }
 
-//    public ArrayList<AllMembers> getMembers() {
-//       return membersList.getMembersList();
-//    }
-//
-//   public String getMemberss() {
-//        if(membersList.getMembersList().isEmpty()) {
-//            return "No Members in the club";
-//        }
-//        String members = "";
-//        for(AllMembers allMembers : membersList.getMembersList()) {
-//            members += members + "\n";
-//        }
-//        return allMembers;
-//   }
-
-   public String getMembers() {
-        if(membersList.getMembersList().isEmpty()) {
-            return "no Members in the club";
+    public String getMembers() {
+        if (membersList.getMembersList().isEmpty()) {
+            return "No members in the swimming club";
         }
         String result = "";
-        for(AllMembers members : membersList.getMembersList()) {
+        for (AllMembers members : membersList.getMembersList()) {
             result += members.toString() + "\n";
         }
         return result;
-   }
+    }
 
-
-
-
+    public boolean removeMember(String name) {
+        return membersList.removeMember(name);
+    }
 
 
 }
