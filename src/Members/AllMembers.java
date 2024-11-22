@@ -37,12 +37,10 @@ public abstract class AllMembers {
         this.status = status;
     }
 
-
-
-
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "Name: " + name +
+                "\nStatus: " + status +
+                "\nAge: " + age;
+    }
 }

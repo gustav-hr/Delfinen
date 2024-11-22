@@ -19,7 +19,7 @@ public class MembersList {
 
     // To show the members if we need that somewhere in the code. Will need most likely sometime.
 
-    public ArrayList<AllMembers> membersListArray() {
+    public ArrayList<AllMembers> getMembersList() {
         return members;
     }
 
