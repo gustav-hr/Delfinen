@@ -2,6 +2,7 @@ package Members;
 
 import Models.CompSwimmerHandler;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class MembersList {
@@ -34,8 +35,12 @@ public class MembersList {
         return false;
     }
 
-    public void saveMembers(){
+    public void saveCompSwimmers(){
         CompSwimmerHandler.saveMembersToFile(members);
+    }
+
+    public void loadCompSwimmers(){
+        members = CompSwimmerHandler.loadMembersToList();
     }
 
 

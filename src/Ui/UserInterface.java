@@ -1,10 +1,8 @@
 package Ui;
 
-import Members.AllMembers;
 import Members.MembersList;
 import Models.Controller;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -64,7 +62,7 @@ public class UserInterface {
                             double butterfly = scanner.nextDouble();
 
                             controller.addCompetitive(name, status, age, breastTime, crawlTime, backCrawlTime, butterfly);
-
+                            controller.saveCompSwimmerToList();
                         } else {
 
                             System.out.print("\nName: ");
@@ -85,7 +83,7 @@ public class UserInterface {
                         System.out.println("Adding new member to swimming club...");
                     }
                     case "list" -> {
-                        controller.saveMembersToList();
+                        controller.loadCompSwimmerFromList();
                         System.out.println(controller.getMembers());
                     }
                     case "exit" -> {

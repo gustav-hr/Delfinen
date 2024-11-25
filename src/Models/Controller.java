@@ -1,11 +1,7 @@
 package Models;
 
 import Members.AllMembers;
-import Members.CompetitionSwimmer;
 import Members.MembersList;
-import Members.WorkoutSwimmer;
-
-import java.util.ArrayList;
 
 public class Controller {
 
@@ -40,7 +36,11 @@ public class Controller {
         return membersList.removeMember(name);
     }
 
-    public void saveMembersToList() {
-        membersList.saveMembers();
+    public void saveCompSwimmerToList() {
+        membersList.saveCompSwimmers();
+    }
+
+    public void loadCompSwimmerFromList(){
+    membersList.loadCompSwimmers();
     }
 }

@@ -37,7 +37,7 @@ public class CompSwimmerHandler {
     }
 
 
-    public ArrayList<AllMembers> loadMembersToList() throws FileNotFoundException {
+    public static ArrayList<AllMembers> loadMembersToList(){
         ArrayList<AllMembers> memberList = new ArrayList<>();
         File file = new File(fileName);
 
@@ -56,6 +56,8 @@ public class CompSwimmerHandler {
 
                 memberList.add(member);
             }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         }
         return memberList;
     }
