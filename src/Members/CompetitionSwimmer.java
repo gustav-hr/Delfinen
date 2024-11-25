@@ -6,14 +6,16 @@ public class CompetitionSwimmer extends AllMembers {
     private double crawlTime;
     private double backCrawlTime;
     private double butterflyTime;
+    private int fee;
 
-    public CompetitionSwimmer(String name, String status, int age, String coach, double breastTime, double crawlTime, double backCrawlTime, double butterflyTime) {
+    public CompetitionSwimmer(String name, String status, int age, String coach, double breastTime, double crawlTime, double backCrawlTime, double butterflyTime, int fee) {
         super(name, status, age);
         this.coach = coach;
         this.breastTime = breastTime;
         this.crawlTime = crawlTime;
         this.backCrawlTime = backCrawlTime;
         this.butterflyTime = butterflyTime;
+        this.fee = fee;
     }
 
 

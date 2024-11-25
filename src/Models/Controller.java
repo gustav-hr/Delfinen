@@ -15,10 +15,17 @@ public class Controller {
     public void addCompetitive(String name, String status, int age, double breastTime, double crawlTime, double backCrawlTime, double butterflyTime) {
 
         if (age >= 18) {
+
             membersList.addCompetitionSwimmer(name, status, age, "Joachim", breastTime, crawlTime, backCrawlTime, butterflyTime);
         } else {
             membersList.addCompetitionSwimmer(name, status, age, "Sara", breastTime, crawlTime, backCrawlTime, butterflyTime);
         }
+
+
+
+
+
+
     }
 
     public void addWorkout(String name, String status, int age) {
