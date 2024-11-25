@@ -37,7 +37,7 @@ public class CompSwimmerHandler {
     }
 
 
-    public static ArrayList<AllMembers> loadMembersToList(){
+    public static ArrayList<AllMembers> loadMembersToList() {
         ArrayList<AllMembers> memberList = new ArrayList<>();
         File file = new File(fileName);
 
@@ -47,12 +47,23 @@ public class CompSwimmerHandler {
                 String status = scan.nextLine().replace("Status: ", "").trim();
                 int age = Integer.parseInt(scan.nextLine().replace("Age: ", "").trim());
                 String coach = scan.nextLine().replace("Coach: ", "").trim();
-                double breastTime = Double.parseDouble(scan.nextLine().replace("Breaststroke time: ","").trim());
+                double breastTime = Double.parseDouble(scan.nextLine().replace("Breaststroke time: ", "").trim());
                 double crawlTime = Double.parseDouble(scan.nextLine().replace("Crawl time: ", "").trim());
-                double backCrawl = Double.parseDouble(scan.nextLine().replace("Back crawl time: ","").trim());
+                double backCrawl = Double.parseDouble(scan.nextLine().replace("Back crawl time: ", "").trim());
                 double butterfly = Double.parseDouble(scan.nextLine().replace("Butterfly time: ", "").trim());
+                int fee = 0;
 
-                AllMembers member = new CompetitionSwimmer(name,status,age,coach,breastTime,crawlTime,backCrawl,butterfly);
+                if (age >= 18) {
+                    fee = 1600;
+                }
+                if (age >= 18 && age <= 60) {
+                    fee = 1000;
+                }
+                if (age > 60) {
+                    fee = 1200;
+                }
+
+                AllMembers member = new CompetitionSwimmer(name, status, age, coach, breastTime, crawlTime, backCrawl, butterfly, fee);
 
                 memberList.add(member);
             }

@@ -2,6 +2,9 @@ package Models;
 
 import Members.AllMembers;
 import Members.MembersList;
+import Members.WorkoutSwimmer;
+
+import java.util.ArrayList;
 
 public class Controller {
 
