@@ -72,11 +72,11 @@ public class CompetitionSwimmer extends AllMembers {
     public String toString() {
 
         return super.toString() +
-                "\nCoach :" + coach +
+                "\nCoach: " + coach +
                 "\nBreaststroke time: " + breastTime +
                 "\nCrawl time: " + crawlTime +
-                "\nBack crawl time :" + backCrawlTime +
-                "\nButterfly time" + butterflyTime +
+                "\nBack crawl time: " + backCrawlTime +
+                "\nButterfly time: " + butterflyTime +
                 "\n_____________________________________________\n";
     }
 

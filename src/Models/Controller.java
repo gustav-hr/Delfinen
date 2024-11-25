@@ -1,11 +1,7 @@
 package Models;
 
 import Members.AllMembers;
-import Members.CompetitionSwimmer;
 import Members.MembersList;
-import Members.WorkoutSwimmer;
-
-import java.util.ArrayList;
 
 public class Controller {
 
@@ -45,6 +41,15 @@ public class Controller {
 
     public boolean removeMember(String name) {
         return membersList.removeMember(name);
+    }
+
+    public AllMembers editMembers(String membersName) {
+        for (AllMembers allmembers : membersList.getMembersList()) {
+            if (allmembers.getName().equalsIgnoreCase(membersName)) {
+                return allmembers;
+            }
+        }
+        return null;
     }
 
 

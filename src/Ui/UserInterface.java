@@ -1,6 +1,7 @@
 package Ui;
 
 import Members.AllMembers;
+import Members.CompetitionSwimmer;
 import Members.MembersList;
 import Models.Controller;
 
@@ -10,9 +11,9 @@ import java.util.Scanner;
 public class UserInterface {
     private final Scanner scanner = new Scanner(System.in); // Final scanner to use in the UI.
     private final MembersList membersList = new MembersList(); // Initializing Memberslist so it won't give an error when adding it to the ArrayList.
+    private boolean validInput = false;
 
     Controller controller = new Controller();
-    private boolean validInput = false;
 
     public void startProgram() {
         System.out.println("Welcome to the Dolphin swimming club!");
@@ -27,6 +28,7 @@ public class UserInterface {
             System.out.println("Type: 'add' to add members to the swimming club. ");
             System.out.println("Type 'remove' to remove members from the swimming club. ");
             System.out.println("Type 'update' to update information on the members in the swimming club. ");
+            System.out.println("Type 'list' to see the current list of members.");
             System.out.println("Type 'exit' to exit the program. ");
             while (!userInput.equalsIgnoreCase("exit")) {
 
@@ -48,7 +50,7 @@ public class UserInterface {
                             //Makes sure the userinput either is "passive" or "active"
                             System.out.print("Status type; Passive, Active: ");
                             String status = scanner.next();
-                            while(!(status.equalsIgnoreCase("passive")) && !(status.equalsIgnoreCase("active"))) {
+                            while (!(status.equalsIgnoreCase("passive")) && !(status.equalsIgnoreCase("active"))) {
 
                                 System.out.println("Please enter either 'Passive' or 'Active'");
                                 status = scanner.next();
@@ -59,7 +61,7 @@ public class UserInterface {
                             System.out.print("Age: ");
                             int age = 0;
                             validInput = false;
-                            while(!validInput) {
+                            while (!validInput) {
                                 try {
                                     age = Integer.parseInt(scanner.next());
                                     validInput = true;
@@ -72,12 +74,13 @@ public class UserInterface {
 
                             System.out.println("Type in your best time (in seconds) for the following Swimming techniques. \n" +
                                     "If you don't have a time yet, enter 0: ");
+
                             System.out.print("Breaststroke time: ");
                             double breastTime = 0;
                             validInput = false;
-                            while(!validInput) {
+                            while (!validInput) {
                                 try {
-                                    breastTime = Integer.parseInt(scanner.next());
+                                    breastTime = Double.parseDouble(scanner.next());
                                     validInput = true;
                                 } catch (IllegalArgumentException iae) {
                                     System.out.println("Please enter a valid time");
@@ -87,9 +90,9 @@ public class UserInterface {
                             System.out.print("Crawl: ");
                             double crawlTime = 0;
                             validInput = false;
-                            while(!validInput) {
+                            while (!validInput) {
                                 try {
-                                    crawlTime = Integer.parseInt(scanner.next());
+                                    crawlTime = Double.parseDouble(scanner.next());
                                     validInput = true;
                                 } catch (IllegalArgumentException iae) {
                                     System.out.println("Please enter a valid time");
@@ -98,9 +101,9 @@ public class UserInterface {
                             System.out.print("Back Crawl: ");
                             double backCrawlTime = 0;
                             validInput = false;
-                            while(!validInput) {
+                            while (!validInput) {
                                 try {
-                                    backCrawlTime = Integer.parseInt(scanner.next());
+                                    backCrawlTime = Double.parseDouble(scanner.next());
                                     validInput = true;
                                 } catch (IllegalArgumentException iae) {
                                     System.out.println("Please enter a valid time");
@@ -110,9 +113,9 @@ public class UserInterface {
                             System.out.print("Butterfly: ");
                             double butterfly = 0;
                             validInput = false;
-                            while(!validInput) {
+                            while (!validInput) {
                                 try {
-                                    butterfly = Integer.parseInt(scanner.next());
+                                    butterfly = Double.parseDouble(scanner.next());
                                     validInput = true;
                                 } catch (IllegalArgumentException iae) {
                                     System.out.println("Please enter a valid age");
@@ -130,7 +133,7 @@ public class UserInterface {
                             //Makes sure the userinput either is "passive" or "active"
                             System.out.print("Status type; Passive, Active: ");
                             String status = scanner.next();
-                            while(!(status.equalsIgnoreCase("passive")) && !(status.equalsIgnoreCase("active"))) {
+                            while (!(status.equalsIgnoreCase("passive")) && !(status.equalsIgnoreCase("active"))) {
 
                                 System.out.println("Please enter either 'Passive' or 'Active'");
                                 status = scanner.next();
@@ -142,7 +145,7 @@ public class UserInterface {
                             System.out.print("Age: ");
                             int age = 0;
                             validInput = false;
-                            while(!validInput) {
+                            while (!validInput) {
                                 try {
                                     age = Integer.parseInt(scanner.next());
                                     validInput = true;
@@ -167,6 +170,9 @@ public class UserInterface {
                     case "remove" -> {
                         removeMember();
                     }
+                    case "edit" -> {
+                        editMember();
+                    }
                 }
 
             }
@@ -190,10 +196,143 @@ public class UserInterface {
             System.out.println("Member not found, try again.");
 
         }
+    }
+
+    private void editMember() {
+        scanner.nextLine();
+        System.out.println(controller.getMembers());
+        System.out.println("Type the name of the member you want to edit.");
+
+        String name = scanner.nextLine();
+        AllMembers memberEdit = controller.editMembers(name);
+
+        System.out.println("what do u want to edit? \n" +
+                "All personal detaile, name, status, age......");
+
+        String editName = scanner.nextLine();
+        switch (editName) {
+            case "All" -> {
+
+                if (memberEdit != null) {
+
+                    if (memberEdit instanceof CompetitionSwimmer) {
+
+                        System.out.print("Name: ");
+                        memberEdit.setName(scanner.nextLine());
+
+                        System.out.print("Status: ");
+                        memberEdit.setStatus(scanner.next());
+
+                        System.out.println("Editing age: ");
+                        memberEdit.setAge(scanner.nextInt());
+                        int memberAge = 0;
+                        validInput = false;
+                        while (!validInput) {
+                            try {
+                                memberAge = Integer.parseInt(scanner.next());
+                                validInput = true;
+                                memberEdit.setAge(memberAge);
+                            } catch (Exception e) {
+                                System.out.println("Invalid input. Please enter age.  ");
+                            }
+                        }
+
+                        System.out.println("New breaststroke time: ");
+                        ((CompetitionSwimmer) memberEdit).setBreastTime(scanner.nextDouble());
+
+                        System.out.println("New crawl time: ");
+                        ((CompetitionSwimmer) memberEdit).setCrawlTime(scanner.nextDouble());
+
+                        System.out.println("New back crawl time: ");
+                        ((CompetitionSwimmer) memberEdit).setBackCrawlTime(scanner.nextDouble());
+
+                        System.out.println("New butterfly time: ");
+                        ((CompetitionSwimmer) memberEdit).setButterflyTime(scanner.nextDouble());
+
+                    } else {
+
+                        System.out.print("Name: ");
+                        memberEdit.setName(scanner.nextLine());
+
+                        System.out.print("Status: ");
+                        memberEdit.setStatus(scanner.next());
+
+                        System.out.println("Editing age: ");
+                        memberEdit.setAge(scanner.nextInt());
+                        int memberAge = 0;
+                        validInput = false;
+                        while (!validInput) {
+                            try {
+                                memberAge = Integer.parseInt(scanner.next());
+                                validInput = true;
+                                memberEdit.setAge(memberAge);
+                            } catch (Exception e) {
+                                System.out.println("Invalid input. Please enter age. ");
+                            }
+                        }
+                    }
+                }
+            }
+            case "Name" -> {
+                System.out.println("Editing name: ");
+                memberEdit.setName(scanner.nextLine());
+            }
+            case "Status" -> {
+                System.out.println("Editing status: ");
+                memberEdit.setStatus(scanner.nextLine());
+            }
+            case "Age" -> {
+                System.out.println("Editing age: ");
+                memberEdit.setAge(scanner.nextInt());
+                int memberAge = 0;
+                validInput = false;
+                while (!validInput) {
+                    try {
+                        memberAge = Integer.parseInt(scanner.next());
+                        validInput = true;
+                        memberEdit.setAge(memberAge);
+                    } catch (Exception e) {
+                        System.out.println("Invalid input. Please enter age. ");
+                    }
+                }
+            }
+            case "Breaststroke" -> {
+                System.out.println("New time for breast stroke: ");
+                ((CompetitionSwimmer) memberEdit).setBreastTime(scanner.nextDouble());
+            }
+            case "Crawl" -> {
+                System.out.println("New crawl time: ");
+                ((CompetitionSwimmer) memberEdit).setCrawlTime(scanner.nextDouble());
+            }
+            case "Back crawl" -> {
+                System.out.println("New back crawl time: ");
+                ((CompetitionSwimmer) memberEdit).setBackCrawlTime(scanner.nextDouble());
+            }
+            case "Butterfly" -> {
+                System.out.println("New butterfly time: ");
+                ((CompetitionSwimmer) memberEdit).setButterflyTime(scanner.nextDouble());
+            }
+        }
 
     }
 
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
