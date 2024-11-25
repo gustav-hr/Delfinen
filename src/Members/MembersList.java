@@ -15,8 +15,8 @@ public class MembersList {
         members.add(member);
     }
 
-    public void addCompetitionSwimmer(String name, String status, int age, String coach, double breastTime, double crawlTime, double backCrawlTime, double butterflyTime) {
-        AllMembers member = new CompetitionSwimmer(name, status, age, coach, breastTime, crawlTime, backCrawlTime, butterflyTime);
+    public void addCompetitionSwimmer(String name, String status, int age, String coach, double breastTime, double crawlTime, double backCrawlTime, double butterflyTime, int fee) {
+        AllMembers member = new CompetitionSwimmer(name, status, age, coach, breastTime, crawlTime, backCrawlTime, butterflyTime, fee);
         members.add(member);
     }
     // To show the members if we need that somewhere in the code. Will need most likely sometime.

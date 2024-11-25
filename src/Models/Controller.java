@@ -11,10 +11,17 @@ public class Controller {
     public void addCompetitive(String name, String status, int age, double breastTime, double crawlTime, double backCrawlTime, double butterflyTime) {
 
         if (age >= 18) {
+
             membersList.addCompetitionSwimmer(name, status, age, "Joachim", breastTime, crawlTime, backCrawlTime, butterflyTime);
         } else {
             membersList.addCompetitionSwimmer(name, status, age, "Sara", breastTime, crawlTime, backCrawlTime, butterflyTime);
         }
+
+
+
+
+
+
     }
 
     public void addWorkout(String name, String status, int age) {
@@ -39,6 +46,15 @@ public class Controller {
     public void saveCompSwimmerToList() {
         membersList.saveCompSwimmers();
     }
+    public AllMembers editMembers(String membersName) {
+        for (AllMembers allmembers : membersList.getMembersList()) {
+            if (allmembers.getName().equalsIgnoreCase(membersName)) {
+                return allmembers;
+            }
+        }
+        return null;
+    }
+
 
     public void loadCompSwimmerFromList(){
     membersList.loadCompSwimmers();
