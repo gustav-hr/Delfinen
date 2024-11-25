@@ -3,6 +3,7 @@ package Ui;
 import Members.AllMembers;
 import Members.CompetitionSwimmer;
 import Members.MembersList;
+import Members.WorkoutSwimmer;
 import Models.Controller;
 
 import java.util.Scanner;
@@ -211,122 +212,127 @@ public class UserInterface {
     }
 
     private void editMember() {
-        scanner.nextLine();
+        scanner.nextLine(); // Clear input buffer
         System.out.println(controller.getMembers());
-        System.out.println("Type the name of the member you want to edit.");
+        System.out.println("Type the name of the member you want to edit:");
 
         String name = scanner.nextLine();
         AllMembers memberEdit = controller.editMembers(name);
 
-        System.out.println("what do u want to edit? \n" +
-                "All personal detaile, name, status, age......");
+        if (memberEdit == null) {
+            System.out.println("Member not found. Please try again.");
+            return;
+        }
 
-        String editName = scanner.nextLine().toLowerCase();
-        switch (editName) {
+        System.out.println("What do you want to edit? \n" +
+                "Options: all, name, status, age, breaststroke, crawl, back crawl, butterfly");
+
+        String editChoice = scanner.nextLine().toLowerCase();
+        switch (editChoice) {
             case "all" -> {
-
-                if (memberEdit != null) {
-
-                    if (memberEdit instanceof CompetitionSwimmer) {
-
-                        System.out.print("Name: ");
-                        memberEdit.setName(scanner.nextLine());
-
-                        System.out.print("Status: ");
-                        memberEdit.setStatus(scanner.next());
-
-                        System.out.println("Editing age: ");
-                        memberEdit.setAge(scanner.nextInt());
-                        int memberAge = 0;
-                        validInput = false;
-                        while (!validInput) {
-                            try {
-                                memberAge = Integer.parseInt(scanner.next());
-                                validInput = true;
-                                memberEdit.setAge(memberAge);
-                            } catch (Exception e) {
-                                System.out.println("Invalid input. Please enter age.  ");
-                            }
-                        }
-
-                        System.out.println("New breaststroke time: ");
-                        ((CompetitionSwimmer) memberEdit).setBreastTime(scanner.nextDouble());
-
-                        System.out.println("New crawl time: ");
-                        ((CompetitionSwimmer) memberEdit).setCrawlTime(scanner.nextDouble());
-
-                        System.out.println("New back crawl time: ");
-                        ((CompetitionSwimmer) memberEdit).setBackCrawlTime(scanner.nextDouble());
-
-                        System.out.println("New butterfly time: ");
-                        ((CompetitionSwimmer) memberEdit).setButterflyTime(scanner.nextDouble());
-
-                    } else {
-
-                        System.out.print("Name: ");
-                        memberEdit.setName(scanner.nextLine());
-
-                        System.out.print("Status: ");
-                        memberEdit.setStatus(scanner.next());
-
-                        System.out.println("Editing age: ");
-                        memberEdit.setAge(scanner.nextInt());
-                        int memberAge = 0;
-                        validInput = false;
-                        while (!validInput) {
-                            try {
-                                memberAge = Integer.parseInt(scanner.next());
-                                validInput = true;
-                                memberEdit.setAge(memberAge);
-                            } catch (Exception e) {
-                                System.out.println("Invalid input. Please enter age. ");
-                            }
-                        }
-                    }
-                }
-            }
-            case "name" -> {
-                System.out.println("Editing name: ");
+                System.out.print("Name: ");
                 memberEdit.setName(scanner.nextLine());
-            }
-            case "status" -> {
-                System.out.println("Editing status: ");
+
+                System.out.print("Status: ");
                 memberEdit.setStatus(scanner.nextLine());
-            }
-            case "age" -> {
-                System.out.println("Editing age: ");
-                memberEdit.setAge(scanner.nextInt());
-                int memberAge = 0;
+
+                int age = 0;
                 validInput = false;
                 while (!validInput) {
                     try {
-                        memberAge = Integer.parseInt(scanner.next());
+                        System.out.print("Age: ");
+                        age = Integer.parseInt(scanner.nextLine());
                         validInput = true;
-                        memberEdit.setAge(memberAge);
-                    } catch (Exception e) {
-                        System.out.println("Invalid input. Please enter age. ");
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid input. Please enter a valid age.");
                     }
                 }
+                memberEdit.setAge(age);
+
+                if (memberEdit instanceof CompetitionSwimmer) {
+                    CompetitionSwimmer compSwimmer = (CompetitionSwimmer) memberEdit;
+
+                    System.out.print("New breaststroke time: ");
+                    compSwimmer.setBreastTime(Double.parseDouble(scanner.nextLine()));
+
+                    System.out.print("New crawl time: ");
+                    compSwimmer.setCrawlTime(Double.parseDouble(scanner.nextLine()));
+
+                    System.out.print("New back crawl time: ");
+                    compSwimmer.setBackCrawlTime(Double.parseDouble(scanner.nextLine()));
+
+                    System.out.print("New butterfly time: ");
+                    compSwimmer.setButterflyTime(Double.parseDouble(scanner.nextLine()));
+                }
+            }
+            case "name" -> {
+                System.out.print("New name: ");
+                memberEdit.setName(scanner.nextLine());
+            }
+            case "status" -> {
+                System.out.print("New status: ");
+                memberEdit.setStatus(scanner.nextLine());
+            }
+            case "age" -> {
+                int age = 0;
+                validInput = false;
+                while (!validInput) {
+                    try {
+                        System.out.print("New age: ");
+                        age = Integer.parseInt(scanner.nextLine());
+                        validInput = true;
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid input. Please enter a valid age.");
+                    }
+                }
+                memberEdit.setAge(age);
             }
             case "breaststroke" -> {
-                System.out.println("New time for breast stroke: ");
-                ((CompetitionSwimmer) memberEdit).setBreastTime(scanner.nextDouble());
+                if (memberEdit instanceof CompetitionSwimmer) {
+                    System.out.print("New time for breaststroke: ");
+                    ((CompetitionSwimmer) memberEdit).setBreastTime(Double.parseDouble(scanner.nextLine()));
+                } else {
+                    System.out.println("This member is not a competition swimmer.");
+                }
             }
             case "crawl" -> {
-                System.out.println("New crawl time: ");
-                ((CompetitionSwimmer) memberEdit).setCrawlTime(scanner.nextDouble());
+                if (memberEdit instanceof CompetitionSwimmer) {
+                    System.out.print("New crawl time: ");
+                    ((CompetitionSwimmer) memberEdit).setCrawlTime(Double.parseDouble(scanner.nextLine()));
+                } else {
+                    System.out.println("This member is not a competition swimmer.");
+                }
             }
             case "back crawl" -> {
-                System.out.println("New back crawl time: ");
-                ((CompetitionSwimmer) memberEdit).setBackCrawlTime(scanner.nextDouble());
+                if (memberEdit instanceof CompetitionSwimmer) {
+                    System.out.print("New back crawl time: ");
+                    ((CompetitionSwimmer) memberEdit).setBackCrawlTime(Double.parseDouble(scanner.nextLine()));
+                } else {
+                    System.out.println("This member is not a competition swimmer.");
+                }
             }
             case "butterfly" -> {
-                System.out.println("New butterfly time: ");
-                ((CompetitionSwimmer) memberEdit).setButterflyTime(scanner.nextDouble());
+                if (memberEdit instanceof CompetitionSwimmer) {
+                    System.out.print("New butterfly time: ");
+                    ((CompetitionSwimmer) memberEdit).setButterflyTime(Double.parseDouble(scanner.nextLine()));
+                } else {
+                    System.out.println("This member is not a competition swimmer.");
+                }
             }
+            default -> System.out.println("Invalid option. Please try again.");
         }
 
+
+        // Save changes to the correct file
+        if (memberEdit instanceof CompetitionSwimmer) {
+            controller.saveCompSwimmerToList();
+        } else if (memberEdit instanceof WorkoutSwimmer) {
+            controller.saveWorkoutSwimmersToList();
+        }
+
+        System.out.println("Member details have been updated successfully.");
     }
+
 
 
 }

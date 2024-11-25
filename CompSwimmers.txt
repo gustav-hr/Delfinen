@@ -16,7 +16,7 @@ Back crawl time: 2.0
 Butterfly time: 2.0
 Name: bertram
 Status: active
-Age: 20
+Age: 66
 Coach: Joachim
 Breaststroke time: 0.0
 Crawl time: 0.0
