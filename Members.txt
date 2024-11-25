@@ -1,0 +1,20 @@
+Name: johan
+
+Status: passice
+
+Age: 23
+Name: hans
+
+Status: active
+
+Age: 29
+
+Coach: Joachim
+
+Breaststroke time: 2.0
+
+Crawl time: 2.0
+
+Back crawl time: 2.0
+
+Butterfly time: 2.0

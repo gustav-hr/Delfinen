@@ -1,5 +1,7 @@
 package Members;
 
+import Models.CompSwimmerHandler;
+
 import java.util.ArrayList;
 
 public class MembersList {
@@ -30,6 +32,10 @@ public class MembersList {
             }
         }
         return false;
+    }
+
+    public void saveMembers(){
+        CompSwimmerHandler.saveMembersToFile(members);
     }
 
 

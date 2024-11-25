@@ -85,6 +85,7 @@ public class UserInterface {
                         System.out.println("Adding new member to swimming club...");
                     }
                     case "list" -> {
+                        controller.saveMembersToList();
                         System.out.println(controller.getMembers());
                     }
                     case "exit" -> {

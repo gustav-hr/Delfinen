@@ -40,5 +40,7 @@ public class Controller {
         return membersList.removeMember(name);
     }
 
-
+    public void saveMembersToList() {
+        membersList.saveMembers();
+    }
 }
