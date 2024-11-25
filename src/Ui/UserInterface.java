@@ -10,6 +10,7 @@ public class UserInterface {
     private final MembersList membersList = new MembersList(); // Initializing Memberslist so it won't give an error when adding it to the ArrayList.
 
     Controller controller = new Controller();
+    private boolean validInput = false;
 
     public void startProgram() {
         System.out.println("Welcome to the Dolphin swimming club!");
@@ -41,25 +42,80 @@ public class UserInterface {
                             scanner.nextLine();
                             String name = scanner.nextLine().toLowerCase(); // We read the name from the user.
 
+
+                            //Makes sure the userinput either is "passive" or "active"
                             System.out.print("Status type; Passive, Active: ");
                             String status = scanner.next();
+                            while(!(status.equalsIgnoreCase("passive")) && !(status.equalsIgnoreCase("active"))) {
 
-                            // This is where we add the age of the new member of the dolphin club.
+                                System.out.println("Please enter either 'Passive' or 'Active'");
+                                status = scanner.next();
+
+                            }
+
+                            //Makes sure the userinput is in fact a valid age.
                             System.out.print("Age: ");
-                            int age = scanner.nextInt();
-                            scanner.nextLine(); // Removes the extra step that, for some reason, is there when trying to add age.
+                            int age = 0;
+                            validInput = false;
+                            while(!validInput) {
+                                try {
+                                    age = Integer.parseInt(scanner.next());
+                                    validInput = true;
+                                } catch (IllegalArgumentException iae) {
+                                    System.out.println("Please enter a valid age");
+                                }
+                            }
 
+                            scanner.nextLine(); // Removes the extra step that, for some reason, is there when trying to add age.
 
                             System.out.println("Type in your best time (in seconds) for the following Swimming techniques. \n" +
                                     "If you don't have a time yet, enter 0: ");
                             System.out.print("Breaststroke time: ");
-                            double breastTime = scanner.nextDouble();
+                            double breastTime = 0;
+                            validInput = false;
+                            while(!validInput) {
+                                try {
+                                    breastTime = Integer.parseInt(scanner.next());
+                                    validInput = true;
+                                } catch (IllegalArgumentException iae) {
+                                    System.out.println("Please enter a valid time");
+                                }
+                            }
+
                             System.out.print("Crawl: ");
-                            double crawlTime = scanner.nextDouble();
+                            double crawlTime = 0;
+                            validInput = false;
+                            while(!validInput) {
+                                try {
+                                    crawlTime = Integer.parseInt(scanner.next());
+                                    validInput = true;
+                                } catch (IllegalArgumentException iae) {
+                                    System.out.println("Please enter a valid time");
+                                }
+                            }
                             System.out.print("Back Crawl: ");
-                            double backCrawlTime = scanner.nextDouble();
+                            double backCrawlTime = 0;
+                            validInput = false;
+                            while(!validInput) {
+                                try {
+                                    backCrawlTime = Integer.parseInt(scanner.next());
+                                    validInput = true;
+                                } catch (IllegalArgumentException iae) {
+                                    System.out.println("Please enter a valid time");
+                                }
+                            }
+
                             System.out.print("Butterfly: ");
-                            double butterfly = scanner.nextDouble();
+                            double butterfly = 0;
+                            validInput = false;
+                            while(!validInput) {
+                                try {
+                                    butterfly = Integer.parseInt(scanner.next());
+                                    validInput = true;
+                                } catch (IllegalArgumentException iae) {
+                                    System.out.println("Please enter a valid age");
+                                }
+                            }
 
                             controller.addCompetitive(name, status, age, breastTime, crawlTime, backCrawlTime, butterfly);
                             controller.saveCompSwimmerToList();
@@ -69,12 +125,29 @@ public class UserInterface {
                             scanner.nextLine();
                             String name = scanner.nextLine().toLowerCase(); // We read the name from the user.
 
+                            //Makes sure the userinput either is "passive" or "active"
                             System.out.print("Status type; Passive, Active: ");
                             String status = scanner.next();
+                            while(!(status.equalsIgnoreCase("passive")) && !(status.equalsIgnoreCase("active"))) {
 
-                            // This is where we add the age of the new member of the dolphin club.
+                                System.out.println("Please enter either 'Passive' or 'Active'");
+                                status = scanner.next();
+
+                            }
+
+
+                            //Makes sure the userinput is in fact a valid age.
                             System.out.print("Age: ");
-                            int age = scanner.nextInt();
+                            int age = 0;
+                            validInput = false;
+                            while(!validInput) {
+                                try {
+                                    age = Integer.parseInt(scanner.next());
+                                    validInput = true;
+                                } catch (IllegalArgumentException iae) {
+                                    System.out.println("Please enter a valid age");
+                                }
+                            }
                             scanner.nextLine(); // Removes the extra step that, for some reason, is there when trying to add age.
 
                             controller.addWorkout(name, status, age);
