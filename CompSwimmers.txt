@@ -1,0 +1,16 @@
+Name: johan
+Status: active
+Age: 19
+Coach: Joachim
+Breaststroke time: 0.0
+Crawl time: 0.0
+Back crawl time: 0.0
+Butterfly time: 0.0
+Name: gustav
+Status: active
+Age: 10
+Coach: Sara
+Breaststroke time: 2.0
+Crawl time: 2.0
+Back crawl time: 2.0
+Butterfly time: 2.0
