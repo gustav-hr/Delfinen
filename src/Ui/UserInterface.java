@@ -5,7 +5,6 @@ import Members.CompetitionSwimmer;
 import Members.MembersList;
 import Models.Controller;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 public class UserInterface {
