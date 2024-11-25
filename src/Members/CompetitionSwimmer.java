@@ -65,8 +65,6 @@ public class CompetitionSwimmer extends AllMembers {
         this.backCrawlTime = backCrawlTime;
     }
 
-    MembersList membersList = new MembersList();
-
     @Override
     public String toString() {
 

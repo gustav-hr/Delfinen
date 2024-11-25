@@ -13,12 +13,12 @@ import java.util.Scanner;
 public class WorkoutSwimmerHandler {
     private static final String fileName = "WorkoutSwimmers.txt";
 
-    public static void saveCompSwimmerToFile(ArrayList<AllMembers> membersList) {
+    public static void saveWorkoutSwimmerToFile(ArrayList<AllMembers> membersList) {
 
         try (PrintStream output = new PrintStream(fileName)) {
 
             for (AllMembers member : membersList) {
-                if (member instanceof CompetitionSwimmer) {
+                if (member instanceof WorkoutSwimmer) {
                     output.println("Name: " + member.getName());
                     output.println("Status: " + member.getStatus());
                     output.println("Age: " + member.getAge());
@@ -30,7 +30,7 @@ public class WorkoutSwimmerHandler {
     }
 
 
-    public static ArrayList<AllMembers> loadCompSwimmerFromFile() {
+    public static ArrayList<AllMembers> loadWorkoutFromFile() {
         ArrayList<AllMembers> memberList = new ArrayList<>();
         File file = new File(fileName);
 

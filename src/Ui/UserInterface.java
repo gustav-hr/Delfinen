@@ -123,7 +123,8 @@ public class UserInterface {
 
                             controller.addCompetitive(name, status, age, breastTime, crawlTime, backCrawlTime, butterfly);
                             controller.saveCompSwimmerToList();
-                        } else {
+
+                        } else if (compOrNot.equalsIgnoreCase("no")){
 
                             System.out.print("\nName: ");
                             scanner.nextLine();
@@ -138,8 +139,6 @@ public class UserInterface {
                                 status = scanner.next();
 
                             }
-
-
                             //Makes sure the userinput is in fact a valid age.
                             System.out.print("Age: ");
                             int age = 0;
@@ -155,13 +154,24 @@ public class UserInterface {
                             scanner.nextLine(); // Removes the extra step that, for some reason, is there when trying to add age.
 
                             controller.addWorkout(name, status, age);
+                            controller.saveWorkoutSwimmersToList();
                         }
 
                         System.out.println("Adding new member to swimming club...");
+
                     }
                     case "list" -> {
-                        controller.loadCompSwimmerFromList();
-                        System.out.println(controller.getMembers());
+                        System.out.println("What list do you want to see?");
+                        System.out.println("CompetitionSwimmers: type 'comp'");
+                        System.out.println("Others: type 'others'");
+
+                        if (scanner.next().equalsIgnoreCase("comp")) {
+                            controller.loadCompSwimmerFromList();
+                            System.out.println(controller.getMembers());
+                        } else {
+                            controller.loadWorkoutSwimmersFromList();
+                            System.out.println(controller.getMembers());
+                        }
                     }
                     case "exit" -> {
                         System.out.println("You are now exiting the program...");

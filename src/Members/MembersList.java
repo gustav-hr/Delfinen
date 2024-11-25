@@ -1,6 +1,7 @@
 package Members;
 
 import Models.CompSwimmerHandler;
+import Models.WorkoutSwimmerHandler;
 
 import java.util.ArrayList;
 
@@ -34,13 +35,19 @@ public class MembersList {
         return false;
     }
 
-    public void saveCompSwimmers(){
+    public void saveCompSwimmers() {
         CompSwimmerHandler.saveCompSwimmerToFile(members);
     }
 
-    public void loadCompSwimmers(){
+    public void loadCompSwimmers() {
         members = CompSwimmerHandler.loadCompSwimmerFromFile();
     }
 
+    public void saveWorkoutSwimmers() {
+        WorkoutSwimmerHandler.saveWorkoutSwimmerToFile(members);
+    }
 
+    public void loadWorkoutSwimmers() {
+        members = WorkoutSwimmerHandler.loadWorkoutFromFile();
+    }
 }

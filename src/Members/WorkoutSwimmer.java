@@ -7,7 +7,7 @@ public class WorkoutSwimmer extends AllMembers {
         super(name, status, age);
     }
 
-
+    @Override
     public String toString() {
         return super.toString() +
                 "\n_____________________________________________\n";

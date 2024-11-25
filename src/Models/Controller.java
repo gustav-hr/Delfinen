@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class Controller {
 
     MembersList membersList = new MembersList();
-    AllMembers allMembers;
 
     public void addCompetitive(String name, String status, int age, double breastTime, double crawlTime, double backCrawlTime, double butterflyTime) {
 
@@ -19,10 +18,6 @@ public class Controller {
         } else {
             membersList.addCompetitionSwimmer(name, status, age, "Sara", breastTime, crawlTime, backCrawlTime, butterflyTime);
         }
-
-
-
-
 
 
     }
@@ -46,9 +41,7 @@ public class Controller {
         return membersList.removeMember(name);
     }
 
-    public void saveCompSwimmerToList() {
-        membersList.saveCompSwimmers();
-    }
+
     public AllMembers editMembers(String membersName) {
         for (AllMembers allmembers : membersList.getMembersList()) {
             if (allmembers.getName().equalsIgnoreCase(membersName)) {
@@ -58,8 +51,22 @@ public class Controller {
         return null;
     }
 
-
-    public void loadCompSwimmerFromList(){
-    membersList.loadCompSwimmers();
+    public void saveCompSwimmerToList() {
+        membersList.saveCompSwimmers();
     }
-}
+
+    public void loadCompSwimmerFromList() {
+        membersList.loadCompSwimmers();
+    }
+
+    public void saveWorkoutSwimmersToList(){
+        membersList.saveWorkoutSwimmers();
+    }
+
+    public void loadWorkoutSwimmersFromList(){
+        membersList.loadWorkoutSwimmers();
+    }
+
+
+    }
+
