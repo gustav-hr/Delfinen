@@ -36,17 +36,36 @@ public class WorkoutSwimmerHandler {
 
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
-                String name = scanner.nextLine().replace("Name: ", "").trim();
-                String status = scanner.nextLine().replace("Status: ", "").trim();
-                int age = Integer.parseInt(scanner.nextLine().replace("Age: ", "").trim());
+                // Læs linjerne i den forventede rækkefølge
+                String nameLine = scanner.nextLine().trim();
+                if (nameLine.isEmpty()) continue; // Skip tomme linjer
 
+
+
+                String name = nameLine.replace("Name: ", "").trim();
+
+                String statusLine = scanner.nextLine().trim();
+                if (!statusLine.startsWith("Status: ")) {
+                    continue;
+                }
+                String status = statusLine.replace("Status: ", "").trim();
+
+                String ageLine = scanner.nextLine().trim();
+                if (!ageLine.startsWith("Age: ")) {
+                    continue;
+                }
+                int age = Integer.parseInt(ageLine.replace("Age: ", "").trim());
+
+                // Opret WorkoutSwimmer og tilføj til listen
                 AllMembers member = new WorkoutSwimmer(name, status, age);
-
                 memberList.add(member);
             }
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("File not found: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("Error parsing file. Please check the file format: " + e.getMessage());
         }
         return memberList;
     }
+
 }

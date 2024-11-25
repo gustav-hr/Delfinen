@@ -179,7 +179,10 @@ public class UserInterface {
                         System.exit(0);
                     }
                     case "remove" -> {
-                        controller.loadCompSwimmerFromList();
+                        System.out.println("Enter the name you want to remove from the swimming club: ");
+                        scanner.nextLine();
+                        String name = scanner.nextLine();
+
                         removeMember();
                     }
                     case "edit" -> {

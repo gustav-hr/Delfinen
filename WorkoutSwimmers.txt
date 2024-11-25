@@ -1,3 +1,12 @@
-Name: johannes
+Name: yustus
 Status: active
-Age: 22
+Age: 90
+Name: jonas
+Status: passive
+Age: 23
+Name: hans
+Status: active
+Age: 25
+Name: hundekat
+Status: active
+Age: 98

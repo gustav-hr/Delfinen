@@ -22,3 +22,19 @@ Breaststroke time: 0.0
 Crawl time: 0.0
 Back crawl time: 0.0
 Butterfly time: 0.0
+Name: pede
+Status: Active
+Age: 25
+Coach: Joachim
+Breaststroke time: 0.0
+Crawl time: 0.0
+Back crawl time: 0.0
+Butterfly time: 0.0
+Name: Jørgen mahmoud
+Status: Aktjiv
+Age: 69
+Coach: Joachim
+Breaststroke time: 23.0
+Crawl time: 56.0
+Back crawl time: 76.0
+Butterfly time: 80.0
