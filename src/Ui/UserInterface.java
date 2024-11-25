@@ -5,6 +5,7 @@ import Members.CompetitionSwimmer;
 import Members.MembersList;
 import Models.Controller;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -168,9 +169,11 @@ public class UserInterface {
                         System.exit(0);
                     }
                     case "remove" -> {
+                        controller.loadCompSwimmerFromList();
                         removeMember();
                     }
                     case "edit" -> {
+                        controller.loadCompSwimmerFromList();
                         editMember();
                     }
                 }
@@ -209,9 +212,9 @@ public class UserInterface {
         System.out.println("what do u want to edit? \n" +
                 "All personal detaile, name, status, age......");
 
-        String editName = scanner.nextLine();
+        String editName = scanner.nextLine().toLowerCase();
         switch (editName) {
-            case "All" -> {
+            case "all" -> {
 
                 if (memberEdit != null) {
 
@@ -273,15 +276,15 @@ public class UserInterface {
                     }
                 }
             }
-            case "Name" -> {
+            case "name" -> {
                 System.out.println("Editing name: ");
                 memberEdit.setName(scanner.nextLine());
             }
-            case "Status" -> {
+            case "status" -> {
                 System.out.println("Editing status: ");
                 memberEdit.setStatus(scanner.nextLine());
             }
-            case "Age" -> {
+            case "age" -> {
                 System.out.println("Editing age: ");
                 memberEdit.setAge(scanner.nextInt());
                 int memberAge = 0;
@@ -296,19 +299,19 @@ public class UserInterface {
                     }
                 }
             }
-            case "Breaststroke" -> {
+            case "breaststroke" -> {
                 System.out.println("New time for breast stroke: ");
                 ((CompetitionSwimmer) memberEdit).setBreastTime(scanner.nextDouble());
             }
-            case "Crawl" -> {
+            case "crawl" -> {
                 System.out.println("New crawl time: ");
                 ((CompetitionSwimmer) memberEdit).setCrawlTime(scanner.nextDouble());
             }
-            case "Back crawl" -> {
+            case "back crawl" -> {
                 System.out.println("New back crawl time: ");
                 ((CompetitionSwimmer) memberEdit).setBackCrawlTime(scanner.nextDouble());
             }
-            case "Butterfly" -> {
+            case "butterfly" -> {
                 System.out.println("New butterfly time: ");
                 ((CompetitionSwimmer) memberEdit).setButterflyTime(scanner.nextDouble());
             }

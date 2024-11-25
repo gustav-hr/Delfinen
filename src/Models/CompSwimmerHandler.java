@@ -63,7 +63,7 @@ public class CompSwimmerHandler {
                     fee = 1200;
                 }
 
-                AllMembers member = new CompetitionSwimmer(name, status, age, coach, breastTime, crawlTime, backCrawl, butterfly, fee);
+                AllMembers member = new CompetitionSwimmer(name, status, age, coach, breastTime, crawlTime, backCrawl, butterfly);
 
                 memberList.add(member);
             }
