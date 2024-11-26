@@ -294,10 +294,8 @@ public class UserInterface {
         //change fee according to age and status
         controller.changeFee(memberEdit);
         //save changes to file
-        controller.saveWorkoutSwimmersToList();
-        controller.loadWorkoutSwimmersFromList();
         controller.saveFeeToList();
-
+        controller.saveWorkoutSwimmersToList();
         System.out.println("Member details have been updated successfully.");
     }
 

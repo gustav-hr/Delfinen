@@ -1,8 +1,8 @@
-Name: johan
-Status: active
-Age: 22
+Name: jonatan
+Status: passive
+Age: 20
 Coach: Joachim
-Breaststroke time: 2.0
-Crawl time: 2.0
-Back crawl time: 2.0
-Butterfly time: 2.0
+Breaststroke time: 0.0
+Crawl time: 0.0
+Back crawl time: 0.0
+Butterfly time: 0.0

@@ -1,4 +1,4 @@
-Name: johan
+Name: johannes
 Status: active
-Age: 22
-Fee: 0
+Age: 20
+Fee: 1600
