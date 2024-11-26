@@ -1,7 +1,6 @@
 package Models;
 
 import Members.AllMembers;
-import Members.CompetitionSwimmer;
 import Members.WorkoutSwimmer;
 
 import java.io.File;
@@ -10,19 +9,19 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class WorkoutSwimmerHandler {
-    private static final String fileName = "WorkoutSwimmers.txt";
+public class FeeHandler {
 
-    public static void saveWorkoutSwimmerToFile(ArrayList<AllMembers> membersList) {
+    private static final String fileName = "Fee.txt";
+
+    public static void saveFeesToFile(ArrayList<AllMembers> membersList) {
 
         try (PrintStream output = new PrintStream(fileName)) {
 
             for (AllMembers member : membersList) {
-                if (member instanceof WorkoutSwimmer) {
                     output.println("Name: " + member.getName());
                     output.println("Status: " + member.getStatus());
                     output.println("Age: " + member.getAge());
-                }
+                    output.println("Fee: " + member.getFee());
             }
         } catch (FileNotFoundException fnfe) {
             throw new RuntimeException("Members could not be saved" + fnfe.getMessage());
@@ -30,7 +29,7 @@ public class WorkoutSwimmerHandler {
     }
 
 
-    public static ArrayList<AllMembers> loadWorkoutFromFile() {
+    public static ArrayList<AllMembers> loadFeesFromFile() {
         ArrayList<AllMembers> memberList = new ArrayList<>();
         File file = new File(fileName);
 
@@ -56,14 +55,21 @@ public class WorkoutSwimmerHandler {
                 }
                 int age = Integer.parseInt(ageLine.replace("Age: ", "").trim());
 
+                String feeLine = scanner.nextLine().trim();
+                if(!feeLine.startsWith("Fee: ")) {
+                    continue;
+                }
+                int fee = Integer.parseInt(feeLine.replace("Fee: ", "").trim());
+
+
                 // Opret WorkoutSwimmer og tilføj til listen
-                AllMembers member = new WorkoutSwimmer(name, status, age, 0);
+                AllMembers member = new WorkoutSwimmer(name, status, age, fee);
                 memberList.add(member);
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("File not found: " + e.getMessage());
-        } catch (NumberFormatException e) {
-            throw new RuntimeException("Error parsing file. Please check the file format: " + e.getMessage());
+        } catch (FileNotFoundException fnfe) {
+            throw new RuntimeException("File not found: " + fnfe.getMessage());
+        } catch (NumberFormatException nfe) {
+            throw new RuntimeException("Error parsing file. Please check the file format: " + nfe.getMessage());
         }
         return memberList;
     }

@@ -50,7 +50,7 @@ public class CompSwimmerHandler {
                 double backCrawl = Double.parseDouble(scanner.nextLine().replace("Back crawl time: ", "").trim());
                 double butterfly = Double.parseDouble(scanner.nextLine().replace("Butterfly time: ", "").trim());
 
-                AllMembers member = new CompetitionSwimmer(name, status, age, coach, breastTime, crawlTime, backCrawl, butterfly);
+                AllMembers member = new CompetitionSwimmer(name, status, age, coach, breastTime, crawlTime, backCrawl, butterfly, 0);
 
                 memberList.add(member);
             }

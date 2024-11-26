@@ -126,6 +126,7 @@ public class UserInterface {
 
                             controller.addCompetitive(name, status, age, breastTime, crawlTime, backCrawlTime, butterfly);
                             controller.saveCompSwimmerToList();
+                            controller.saveFeeToList();
 
                         } else if (compOrNot.equalsIgnoreCase("no")) {
 
@@ -158,6 +159,7 @@ public class UserInterface {
 
                             controller.addWorkout(name, status, age);
                             controller.saveWorkoutSwimmersToList();
+                            controller.saveFeeToList();
                         }
 
                         System.out.println("Adding new member to swimming club...");
@@ -289,9 +291,14 @@ public class UserInterface {
             }
 
         }
+        //change fee according to age and status
+        controller.changeFee(memberEdit);
+        //save changes to file
         controller.saveWorkoutSwimmersToList();
-        System.out.println("Member details have been updated successfully.");
+        controller.loadWorkoutSwimmersFromList();
+        controller.saveFeeToList();
 
+        System.out.println("Member details have been updated successfully.");
     }
 
     private void editCompMember() {
@@ -405,13 +412,13 @@ public class UserInterface {
             default -> System.out.println("Invalid option. Please try again.");
         }
 
-
+       //change the fee to match age and status
+        controller.changeFee(memberEdit);
         // Save changes to the correct file
-        if (memberEdit instanceof CompetitionSwimmer) {
-            controller.saveCompSwimmerToList();
-        } else if (memberEdit instanceof WorkoutSwimmer) {
-            controller.saveWorkoutSwimmersToList();
-        }
+        controller.saveCompSwimmerToList();
+        controller.loadCompSwimmerFromList();
+        controller.saveFeeToList();
+
 
         System.out.println("Member details have been updated successfully.");
     }

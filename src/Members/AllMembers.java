@@ -5,11 +5,13 @@ public abstract class AllMembers {
     private String name;
     private String status;
     private int age;
+    private int fee;
 
-    public AllMembers (String name, String status, int age) {
-        this.name=name;
-        this.status=status;
-        this.age=age;
+    public AllMembers (String name, String status, int age, int fee) {
+        this.name = name;
+        this.status = status;
+        this.age = age;
+        this.fee = fee;
     }
     // GETTER & SETTER FOR NAME ------------------------------------------------------------------------------------
     public String getName() {
@@ -36,6 +38,14 @@ public abstract class AllMembers {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public int getFee() {
+        return fee;
+    }
+    public void setFee(int fee) {
+        this.fee = fee;
+    }
+
 
     @Override
     public String toString() {
