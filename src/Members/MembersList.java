@@ -26,9 +26,20 @@ public class MembersList {
     }
 
     public boolean removeMember(String name) {
+
+        loadCompSwimmers();
         for (AllMembers allMembers : getMembersList()) {
             if (allMembers.getName().equalsIgnoreCase(name)) {
                 getMembersList().remove(allMembers); // Needs to be "allMembers" here and not "name" since it is looking at the whole ArrayList of names .
+                saveCompSwimmers();
+                return true;
+            }
+        }
+        loadWorkoutSwimmers();
+        for(AllMembers allMembers : getMembersList()) {
+            if(allMembers.getName().equalsIgnoreCase(name)) {
+                getMembersList().remove(allMembers);
+                saveWorkoutSwimmers();
                 return true;
             }
         }
@@ -50,4 +61,5 @@ public class MembersList {
     public void loadWorkoutSwimmers() {
         members = WorkoutSwimmerHandler.loadWorkoutFromFile();
     }
+
 }

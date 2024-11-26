@@ -43,9 +43,19 @@ public class Controller {
 
 
     public AllMembers editMembers(String membersName) {
+        loadCompSwimmerFromList();
         for (AllMembers allmembers : membersList.getMembersList()) {
             if (allmembers.getName().equalsIgnoreCase(membersName)) {
                 return allmembers;
+            }
+        }
+        return null;
+    }
+    public AllMembers editWorkoutMembers(String membersName) {
+        loadWorkoutSwimmersFromList();
+        for(AllMembers allMembers : membersList.getMembersList()) {
+            if(allMembers.getName().equalsIgnoreCase(membersName)) {
+                return  allMembers;
             }
         }
         return null;

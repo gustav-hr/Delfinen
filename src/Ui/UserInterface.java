@@ -6,6 +6,8 @@ import Members.MembersList;
 import Members.WorkoutSwimmer;
 import Models.Controller;
 
+import javax.swing.*;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -125,7 +127,7 @@ public class UserInterface {
                             controller.addCompetitive(name, status, age, breastTime, crawlTime, backCrawlTime, butterfly);
                             controller.saveCompSwimmerToList();
 
-                        } else if (compOrNot.equalsIgnoreCase("no")){
+                        } else if (compOrNot.equalsIgnoreCase("no")) {
 
                             System.out.print("\nName: ");
                             scanner.nextLine();
@@ -179,15 +181,23 @@ public class UserInterface {
                         System.exit(0);
                     }
                     case "remove" -> {
-                        System.out.println("Enter the name you want to remove from the swimming club: ");
-                        scanner.nextLine();
-                        String name = scanner.nextLine();
-
                         removeMember();
                     }
                     case "edit" -> {
-                        controller.loadCompSwimmerFromList();
-                        editMember();
+
+                        System.out.println("Would you like to edit the personal information of a Workout swimmer or a Competition swimmer? ");
+
+                        String choice = scanner.next();
+
+                        if (choice.contains("comp")) {
+                            controller.loadCompSwimmerFromList();
+                            System.out.println(controller.getMembers());
+                            editCompMember();
+                        } else {
+                            controller.loadWorkoutSwimmersFromList();
+                            System.out.println(controller.getMembers());
+                            editWorkMember();
+                        }
                     }
                 }
 
@@ -214,13 +224,84 @@ public class UserInterface {
         }
     }
 
-    private void editMember() {
+
+    private void editWorkMember() {
+
+        scanner.nextLine();
+        System.out.println("Type the name of the member you want to edit: ");
+
+        String name = scanner.nextLine();
+        AllMembers memberEdit = controller.editWorkoutMembers(name);
+
+
+        if (memberEdit == null) {
+            System.out.println("Member not found. Please try again.");
+            return;
+        }
+        System.out.println("What do you want to edit! \n" +
+                "Options are as follows: all, name, status, age");
+
+        String editChoice = scanner.nextLine().toLowerCase();
+
+        switch (editChoice) {
+
+            case "all" -> {
+                System.out.print("Name: ");
+                memberEdit.setName(scanner.nextLine());
+
+                System.out.print("Status: ");
+                memberEdit.setStatus(scanner.nextLine());
+
+                int age = 0;
+                validInput = false;
+                while (!validInput) {
+                    try {
+                        System.out.print("Age: ");
+                        age = Integer.parseInt(scanner.nextLine());
+                        validInput = true;
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid input. Please enter a valid age.");
+                    }
+                }
+                memberEdit.setAge(age);
+            }
+            case "name" -> {
+                System.out.print("New name: ");
+                memberEdit.setName(scanner.nextLine());
+            }
+            case "status" -> {
+                System.out.print("New status: ");
+                memberEdit.setStatus(scanner.nextLine());
+            }
+            case "age" -> {
+                int age = 0;
+                validInput = false;
+                while (!validInput) {
+                    try {
+                        System.out.print("New age: ");
+                        age = Integer.parseInt(scanner.nextLine());
+                        validInput = true;
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid input. Please enter a valid age.");
+                    }
+                }
+                memberEdit.setAge(age);
+            }
+
+        }
+        controller.saveWorkoutSwimmersToList();
+        System.out.println("Member details have been updated successfully.");
+
+    }
+
+    private void editCompMember() {
         scanner.nextLine(); // Clear input buffer
-        System.out.println(controller.getMembers());
+//        System.out.println(controller.getMembers());
         System.out.println("Type the name of the member you want to edit:");
 
         String name = scanner.nextLine();
         AllMembers memberEdit = controller.editMembers(name);
+
 
         if (memberEdit == null) {
             System.out.println("Member not found. Please try again.");
@@ -228,9 +309,10 @@ public class UserInterface {
         }
 
         System.out.println("What do you want to edit? \n" +
-                "Options: all, name, status, age, breaststroke, crawl, back crawl, butterfly");
+                "Options are as follows: all, name, status, age, breaststroke, crawl, back crawl, butterfly");
 
         String editChoice = scanner.nextLine().toLowerCase();
+
         switch (editChoice) {
             case "all" -> {
                 System.out.print("Name: ");
@@ -252,21 +334,19 @@ public class UserInterface {
                 }
                 memberEdit.setAge(age);
 
-                if (memberEdit instanceof CompetitionSwimmer) {
-                    CompetitionSwimmer compSwimmer = (CompetitionSwimmer) memberEdit;
+                CompetitionSwimmer compSwimmer = (CompetitionSwimmer) memberEdit;
 
-                    System.out.print("New breaststroke time: ");
-                    compSwimmer.setBreastTime(Double.parseDouble(scanner.nextLine()));
+                System.out.print("New breaststroke time: ");
+                compSwimmer.setBreastTime(Double.parseDouble(scanner.nextLine()));
 
-                    System.out.print("New crawl time: ");
-                    compSwimmer.setCrawlTime(Double.parseDouble(scanner.nextLine()));
+                System.out.print("New crawl time: ");
+                compSwimmer.setCrawlTime(Double.parseDouble(scanner.nextLine()));
 
-                    System.out.print("New back crawl time: ");
-                    compSwimmer.setBackCrawlTime(Double.parseDouble(scanner.nextLine()));
+                System.out.print("New back crawl time: ");
+                compSwimmer.setBackCrawlTime(Double.parseDouble(scanner.nextLine()));
 
-                    System.out.print("New butterfly time: ");
-                    compSwimmer.setButterflyTime(Double.parseDouble(scanner.nextLine()));
-                }
+                System.out.print("New butterfly time: ");
+                compSwimmer.setButterflyTime(Double.parseDouble(scanner.nextLine()));
             }
             case "name" -> {
                 System.out.print("New name: ");
@@ -335,7 +415,6 @@ public class UserInterface {
 
         System.out.println("Member details have been updated successfully.");
     }
-
 
 
 }
