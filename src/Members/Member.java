@@ -1,13 +1,13 @@
 package Members;
 
-public abstract class AllMembers {
+public abstract class Member {
 
     private String name;
     private String status;
     private int age;
     private int fee;
 
-    public AllMembers (String name, String status, int age, int fee) {
+    public Member(String name, String status, int age, int fee) {
         this.name = name;
         this.status = status;
         this.age = age;
@@ -39,13 +39,14 @@ public abstract class AllMembers {
         this.status = status;
     }
 
+    // GETTER & SETTER FOR FEE ---------------------------------------------------------------------------------------
+
     public int getFee() {
         return fee;
     }
     public void setFee(int fee) {
         this.fee = fee;
     }
-
 
     @Override
     public String toString() {

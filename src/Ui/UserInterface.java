@@ -1,13 +1,10 @@
 package Ui;
 
-import Members.AllMembers;
+import Members.Member;
 import Members.CompetitionSwimmer;
 import Members.MembersList;
-import Members.WorkoutSwimmer;
 import Models.Controller;
 
-import javax.swing.*;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -155,7 +152,6 @@ public class UserInterface {
 
                             controller.addCompetitive(name, status, age, breastTime, crawlTime, backCrawlTime, butterfly);
                             controller.saveCompSwimmerToList();
-                            controller.saveFeeToList();
 
                         } else if (compOrNot.equalsIgnoreCase("no")) {
 
@@ -188,7 +184,6 @@ public class UserInterface {
 
                             controller.addWorkout(name, status, age);
                             controller.saveWorkoutSwimmersToList();
-                            controller.saveFeeToList();
                         }
 
                         System.out.println("Adding new member to swimming club...");
@@ -262,7 +257,7 @@ public class UserInterface {
         System.out.println("Type the name of the member you want to edit: ");
 
         String name = scanner.nextLine();
-        AllMembers memberEdit = controller.editWorkoutMembers(name);
+        Member memberEdit = controller.editWorkoutMembers(name);
 
 
         if (memberEdit == null) {
@@ -323,7 +318,6 @@ public class UserInterface {
         //change fee according to age and status
         controller.changeFee(memberEdit);
         //save changes to file
-        controller.saveFeeToList();
         controller.saveWorkoutSwimmersToList();
         System.out.println("Member details have been updated successfully.");
     }
@@ -334,7 +328,7 @@ public class UserInterface {
         System.out.println("Type the name of the member you want to edit:");
 
         String name = scanner.nextLine();
-        AllMembers memberEdit = controller.editMembers(name);
+        Member memberEdit = controller.editCompMember(name);
 
 
         if (memberEdit == null) {
@@ -444,7 +438,6 @@ public class UserInterface {
         // Save changes to the correct file
         controller.saveCompSwimmerToList();
         controller.loadCompSwimmerFromList();
-        controller.saveFeeToList();
 
 
         System.out.println("Member details have been updated successfully.");

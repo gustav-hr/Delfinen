@@ -1,6 +1,6 @@
 package Members;
 
-public class CompetitionSwimmer extends AllMembers {
+public class CompetitionSwimmer extends Member {
     private String coach;
     private double breastTime;
     private double crawlTime;

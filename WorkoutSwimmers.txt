@@ -1,3 +1,0 @@
-Name: johannes
-Status: active
-Age: 20

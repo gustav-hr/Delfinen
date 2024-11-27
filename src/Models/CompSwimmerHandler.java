@@ -1,6 +1,6 @@
 package Models;
 
-import Members.AllMembers;
+import Members.Member;
 import Members.CompetitionSwimmer;
 
 import java.io.File;
@@ -12,12 +12,13 @@ import java.util.Scanner;
 public class CompSwimmerHandler {
     private static final String fileName = "CompSwimmers.txt";
 
+
     //method for saving members to txt file. Needs to be implicit and not a dedicated feature in UserInterface.
 
-    public static void saveCompSwimmerToFile(ArrayList<AllMembers> membersList) {
+    public static void saveCompSwimmerToFile(ArrayList<Member> memberList) {
         try (PrintStream output = new PrintStream(fileName)) {
 
-            for (AllMembers member : membersList) {
+            for (Member member : memberList) {
                 if (member instanceof CompetitionSwimmer) {
                     output.println("Name: " + member.getName());
                     output.println("Status: " + member.getStatus());
@@ -35,9 +36,10 @@ public class CompSwimmerHandler {
     }
 
 
-    public static ArrayList<AllMembers> loadCompSwimmerFromFile() {
-        ArrayList<AllMembers> memberList = new ArrayList<>();
+    public static ArrayList<Member> loadCompSwimmerFromFile() {
+        ArrayList<Member> memberList = new ArrayList<>();
         File file = new File(fileName);
+        Controller controller = new Controller();
 
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
@@ -50,7 +52,8 @@ public class CompSwimmerHandler {
                 double backCrawl = Double.parseDouble(scanner.nextLine().replace("Back crawl time: ", "").trim());
                 double butterfly = Double.parseDouble(scanner.nextLine().replace("Butterfly time: ", "").trim());
 
-                AllMembers member = new CompetitionSwimmer(name, status, age, coach, breastTime, crawlTime, backCrawl, butterfly, 0);
+                int fee = controller.calculateFee(age, status);
+                Member member = new CompetitionSwimmer(name, status, age, coach, breastTime, crawlTime, backCrawl, butterfly, fee);
 
                 memberList.add(member);
             }

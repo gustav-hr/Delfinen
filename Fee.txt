@@ -1,4 +1,0 @@
-Name: johannes
-Status: active
-Age: 20
-Fee: 1600

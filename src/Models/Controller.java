@@ -1,92 +1,82 @@
 package Models;
 
-import Members.AllMembers;
+import Members.Member;
 import Members.MembersList;
-import Members.WorkoutSwimmer;
-
-import java.util.ArrayList;
+import Profiles.Coach;
 
 public class Controller {
 
     MembersList membersList = new MembersList();
+    Coach joachim = new Coach("Joachim");
+    Coach sara = new Coach("Sara");
+
+    // ADD COMPETITIVE & WORKOUT SWIMMER ------------------------------------------------------------------------------
 
     public void addCompetitive(String name, String status, int age, double breastTime, double crawlTime, double backCrawlTime, double butterflyTime) {
-
-        if (age >= 18) {
-            if(status.equalsIgnoreCase("passive")) {
-                membersList.addCompetitionSwimmer(name, status, age, "Joachim", breastTime, crawlTime, backCrawlTime, butterflyTime, 500);
-            }
-            else if(age >= 60) {
-                membersList.addCompetitionSwimmer(name, status, age, "Joachim", breastTime, crawlTime, backCrawlTime, butterflyTime, 1200);
-            }
-            else {
-                membersList.addCompetitionSwimmer(name, status, age, "Joachim", breastTime, crawlTime, backCrawlTime, butterflyTime, 1600);
-            }
-        } else {
-            if(status.equalsIgnoreCase("passive")) {
-                membersList.addCompetitionSwimmer(name, status, age, "Sara", breastTime, crawlTime, backCrawlTime, butterflyTime, 500);
-            }
-            else {
-                membersList.addCompetitionSwimmer(name, status, age, "Sara", breastTime, crawlTime, backCrawlTime, butterflyTime, 1000);
-            }
-        }
+        String coach = getCoachName(age, status);
+        int fee = calculateFee(age, status);
+        membersList.addCompetitionSwimmer(name, status, age, coach, breastTime, crawlTime, backCrawlTime, butterflyTime, fee);
     }
 
     public void addWorkout(String name, String status, int age) {
-
-        if(age >= 18) {
-            if(status.equalsIgnoreCase("passive")) {
-                membersList.addWorkoutSwimmer(name, status, age, 500);
-            }
-            else if(age >= 60) {
-                membersList.addWorkoutSwimmer(name, status, age, 1200);
-            }
-            else {
-                membersList.addWorkoutSwimmer(name, status, age, 1600);
-            }
-        } else {
-            if (status.equalsIgnoreCase("passive")) {
-                membersList.addWorkoutSwimmer(name, status, age, 500);
-            } else {
-                membersList.addWorkoutSwimmer(name, status, age, 1000);
-            }
-        }
+        int fee = calculateFee(age, status);
+        membersList.addWorkoutSwimmer(name, status, age, fee);
     }
+
+    private String getCoachName(int age, String status) {
+        return age >= 18 ? joachim.getName() : sara.getName();
+    }
+
+    public int calculateFee(int age, String status) {
+        if (status.equalsIgnoreCase("passive")) return 500;
+        if (age >= 60) return 1200;
+        return age >= 18 ? 1600 : 1000;
+    }
+
+    // GET ALL MEMBERS -------------------------------------------------------------------------------------------------
 
     public String getMembers() {
         if (membersList.getMembersList().isEmpty()) {
             return "No members in the swimming club";
         }
         String result = "";
-        for (AllMembers members : membersList.getMembersList()) {
-            result += members.toString() + "\n";
+        for (Member member : membersList.getMembersList()) {
+            result += member.toString() + "\n";
         }
         return result;
     }
+
+    // REMOVE ONE MEMBER -----------------------------------------------------------------------------------------------
 
     public boolean removeMember(String name) {
         return membersList.removeMember(name);
     }
 
+    // RETURN SPECIFIC COMPETITIVE MEMBER ------------------------------------------------------------------------------
 
-    public AllMembers editMembers(String membersName) {
+    public Member editCompMember(String membersName) {
         loadCompSwimmerFromList();
-        for (AllMembers allmembers : membersList.getMembersList()) {
+        for (Member allmembers : membersList.getMembersList()) {
             if (allmembers.getName().equalsIgnoreCase(membersName)) {
                 return allmembers;
             }
         }
         return null;
     }
-    public AllMembers editWorkoutMembers(String membersName) {
+
+    // RETURN SPECIFIC WORKOUT MEMBER ----------------------------------------------------------------------------------
+
+    public Member editWorkoutMembers(String membersName) {
         loadWorkoutSwimmersFromList();
-        for(AllMembers allMembers : membersList.getMembersList()) {
-            if(allMembers.getName().equalsIgnoreCase(membersName)) {
-                return  allMembers;
+        for(Member member : membersList.getMembersList()) {
+            if(member.getName().equalsIgnoreCase(membersName)) {
+                return member;
             }
         }
         return null;
     }
+
+    // SAVE / LOAD COMPETITIVE AND WORKOUT SWIMMERS TO LIST ------------------------------------------------------------
 
     public void saveCompSwimmerToList() {
         membersList.saveCompSwimmers();
@@ -103,7 +93,10 @@ public class Controller {
     public void loadWorkoutSwimmersFromList(){
         membersList.loadWorkoutSwimmers();
     }
-    public void changeFee(AllMembers member){
+
+    // CHANGE FEE FOR MEMBER -------------------------------------------------------------------------------------------
+
+    public void changeFee(Member member){
 
         if(member.getAge() >= 18) {
             if(member.getStatus().equalsIgnoreCase("passive")) {
@@ -124,12 +117,7 @@ public class Controller {
         }
     }
 
-    public void saveFeeToList() {
-        membersList.saveFeesToFile();
-    }
-    public void loadFeesFromFile() {
-        membersList.loadFeesFromFile();
-    }
+
 
 
     }

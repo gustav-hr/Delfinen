@@ -1,7 +1,6 @@
 package Models;
 
-import Members.AllMembers;
-import Members.CompetitionSwimmer;
+import Members.Member;
 import Members.WorkoutSwimmer;
 
 import java.io.File;
@@ -13,11 +12,11 @@ import java.util.Scanner;
 public class WorkoutSwimmerHandler {
     private static final String fileName = "WorkoutSwimmers.txt";
 
-    public static void saveWorkoutSwimmerToFile(ArrayList<AllMembers> membersList) {
+    public static void saveWorkoutSwimmerToFile(ArrayList<Member> memberList) {
 
         try (PrintStream output = new PrintStream(fileName)) {
 
-            for (AllMembers member : membersList) {
+            for (Member member : memberList) {
                 if (member instanceof WorkoutSwimmer) {
                     output.println("Name: " + member.getName());
                     output.println("Status: " + member.getStatus());
@@ -30,9 +29,10 @@ public class WorkoutSwimmerHandler {
     }
 
 
-    public static ArrayList<AllMembers> loadWorkoutFromFile() {
-        ArrayList<AllMembers> memberList = new ArrayList<>();
+    public static ArrayList<Member> loadWorkoutFromFile() {
+        ArrayList<Member> memberList = new ArrayList<>();
         File file = new File(fileName);
+        Controller controller = new Controller();
 
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
@@ -57,7 +57,9 @@ public class WorkoutSwimmerHandler {
                 int age = Integer.parseInt(ageLine.replace("Age: ", "").trim());
 
                 // Opret WorkoutSwimmer og tilføj til listen
-                AllMembers member = new WorkoutSwimmer(name, status, age, 0);
+
+                int fee = controller.calculateFee(age, status);
+                Member member = new WorkoutSwimmer(name, status, age, fee);
                 memberList.add(member);
             }
         } catch (FileNotFoundException e) {

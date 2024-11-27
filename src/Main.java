@@ -1,5 +1,3 @@
-import Members.AllMembers;
-import Members.CompetitionSwimmer;
 import Ui.UserInterface;
 
 public class Main {
