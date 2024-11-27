@@ -24,31 +24,28 @@ public class UserInterface {
         String userInput = "";
         userInput = scanner.next().toLowerCase();
 
-        if (userInput.equalsIgnoreCase("treasurer")){
+        if (userInput.equalsIgnoreCase("treasurer")) {
             System.out.println("You have signed in as the treasurer of the Dolphin swimming club.");
             System.out.println("Your options as the treasurer are: ");
             System.out.println("Type: 'calculate' to calculate the yearly income based on membership fees from all members of the Dolphin");
             System.out.println("Type: 'view' to see all members who has not paid their fee");
 
-            while (!userInput.equalsIgnoreCase("exit")){
+            while (!userInput.equalsIgnoreCase("exit")) {
                 userInput = scanner.nextLine();
-                switch (userInput){
+                switch (userInput) {
                     case "calculate" -> {
-//                        System.out.println("NOT YET IMPLEMENTED");
 
-                        for (AllMembers members : membersList.getMembersList()){
-                            System.out.println(members.getFee());
-                        }
+                        System.out.println("NOT YET IMPLEMENTED");
                         //Method for showing calculated number and calculation
                     }
-                    case "view" ->{
+                    case "view" -> {
                         System.out.println("NOT YET IMPLEMENTED");
                         //method for viewing members ho has not paid their fee.
                     }
                 }
             }
         }
-        if (userInput.equalsIgnoreCase("coach")){
+        if (userInput.equalsIgnoreCase("coach")) {
             System.out.println("You have signed in as a coach");
             System.out.println("Are you Sara or Joakim?");
 
@@ -442,7 +439,7 @@ public class UserInterface {
             default -> System.out.println("Invalid option. Please try again.");
         }
 
-       //change the fee to match age and status
+        //change the fee to match age and status
         controller.changeFee(memberEdit);
         // Save changes to the correct file
         controller.saveCompSwimmerToList();
