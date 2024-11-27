@@ -1,0 +1,4 @@
+Name: john
+Status: active
+Age: 90
+Fee: 1200
