@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class MembersList {
 
     private ArrayList<Member> members = new ArrayList<>();
+    private ArrayList<Member> allMembers = new ArrayList<>();
     // This is the ArrayList where we gather the added members.
 
     public void addWorkoutSwimmer(String name, String status, int age, int fee) {
@@ -23,6 +24,22 @@ public class MembersList {
 
     public ArrayList<Member> getMembersList() {
         return members;
+    }
+
+    public ArrayList<Member> getAllMembers() {
+        return allMembers;
+    }
+    public void loadAllMembers() {
+        // Tøm listen først, hvis der allerede er data
+        allMembers.clear();
+
+        // Indlæs træningssvømmere
+        ArrayList<Member> workoutMembers = WorkoutSwimmerHandler.loadWorkoutFromFile();
+        allMembers.addAll(workoutMembers);
+
+        // Indlæs konkurrencesvømmere
+        ArrayList<Member> compMembers = CompSwimmerHandler.loadCompSwimmerFromFile();
+        allMembers.addAll(compMembers);
     }
 
     public boolean removeMember(String name) {

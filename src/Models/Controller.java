@@ -116,7 +116,22 @@ public class Controller {
             }
         }
     }
+    public int calculateAllFees() {
+        membersList.loadAllMembers(); // Indlæs alle medlemmer
 
+        System.out.println("Antal medlemmer: " + membersList.getMembersList().size()); // Debugging
+        for (Member member : membersList.getMembersList()) {
+            System.out.println("Medlem: " + member.getName() + ", Status: " + member.getStatus() + ", Fee: " + member.getFee());
+        }
+
+        int totalFee = 0;
+        for (Member member : membersList.getMembersList()) {
+            totalFee += member.getFee(); // Summér gebyrerne
+        }
+
+        System.out.println("Total gebyrer: " + totalFee); // Debugging-output
+        return totalFee;
+    }
 
 
 

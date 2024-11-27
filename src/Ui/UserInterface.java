@@ -34,6 +34,7 @@ public class UserInterface {
 
                         System.out.println("NOT YET IMPLEMENTED");
                         //Method for showing calculated number and calculation
+                        System.out.println(controller.calculateAllFees());
                     }
                     case "view" -> {
                         System.out.println("NOT YET IMPLEMENTED");
