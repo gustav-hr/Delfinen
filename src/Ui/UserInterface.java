@@ -5,6 +5,7 @@ import Members.CompetitionSwimmer;
 import Members.MembersList;
 import Models.Controller;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -26,16 +27,30 @@ public class UserInterface {
             System.out.println("Your options as the treasurer are: ");
             System.out.println("Type: 'calculate' to calculate the yearly income based on membership fees from all members of the Dolphin");
             System.out.println("Type: 'view' to see all members who has not paid their fee");
+            System.out.println("Type 'overview' to see all members, their age, status and fee.");
 
             while (!userInput.equalsIgnoreCase("exit")) {
                 userInput = scanner.nextLine();
                 switch (userInput) {
                     case "calculate" -> {
+                        int totalFees = controller.calculateAllFees();
+                        System.out.println("\n--- Total income this year from fees: ---\n" + totalFees + "\n");
+                        System.out.println("Your options from here are: \nOverview \nView ");
+                }
+                    case "overview" -> {
+                        String allMembersOverview = controller.Overview();
+                        if (allMembersOverview.isEmpty()) {
+                            System.out.println("No members found in the system.");
+                        } else {
+                            System.out.println("\n--- Members Overview ---\n");
+                            System.out.println(allMembersOverview);
 
-                        System.out.println("NOT YET IMPLEMENTED");
-                        //Method for showing calculated number and calculation
-                        System.out.println(controller.calculateAllFees());
+                            System.out.println("Your options from here are: \nCalculate \nView ");
+
+                        }
+
                     }
+
                     case "view" -> {
                         System.out.println("NOT YET IMPLEMENTED");
                         //method for viewing members ho has not paid their fee.

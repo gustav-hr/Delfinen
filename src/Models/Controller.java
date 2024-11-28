@@ -68,8 +68,8 @@ public class Controller {
 
     public Member editWorkoutMembers(String membersName) {
         loadWorkoutSwimmersFromList();
-        for(Member member : membersList.getMembersList()) {
-            if(member.getName().equalsIgnoreCase(membersName)) {
+        for (Member member : membersList.getMembersList()) {
+            if (member.getName().equalsIgnoreCase(membersName)) {
                 return member;
             }
         }
@@ -86,26 +86,24 @@ public class Controller {
         membersList.loadCompSwimmers();
     }
 
-    public void saveWorkoutSwimmersToList(){
+    public void saveWorkoutSwimmersToList() {
         membersList.saveWorkoutSwimmers();
     }
 
-    public void loadWorkoutSwimmersFromList(){
+    public void loadWorkoutSwimmersFromList() {
         membersList.loadWorkoutSwimmers();
     }
 
     // CHANGE FEE FOR MEMBER -------------------------------------------------------------------------------------------
 
-    public void changeFee(Member member){
+    public void changeFee(Member member) {
 
-        if(member.getAge() >= 18) {
-            if(member.getStatus().equalsIgnoreCase("passive")) {
+        if (member.getAge() >= 18) {
+            if (member.getStatus().equalsIgnoreCase("passive")) {
                 member.setFee(500);
-            }
-            else if(member.getAge() >= 60) {
+            } else if (member.getAge() >= 60) {
                 member.setFee(1200);
-            }
-            else {
+            } else {
                 member.setFee(1600);
             }
         } else {
@@ -116,24 +114,49 @@ public class Controller {
             }
         }
     }
+//    public int calculateAllFees() {
+//        membersList.loadAllMembers(); // Indlæs alle medlemmer
+//
+//        System.out.println("Antal medlemmer: " + membersList.getMembersList().size()); // Debugging
+//        for (Member member : membersList.getMembersList()) {
+//            System.out.println("Medlem: " + member.getName() + ", Status: " + member.getStatus() + ", Fee: " + member.getFee());
+//        }
+//
+//        int totalFee = 0;
+//        for (Member member : membersList.getMembersList()) {
+//            totalFee += member.getFee(); // Summér gebyrerne
+//        }
+//
+//        System.out.println("Total gebyrer: " + totalFee); // Debugging-output
+//        return totalFee;
+//    }
+
     public int calculateAllFees() {
         membersList.loadAllMembers(); // Indlæs alle medlemmer
 
-        System.out.println("Antal medlemmer: " + membersList.getMembersList().size()); // Debugging
-        for (Member member : membersList.getMembersList()) {
-            System.out.println("Medlem: " + member.getName() + ", Status: " + member.getStatus() + ", Fee: " + member.getFee());
-        }
-
         int totalFee = 0;
-        for (Member member : membersList.getMembersList()) {
-            totalFee += member.getFee(); // Summér gebyrerne
+        for (Member member : membersList.getAllMembers()) { // Brug allMembers
+            totalFee += member.getFee();
         }
-
-        System.out.println("Total gebyrer: " + totalFee); // Debugging-output
         return totalFee;
     }
 
+    public String Overview() {
+        // Loading all members from the txt files:
+        membersList.loadAllMembers();
 
+        StringBuilder overview = new StringBuilder();
+        for (Member member : membersList.getAllMembers()) {
+            overview.append("Name: ").append(member.getName())
+                    .append("\nStatus: ").append(member.getStatus())
+                    .append("\nAge: ").append(member.getAge())
+                    .append("\nFee: ").append(member.getFee())
+                    .append("\n-----------------------------------\n");
+        }
 
+        return overview.toString();
     }
+
+}
+
 

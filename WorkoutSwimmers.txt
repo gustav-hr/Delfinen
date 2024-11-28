@@ -1,4 +1,4 @@
-Name: john
-Status: active
-Age: 90
-Fee: 1200
+Name: gufferen
+Status: passive
+Age: 23
+Fee: 500
