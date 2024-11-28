@@ -21,6 +21,7 @@ public class WorkoutSwimmerHandler {
                     output.println("Name: " + member.getName());
                     output.println("Status: " + member.getStatus());
                     output.println("Age: " + member.getAge());
+                   output.println("Fee: " + member.getFee());
                 }
             }
         } catch (FileNotFoundException fnfe) {
@@ -55,7 +56,7 @@ public class WorkoutSwimmerHandler {
                     continue;
                 }
                 int age = Integer.parseInt(ageLine.replace("Age: ", "").trim());
-
+                scanner.nextLine();
                 // Opret WorkoutSwimmer og tilføj til listen
 
                 int fee = controller.calculateFee(age, status);
