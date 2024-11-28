@@ -378,13 +378,38 @@ public class UserInterface {
     }
 
     private void calculateIncome() {
-        System.out.println("Calculating income (not fully implemented).");
-        // Implement logic for calculating yearly income here
+        String input = ""; // Initialize input
+        while (!input.equalsIgnoreCase("exit")) {
+            System.out.println("Your options are: \nCalculate \nOverview \nView \nType 'exit' to return to the main menu.");
+            input = scanner.nextLine().toLowerCase(); // Read user input
+            switch (input) {
+                case "calculate" -> displayTotalIncome();
+                case "overview" -> displayMembersOverview();
+                case "view" -> viewUnpaidMembers();
+                case "exit" -> System.out.println("Exiting income calculation menu.");
+                default -> System.out.println("Invalid option. Please try again.");
+            }
+        }
+    }
+
+    private void displayTotalIncome() {
+        int totalFees = controller.calculateAllFees(); // Assuming this method returns the total fees
+        System.out.println("\n--- Total income this year from fees: ---\n" + totalFees + "\n");
+    }
+
+    private void displayMembersOverview() {
+        String allMembersOverview = controller.Overview(); // Assuming this method returns an overview string
+        if (allMembersOverview.isEmpty()) {
+            System.out.println("No members found in the system.");
+        } else {
+            System.out.println("\n--- Members Overview ---\n");
+            System.out.println(allMembersOverview);
+        }
     }
 
     private void viewUnpaidMembers() {
         System.out.println("Viewing unpaid members (not fully implemented).");
-        // Implement logic for viewing unpaid members here
+        // Implement logic for viewing members who have not paid their fee.
     }
 
     private void joakim() {
