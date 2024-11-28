@@ -1,4 +1,4 @@
-package Members;
+package Enums;
 
 public enum PaymentStatus {
     PAID,

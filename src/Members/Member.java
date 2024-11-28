@@ -1,5 +1,7 @@
 package Members;
 
+import Enums.PaymentStatus;
+
 public abstract class Member {
 
     private String name;

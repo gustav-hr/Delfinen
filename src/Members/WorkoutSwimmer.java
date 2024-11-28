@@ -1,5 +1,7 @@
 package Members;
 
+import Enums.PaymentStatus;
+
 public class WorkoutSwimmer extends Member {
 
 

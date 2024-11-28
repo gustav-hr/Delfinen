@@ -1,5 +1,6 @@
 package Members;
 
+import Enums.PaymentStatus;
 import Models.CompSwimmerHandler;
 import Models.WorkoutSwimmerHandler;
 

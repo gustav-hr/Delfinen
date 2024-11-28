@@ -1,5 +1,7 @@
 package Members;
 
+import Enums.PaymentStatus;
+
 public class CompetitionSwimmer extends Member {
     private String coach;
     private double breastTime;

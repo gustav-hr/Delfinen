@@ -1,5 +1,6 @@
 package Models;
 
+import Enums.PaymentStatus;
 import Members.Member;
 import Members.WorkoutSwimmer;
 
@@ -60,7 +61,7 @@ public class WorkoutSwimmerHandler {
                 // Opret WorkoutSwimmer og tilføj til listen
 
                 int fee = controller.calculateFee(age, status);
-                Member member = new WorkoutSwimmer(name, status, age, fee);
+                Member member = new WorkoutSwimmer(name, status, age, fee, PaymentStatus.PAID);
                 memberList.add(member);
             }
         } catch (FileNotFoundException e) {

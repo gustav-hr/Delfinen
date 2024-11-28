@@ -1,5 +1,6 @@
 package Models;
 
+import Enums.PaymentStatus;
 import Members.Member;
 import Members.CompetitionSwimmer;
 
@@ -55,7 +56,7 @@ public class CompSwimmerHandler {
                 scanner.nextLine();
 
                 int fee = controller.calculateFee(age, status);
-                Member member = new CompetitionSwimmer(name, status, age, coach, breastTime, crawlTime, backCrawl, butterfly, fee);
+                Member member = new CompetitionSwimmer(name, status, age, coach, breastTime, crawlTime, backCrawl, butterfly, fee, PaymentStatus.PAID);
 
                 memberList.add(member);
             }

@@ -121,7 +121,7 @@ public class UserInterface {
         System.out.println("Type 'back' to return to the main menu.");
     }
 
-    private void handleCoachMenu(String input){
+    private void handleCoachMenu(String input) {
         switch (input) {
             case "1", "joakim" -> joakim();
             case "2", "sara" -> sara();
@@ -137,7 +137,8 @@ public class UserInterface {
         if (competitiveInput.equals("yes")) {
             // Add competitive swimmer
             System.out.print("Name: ");
-            String name = scanner.nextLine().toLowerCase();;
+            String name = scanner.nextLine().toLowerCase();
+            ;
 
             String status = promptForValidStatus(scanner);
 
@@ -216,7 +217,6 @@ public class UserInterface {
         }
         return age; // Return the valid age
     }
-
 
 
     private void removeMember() {
