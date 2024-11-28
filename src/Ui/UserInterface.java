@@ -74,6 +74,7 @@ public class UserInterface {
         }
     }
 
+
     // Menu for the treasurer role
     private void treasurerMenu() {
         System.out.println("\nYou are logged in as the treasurer of the Dolphin swimming club.");
@@ -172,7 +173,7 @@ public class UserInterface {
         double time = -1; // Initialize with an invalid value
         while (time < 0) {
             System.out.print("Enter " + discipline + " time: ");
-            String input = scanner.next();
+            String input = scanner.nextLine().trim();
             try {
                 time = Double.parseDouble(input);
                 if (time < 0) { // Time must be non-negative
@@ -203,7 +204,7 @@ public class UserInterface {
         int age = -1; // Start with an invalid value
         while (age < 0) { // Keep prompting until a valid age is entered
             System.out.print("Age: ");
-            String input = scanner.next(); // Read user input
+            String input = scanner.nextLine().trim(); // Read user input
             try {
                 age = Integer.parseInt(input); // Attempt to parse input to an integer
                 if (age < 0) { // Check if the age is negative
