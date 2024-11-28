@@ -3,8 +3,8 @@ package Members;
 public class WorkoutSwimmer extends Member {
 
 
-    public WorkoutSwimmer(String name, String status, int age, int fee) {
-        super(name, status, age, fee);
+    public WorkoutSwimmer(String name, String status, int age, int fee, PaymentStatus paymentStatus) {
+        super(name, status, age, fee, paymentStatus);
     }
 
     @Override

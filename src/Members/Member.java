@@ -6,12 +6,14 @@ public abstract class Member {
     private String status;
     private int age;
     private int fee;
+    private PaymentStatus paymentStatus;
 
-    public Member(String name, String status, int age, int fee) {
+    public Member(String name, String status, int age, int fee, PaymentStatus paymentStatus) {
         this.name = name;
         this.status = status;
         this.age = age;
         this.fee = fee;
+        this.paymentStatus = paymentStatus;
     }
     // GETTER & SETTER FOR NAME ------------------------------------------------------------------------------------
     public String getName() {
@@ -46,6 +48,16 @@ public abstract class Member {
     }
     public void setFee(int fee) {
         this.fee = fee;
+    }
+    // GETTER & SETTER FOR PAYMENTSTATUS  ----------------------------------------------------------------------------
+
+
+    public PaymentStatus getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(PaymentStatus paymentStatus) {
+        this.paymentStatus = paymentStatus;
     }
 
     @Override

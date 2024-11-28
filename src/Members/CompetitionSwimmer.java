@@ -7,8 +7,8 @@ public class CompetitionSwimmer extends Member {
     private double backCrawlTime;
     private double butterflyTime;
 
-    public CompetitionSwimmer(String name, String status, int age, String coach, double breastTime, double crawlTime, double backCrawlTime, double butterflyTime, int fee) {
-        super(name, status, age, fee);
+    public CompetitionSwimmer(String name, String status, int age, String coach, double breastTime, double crawlTime, double backCrawlTime, double butterflyTime, int fee, PaymentStatus paymentStatus) {
+        super(name, status, age, fee, paymentStatus);
         this.coach = coach;
         this.breastTime = breastTime;
         this.crawlTime = crawlTime;
