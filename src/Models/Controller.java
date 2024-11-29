@@ -1,5 +1,6 @@
 package Models;
 
+import Enums.PaymentStatus;
 import Members.Member;
 import Members.MembersList;
 import Profiles.Coach;
@@ -151,10 +152,28 @@ public class Controller {
                     .append("\nStatus: ").append(member.getStatus())
                     .append("\nAge: ").append(member.getAge())
                     .append("\nFee: ").append(member.getFee())
+                    .append("\nPayment status: ").append(member.getPaymentStatus())
                     .append("\n-----------------------------------\n");
         }
 
         return overview.toString();
     }
+
+    public void changePaymentStatus(String name) {
+
+        for(Member member : membersList.getAllMembers()) {
+
+            if(member.getName().equalsIgnoreCase(name)) {
+                if(member.getPaymentStatus() == PaymentStatus.PAID) {
+                    member.setPaymentStatus(PaymentStatus.UNPAID);
+                }
+                else {
+                    member.setPaymentStatus(PaymentStatus.PAID);
+                }
+            }
+        }
+    }
+
+
 
 }

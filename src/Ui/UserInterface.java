@@ -99,6 +99,7 @@ public class UserInterface {
             case "1", "calculate" -> displayTotalIncome();
             case "2", "overview" -> displayMembersOverview();
             case "3", "view" -> viewUnpaidMembers();
+            case "4", "change" -> changePaymentStatus();
             default -> System.out.println("Invalid option. Please try again.");
         }
     }
@@ -396,6 +397,17 @@ public class UserInterface {
     private void viewUnpaidMembers() {
         System.out.println("Viewing unpaid members (not fully implemented).");
         // Implement logic for viewing members who have not paid their fee.
+
+
+    }
+    private void changePaymentStatus() {
+        System.out.println("Enter the name of the swimmer whom you want to change the payment status of: ");
+        System.out.print("Name: ");
+        String name = scanner.nextLine();
+        controller.changePaymentStatus(name);
+
+        System.out.println("Status have been changed..");
+
     }
 
     private void joakim() {
