@@ -57,7 +57,7 @@ public class WorkoutSwimmerHandler {
                     continue;
                 }
                 int age = Integer.parseInt(ageLine.replace("Age: ", "").trim());
-                scanner.nextLine();
+
                 // Opret WorkoutSwimmer og tilføj til listen
 
                 int fee = controller.calculateFee(age, status);
