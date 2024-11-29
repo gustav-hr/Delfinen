@@ -1,3 +1,5 @@
-Name: sune
+Name: Johan
 Status: active
-Age: 15
+Age: 25
+Fee: 1600
+Paid: true

@@ -1,8 +1,0 @@
-Name: peter
-Status: active
-Age: 40
-Coach: Joachim
-Breaststroke time: 0.0
-Crawl time: 0.0
-Back crawl time: 0.0
-Butterfly time: 0.0
