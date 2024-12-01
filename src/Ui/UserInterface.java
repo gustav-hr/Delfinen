@@ -90,6 +90,7 @@ public class UserInterface {
         System.out.println("1. Calculate yearly income");
         System.out.println("2. Overview");
         System.out.println("3. View unpaid members");
+        System.out.println("4. Change payment status of member");
         System.out.println("Type 'back' to return to the main menu.");
     }
 
@@ -400,6 +401,7 @@ public class UserInterface {
 
 
     }
+
     private void changePaymentStatus() {
         System.out.println("Enter the name of the swimmer whom you want to change the payment status of: ");
         System.out.print("Name: ");
@@ -419,7 +421,6 @@ public class UserInterface {
         System.out.println("Viewing Sara's options (not fully implemented).");
         // Implement options for coach Sara
     }
-
 
     private void exitProgram() {
         System.out.println("Exiting the program. Goodbye!");

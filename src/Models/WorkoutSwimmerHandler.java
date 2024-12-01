@@ -1,6 +1,7 @@
 package Models;
 
 import Enums.PaymentStatus;
+import Members.CompetitionSwimmer;
 import Members.Member;
 import Members.WorkoutSwimmer;
 
@@ -23,6 +24,7 @@ public class WorkoutSwimmerHandler {
                     output.println("Status: " + member.getStatus());
                     output.println("Age: " + member.getAge());
                    output.println("Fee: " + member.getFee());
+                   output.println("Payment status: " + member.getPaymentStatus());
                 }
             }
         } catch (FileNotFoundException fnfe) {
@@ -39,30 +41,20 @@ public class WorkoutSwimmerHandler {
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
                 // Læs linjerne i den forventede rækkefølge
-                String nameLine = scanner.nextLine().trim();
-                if (nameLine.isEmpty()) continue; // Skip tomme linjer
+                String name = scanner.nextLine().replace("Name: ", "").trim();
+                String status = scanner.nextLine().replace("Status: ", "").trim();
+                int age = Integer.parseInt(scanner.nextLine().replace("Age: ", "").trim());
 
+                //skip the Fee line
+                scanner.nextLine();
 
-
-                String name = nameLine.replace("Name: ", "").trim();
-
-                String statusLine = scanner.nextLine().trim();
-                if (!statusLine.startsWith("Status: ")) {
-                    continue;
-                }
-                String status = statusLine.replace("Status: ", "").trim();
-
-                String ageLine = scanner.nextLine().trim();
-                if (!ageLine.startsWith("Age: ")) {
-                    continue;
-                }
-                int age = Integer.parseInt(ageLine.replace("Age: ", "").trim());
-
-                // Opret WorkoutSwimmer og tilføj til listen
+                String paymentStatus = scanner.nextLine().replace("Payment status: ", "").trim();
 
                 int fee = controller.calculateFee(age, status);
-                Member member = new WorkoutSwimmer(name, status, age, fee, PaymentStatus.PAID);
+
+                Member member = new WorkoutSwimmer(name, status, age, fee, paymentStatus);
                 memberList.add(member);
+
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException("File not found: " + e.getMessage());
@@ -70,6 +62,15 @@ public class WorkoutSwimmerHandler {
             throw new RuntimeException("Error parsing file. Please check the file format: " + e.getMessage());
         }
         return memberList;
+    }
+
+    private static PaymentStatus parsePaymentStatus(String status) {
+        try {
+            return PaymentStatus.valueOf(status.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            //Handles any invalid status and sets default to UNPAID
+            return PaymentStatus.UNPAID;
+        }
     }
 
 }

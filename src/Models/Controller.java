@@ -1,8 +1,10 @@
 package Models;
 
 import Enums.PaymentStatus;
+import Members.CompetitionSwimmer;
 import Members.Member;
 import Members.MembersList;
+import Members.WorkoutSwimmer;
 import Profiles.Coach;
 
 public class Controller {
@@ -145,6 +147,15 @@ public class Controller {
     public String Overview() {
         // Loading all members from the txt files:
         membersList.loadAllMembers();
+//        for(Member member : membersList.getAllMembers()) {
+//            return "Name: " + member.getName() +
+//                    "\nStatus: " + member.getStatus() +
+//                    "\nAge: " + member.getAge() +
+//                    "\nFee: " + member.getFee() +
+//                    "\nPayment Status: " + member.getPaymentStatus() +
+//                    "\n-----------------------------------------\n";
+//        }
+//        return "";
 
         StringBuilder overview = new StringBuilder();
         for (Member member : membersList.getAllMembers()) {
@@ -161,19 +172,36 @@ public class Controller {
 
     public void changePaymentStatus(String name) {
 
-        for(Member member : membersList.getAllMembers()) {
+        membersList.loadCompSwimmers();
+        for (Member member : membersList.getMembersList()) {
+            if (member.getName().equalsIgnoreCase(name)) {
 
-            if(member.getName().equalsIgnoreCase(name)) {
-                if(member.getPaymentStatus() == PaymentStatus.PAID) {
-                    member.setPaymentStatus(PaymentStatus.UNPAID);
-                }
-                else {
-                    member.setPaymentStatus(PaymentStatus.PAID);
-                }
+                togglePaymentStatus(member);
+
+                membersList.saveCompSwimmers();
+                return;
             }
         }
+
+        membersList.loadWorkoutSwimmers();
+        for(Member member : membersList.getMembersList()) {
+            if(member.getName().equalsIgnoreCase(name)) {
+
+                togglePaymentStatus(member);
+
+                membersList.saveWorkoutSwimmers();
+                return;
+            }
+        }
+        System.out.println("Member not found.");
     }
 
-
-
+    private void togglePaymentStatus(Member member) {
+        if(member.getPaymentStatus().equalsIgnoreCase("PAID")) {
+            member.setPaymentStatus("UNPAID");
+        }
+        else {
+            member.setPaymentStatus("PAID");
+        }
+    }
 }

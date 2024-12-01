@@ -30,6 +30,7 @@ public class CompSwimmerHandler {
                     output.println("Back crawl time: " + ((CompetitionSwimmer) member).getBackCrawlTime());
                     output.println("Butterfly time: " + ((CompetitionSwimmer) member).getButterflyTime());
                     output.println("Fee: " + member.getFee());
+                    output.println("Payment status: " + member.getPaymentStatus());
                 }
             }
         } catch (FileNotFoundException fnfe) {
@@ -54,8 +55,13 @@ public class CompSwimmerHandler {
                 double backCrawl = Double.parseDouble(scanner.nextLine().replace("Back crawl time: ", "").trim());
                 double butterfly = Double.parseDouble(scanner.nextLine().replace("Butterfly time: ", "").trim());
 
+                //Skip the Fee line
+                scanner.nextLine();
+
+                String paymentStatus = scanner.nextLine().replace("Payment status: ", "").trim();
+
                 int fee = controller.calculateFee(age, status);
-                Member member = new CompetitionSwimmer(name, status, age, coach, breastTime, crawlTime, backCrawl, butterfly, fee, PaymentStatus.PAID);
+                Member member = new CompetitionSwimmer(name, status, age, coach, breastTime, crawlTime, backCrawl, butterfly, fee, paymentStatus);
 
                 memberList.add(member);
             }
