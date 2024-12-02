@@ -8,9 +8,9 @@ public abstract class Member {
     private String status;
     private int age;
     private int fee;
-    private String paymentStatus;
+    private PaymentStatus paymentStatus;
 
-    public Member(String name, String status, int age, int fee, String paymentStatus) {
+    public Member(String name, String status, int age, int fee, PaymentStatus paymentStatus) {
         this.name = name;
         this.status = status;
         this.age = age;
@@ -53,12 +53,11 @@ public abstract class Member {
     }
     // GETTER & SETTER FOR PAYMENTSTATUS  ----------------------------------------------------------------------------
 
-
-    public String getPaymentStatus() {
+    public PaymentStatus getPaymentStatus() {
         return paymentStatus;
     }
 
-    public void setPaymentStatus(String paymentStatus) {
+    public void setPaymentStatus(PaymentStatus paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
 

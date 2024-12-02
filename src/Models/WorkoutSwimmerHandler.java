@@ -48,7 +48,8 @@ public class WorkoutSwimmerHandler {
                 //skip the Fee line
                 scanner.nextLine();
 
-                String paymentStatus = scanner.nextLine().replace("Payment status: ", "").trim();
+                PaymentStatus paymentStatus = PaymentStatus.valueOf(scanner.nextLine().replace("Payment status: ", "").trim());
+//                String paymentStatus = scanner.nextLine().replace("Payment status: ", "").trim();
 
                 int fee = controller.calculateFee(age, status);
 

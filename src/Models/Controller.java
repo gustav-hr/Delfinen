@@ -200,12 +200,20 @@ public class Controller {
     }
 
     private void togglePaymentStatus(Member member) {
-        if(member.getPaymentStatus().equalsIgnoreCase("PAID")) {
-            member.setPaymentStatus("UNPAID");
+
+        if(member.getPaymentStatus().name().equalsIgnoreCase("PAID")) {
+            member.setPaymentStatus(PaymentStatus.UNPAID);
         }
         else {
-            member.setPaymentStatus("PAID");
+            member.setPaymentStatus(PaymentStatus.PAID);
         }
+
+//        if(member.getPaymentStatus().equalsIgnoreCase("PAID")) {
+//            member.setPaymentStatus("UNPAID");
+//        }
+//        else {
+//            member.setPaymentStatus("PAID");
+//        }
     }
 
     // VIEW UNPAID USERS ONLY ---------------------------------------------------------------------------
@@ -218,7 +226,7 @@ public class Controller {
         StringBuilder overview = new StringBuilder();
         for(Member member : membersList.getAllMembers()) {
 
-            if(member.getPaymentStatus().equalsIgnoreCase("UNPAID")) {
+            if(member.getPaymentStatus().name().equalsIgnoreCase("UNPAID")) {
                 overview.append("Name: ").append(member.getName())
                         .append("\nStatus: ").append(member.getStatus())
                         .append("\nAge: ").append(member.getAge())

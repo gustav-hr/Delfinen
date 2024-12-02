@@ -1,10 +1,15 @@
-Name: henrik
-Status: active
-Age: 63
-Fee: 1200
+Name: guf
+Status: passive
+Age: 22
+Fee: 500
 Payment status: PAID
-Name: clara
-Status: active
-Age: 27
-Fee: 1600
+Name: bertram
+Status: passive
+Age: 22
+Fee: 500
+Payment status: PAID
+Name: johan
+Status: passive
+Age: 22
+Fee: 500
 Payment status: PAID

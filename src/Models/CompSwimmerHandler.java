@@ -58,7 +58,8 @@ public class CompSwimmerHandler {
                 //Skip the Fee line
                 scanner.nextLine();
 
-                String paymentStatus = scanner.nextLine().replace("Payment status: ", "").trim();
+                PaymentStatus paymentStatus = PaymentStatus.valueOf(scanner.nextLine().replace("Payment status: ", "").trim());
+//                String paymentStatus = scanner.nextLine().replace("Payment status: ", "").trim();
 
                 int fee = controller.calculateFee(age, status);
                 Member member = new CompetitionSwimmer(name, status, age, coach, breastTime, crawlTime, backCrawl, butterfly, fee, paymentStatus);
