@@ -67,7 +67,7 @@ public class UserInterface {
             case "1", "add" -> addMember();
             case "2", "remove" -> removeMember();
             case "3", "edit" -> editMember();
-            case "4", "list" -> viewMembers();
+            case "4", "list", "view" -> viewMembers();
             default -> System.out.println("Invalid option. Please try again.");
         }
     }
@@ -232,12 +232,12 @@ public class UserInterface {
     }
 
     private void editMember() {
-        System.out.println("Would you like to edit a Competitive swimmer or a Workout swimmer?");
+        System.out.println("Would you like to edit a (1)Competitive swimmer or a (2)Workout swimmer?");
         String type = scanner.nextLine().toLowerCase();
 
-        if (type.equals("competitive")) {
+        if (type.contains("comp") || type.equals("1")) {
             editCompMember(); // Call the method for competitive swimmers
-        } else if (type.equals("workout")) {
+        } else if (type.contains("work") || type.equals("2")) {
             editWorkMember(); // Call the method for workout swimmers
         } else {
             System.out.println("Invalid type.");
