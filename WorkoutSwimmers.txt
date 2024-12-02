@@ -1,10 +1,5 @@
-Name: henrik
+Name: Johan
 Status: active
-Age: 63
-Fee: 1200
-Payment status: UNPAID
-Name: clara
-Status: active
-Age: 27
+Age: 25
 Fee: 1600
-Payment status: PAID
+Paid: true
