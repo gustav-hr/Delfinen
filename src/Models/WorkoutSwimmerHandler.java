@@ -1,77 +1,66 @@
 package Models;
 
 import Enums.PaymentStatus;
-import Members.CompetitionSwimmer;
 import Members.Member;
 import Members.WorkoutSwimmer;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class WorkoutSwimmerHandler {
     private static final String fileName = "WorkoutSwimmers.txt";
 
+    // Metode til at gemme WorkoutSwimmers til en tekstfil
     public static void saveWorkoutSwimmerToFile(ArrayList<Member> memberList) {
-
-        try (PrintStream output = new PrintStream(fileName)) {
-
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, false))) {
+            // Skriv header
+            writer.write("Name,Status,Age,Fee,PaymentStatus");
+            writer.newLine();
             for (Member member : memberList) {
                 if (member instanceof WorkoutSwimmer) {
-                    output.println("Name: " + member.getName());
-                    output.println("Status: " + member.getStatus());
-                    output.println("Age: " + member.getAge());
-                   output.println("Fee: " + member.getFee());
-                   output.println("Payment status: " + member.getPaymentStatus());
+                    writer.write(member.getName() + ",");
+                    writer.write(member.getStatus() + ",");
+                    writer.write(member.getAge() + ",");
+                    writer.write(member.getFee() + ",");
+                    writer.write(member.getPaymentStatus().name());
+                    writer.newLine();
                 }
             }
-        } catch (FileNotFoundException fnfe) {
-            throw new RuntimeException("Members could not be saved" + fnfe.getMessage());
+        } catch (IOException ioe) {
+            throw new RuntimeException("Fejl ved gemning af WorkoutSwimmers: " + ioe.getMessage(), ioe);
         }
     }
 
-
+    // Metode til at indlæse WorkoutSwimmers fra en tekstfil
     public static ArrayList<Member> loadWorkoutFromFile() {
         ArrayList<Member> memberList = new ArrayList<>();
         File file = new File(fileName);
-        Controller controller = new Controller();
+
+        if (!file.exists()) {
+            System.out.println("Filen findes ikke endnu. Ingen medlemmer er indlæst.");
+            return memberList;
+        }
 
         try (Scanner scanner = new Scanner(file)) {
+            scanner.nextLine(); // Spring header over
             while (scanner.hasNextLine()) {
-                // Læs linjerne i den forventede rækkefølge
-                String name = scanner.nextLine().replace("Name: ", "").trim();
-                String status = scanner.nextLine().replace("Status: ", "").trim();
-                int age = Integer.parseInt(scanner.nextLine().replace("Age: ", "").trim());
+                String[] attributes = scanner.nextLine().split(",");
+                if (attributes.length == 5) {
+                    String name = attributes[0];
+                    String status = attributes[1];
+                    int age = Integer.parseInt(attributes[2]);
+                    int fee = Integer.parseInt(attributes[3]);
+                    PaymentStatus paymentStatus = PaymentStatus.valueOf(attributes[4]);
 
-                //skip the Fee line
-                scanner.nextLine();
-
-                PaymentStatus paymentStatus = PaymentStatus.valueOf(scanner.nextLine().replace("Payment status: ", "").trim());
-//                String paymentStatus = scanner.nextLine().replace("Payment status: ", "").trim();
-
-                int fee = controller.calculateFee(age, status);
-
-                Member member = new WorkoutSwimmer(name, status, age, fee, paymentStatus);
-                memberList.add(member);
-
+                    WorkoutSwimmer swimmer = new WorkoutSwimmer(name, status, age, fee, paymentStatus);
+                    memberList.add(swimmer);
+                }
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("File not found: " + e.getMessage());
-        } catch (NumberFormatException e) {
-            throw new RuntimeException("Error parsing file. Please check the file format: " + e.getMessage());
+        } catch (IOException ioe) {
+            throw new RuntimeException("Fejl ved indlæsning af WorkoutSwimmers: " + ioe.getMessage(), ioe);
         }
+
         return memberList;
     }
-
-    private static PaymentStatus parsePaymentStatus(String status) {
-        try {
-            return PaymentStatus.valueOf(status.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            //Handles any invalid status and sets default to UNPAID
-            return PaymentStatus.UNPAID;
-        }
-    }
-
 }

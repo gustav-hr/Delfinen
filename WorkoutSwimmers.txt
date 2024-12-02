@@ -1,15 +1,2 @@
-Name: guf
-Status: passive
-Age: 22
-Fee: 500
-Payment status: PAID
-Name: bertram
-Status: passive
-Age: 22
-Fee: 500
-Payment status: PAID
-Name: johan
-Status: passive
-Age: 22
-Fee: 500
-Payment status: PAID
+Name,Status,Age,Fee,PaymentStatus
+pelle,active,29,1600,UNPAID
