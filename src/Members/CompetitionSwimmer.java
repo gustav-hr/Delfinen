@@ -17,6 +17,7 @@ public class CompetitionSwimmer extends Member {
         this.backCrawlTime = backCrawlTime;
         this.butterflyTime = butterflyTime;
 
+
     }
 
 
