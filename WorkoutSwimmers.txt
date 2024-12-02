@@ -1,5 +1,10 @@
-Name: Johan
+Name: henrik
 Status: active
-Age: 25
+Age: 63
+Fee: 1200
+Payment status: PAID
+Name: clara
+Status: active
+Age: 27
 Fee: 1600
-Paid: true
+Payment status: PAID

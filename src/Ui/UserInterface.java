@@ -396,9 +396,8 @@ public class UserInterface {
     }
 
     private void viewUnpaidMembers() {
-        System.out.println("Viewing unpaid members (not fully implemented).");
-        // Implement logic for viewing members who have not paid their fee.
 
+        System.out.println(controller.viewUNPAIDSwimmers());
 
     }
 

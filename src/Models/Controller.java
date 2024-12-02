@@ -170,6 +170,9 @@ public class Controller {
         return overview.toString();
     }
 
+
+    //CHANGE PAYMENT STATUS OF SWIMMERS COMPETITIVE AND WORKOUT -------------------------------------------------------
+
     public void changePaymentStatus(String name) {
 
         membersList.loadCompSwimmers();
@@ -204,4 +207,37 @@ public class Controller {
             member.setPaymentStatus("PAID");
         }
     }
+
+    // VIEW UNPAID USERS ONLY ---------------------------------------------------------------------------
+
+
+    public String viewUNPAIDSwimmers() {
+
+        membersList.loadAllMembers();
+
+        StringBuilder overview = new StringBuilder();
+        for(Member member : membersList.getAllMembers()) {
+
+            if(member.getPaymentStatus().equalsIgnoreCase("UNPAID")) {
+                overview.append("Name: ").append(member.getName())
+                        .append("\nStatus: ").append(member.getStatus())
+                        .append("\nAge: ").append(member.getAge())
+                        .append("\nFee: ").append(member.getFee())
+                        .append("\nPayment status: ").append(member.getPaymentStatus())
+                        .append("\n-----------------------------------\n");
+            }
+        }
+
+        if(overview.toString().isEmpty()) {
+            return "No swimmers have an UNPAID Payment status";
+        }
+        else {
+            return overview.toString();
+        }
+
+    }
+
+
+
+
 }

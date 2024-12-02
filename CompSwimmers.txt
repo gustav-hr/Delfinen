@@ -1,0 +1,20 @@
+Name: heidi
+Status: passive
+Age: 62
+Coach: Joachim
+Breaststroke time: 0.0
+Crawl time: 0.0
+Back crawl time: 0.0
+Butterfly time: 0.0
+Fee: 500
+Payment status: PAID
+Name: emil
+Status: passive
+Age: 30
+Coach: Joachim
+Breaststroke time: 2.0
+Crawl time: 2.0
+Back crawl time: 2.0
+Butterfly time: 2.0
+Fee: 500
+Payment status: PAID
