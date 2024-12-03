@@ -425,11 +425,11 @@ public class UserInterface {
 
     private void handleJoakimMenu(String input) {
         switch (input) {
-            case "1", "see" -> // METODE FOR AT SE COMPETITION MEMBERS 18<
-            case "2", "edit" -> // METODE FOR AT REDIGERE I MEMBERS FX. SVØMMETIDER
-            case "3", "top" -> // METODE FOR AT SE TOP 5 SVØMMERE INDENFOR DEN VALGTE DISCIPLIN
-            case "4", "list", "view" -> // METODE FOR AT SE RESULTATERNE FOR DEN SIDSTE TURNERING
-            case "5", "register" -> // METODE FOR AT REGISTRERE ET KOMMENDE STÆVNE, PLACERING OG TID
+            case "1", "see" -> {}// METODE FOR AT SE COMPETITION MEMBERS 18<
+            case "2", "edit" -> {}// METODE FOR AT REDIGERE I MEMBERS FX. SVØMMETIDER
+            case "3", "top" -> {}// METODE FOR AT SE TOP 5 SVØMMERE INDENFOR DEN VALGTE DISCIPLIN
+            case "4", "list", "view" ->{} // METODE FOR AT SE RESULTATERNE FOR DEN SIDSTE TURNERING
+            case "5", "register" -> {}// METODE FOR AT REGISTRERE ET KOMMENDE STÆVNE, PLACERING OG TID
 
             default -> System.out.println("Invalid option. Please try again.");
         }
