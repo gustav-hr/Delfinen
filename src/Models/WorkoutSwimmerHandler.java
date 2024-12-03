@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class WorkoutSwimmerHandler {
-    private static final String fileName = "WorkoutSwimmers.txt";
+    private static final String fileName = "WorkoutSwimmers.csv";
 
     // Metode til at gemme WorkoutSwimmers til en tekstfil
     public static void saveWorkoutSwimmerToFile(ArrayList<Member> memberList) {

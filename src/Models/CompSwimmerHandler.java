@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CompSwimmerHandler {
-    private static final String fileName = "CompSwimmers.txt";
+    private static final String fileName = "CompSwimmers.csv";
 
 
     //method for saving members to txt file. Needs to be implicit and not a dedicated feature in UserInterface.
