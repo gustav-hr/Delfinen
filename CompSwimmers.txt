@@ -1,3 +1,0 @@
-Name,Status,Age,Coach,BreastTime,CrawlTime,BackCrawlTime,ButterflyTime,Fee,PaymentStatus
-noah,passive,20,Joachim,0.0,0.0,0.0,0.0,500,PAID
-peter,active,29,Joachim,0.0,0.0,0.0,0.0,1600,PAID

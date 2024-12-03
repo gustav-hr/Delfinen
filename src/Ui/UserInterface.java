@@ -412,14 +412,51 @@ public class UserInterface {
     }
 
     private void joakim() {
-        System.out.println("Viewing Joakim's options (not fully implemented).");
+        System.out.println("Welcome Joakim. " +
+                "Here are your options: ");
+        System.out.println("1. See competition members. ");
+        System.out.println("2. Edit competition members. ");
+        System.out.println("3. See top 5 swimmers within your chosen discipline.");
+        System.out.println("4. Watch the results of the last competition.");
+        System.out.println("5. Register tournament: place and date. ");
+        System.out.println("Type 'back' to return to the main menu.");
         // Implement options for coach Joakim
     }
 
+    private void handleJoakimMenu(String input) {
+        switch (input) {
+            case "1", "see" -> // METODE FOR AT SE COMPETITION MEMBERS 18<
+            case "2", "edit" -> // METODE FOR AT REDIGERE I MEMBERS FX. SVØMMETIDER
+            case "3", "top" -> // METODE FOR AT SE TOP 5 SVØMMERE INDENFOR DEN VALGTE DISCIPLIN
+            case "4", "list", "view" -> // METODE FOR AT SE RESULTATERNE FOR DEN SIDSTE TURNERING
+            case "5", "register" -> // METODE FOR AT REGISTRERE ET KOMMENDE STÆVNE, PLACERING OG TID
+
+            default -> System.out.println("Invalid option. Please try again.");
+        }
+    }
+
+
+
     private void sara() {
-        System.out.println("Viewing Sara's options (not fully implemented).");
+        System.out.println("Welcome Sara." +
+        "Here are your options: ");
+        System.out.println("1. See competition members. ");
+        System.out.println("2. Edit competition members. ");
+        System.out.println("3. See top 5 swimmers within your chosen discipline.");
+        System.out.println("4. Watch the results of the last competition.");
+        System.out.println("5. Register tournament: place and date. ");
+        System.out.println("Type 'back' to return to the main menu.");
         // Implement options for coach Sara
     }
+
+
+
+
+
+
+
+
+
 
     private void exitProgram() {
         System.out.println("Exiting the program. Goodbye!");
