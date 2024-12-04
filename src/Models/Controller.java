@@ -4,8 +4,11 @@ import Enums.PaymentStatus;
 import Members.CompetitionSwimmer;
 import Members.Member;
 import Members.MembersList;
-import Members.WorkoutSwimmer;
 import Profiles.Coach;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Controller {
 
@@ -187,8 +190,8 @@ public class Controller {
         }
 
         membersList.loadWorkoutSwimmers();
-        for(Member member : membersList.getMembersList()) {
-            if(member.getName().equalsIgnoreCase(name)) {
+        for (Member member : membersList.getMembersList()) {
+            if (member.getName().equalsIgnoreCase(name)) {
 
                 togglePaymentStatus(member);
 
@@ -201,10 +204,9 @@ public class Controller {
 
     private void togglePaymentStatus(Member member) {
 
-        if(member.getPaymentStatus().name().equalsIgnoreCase("PAID")) {
+        if (member.getPaymentStatus().name().equalsIgnoreCase("PAID")) {
             member.setPaymentStatus(PaymentStatus.UNPAID);
-        }
-        else {
+        } else {
             member.setPaymentStatus(PaymentStatus.PAID);
         }
 
@@ -224,9 +226,9 @@ public class Controller {
         membersList.loadAllMembers();
 
         StringBuilder overview = new StringBuilder();
-        for(Member member : membersList.getAllMembers()) {
+        for (Member member : membersList.getAllMembers()) {
 
-            if(member.getPaymentStatus().name().equalsIgnoreCase("UNPAID")) {
+            if (member.getPaymentStatus().name().equalsIgnoreCase("UNPAID")) {
                 overview.append("Name: ").append(member.getName())
                         .append("\nStatus: ").append(member.getStatus())
                         .append("\nAge: ").append(member.getAge())
@@ -236,10 +238,9 @@ public class Controller {
             }
         }
 
-        if(overview.toString().isEmpty()) {
+        if (overview.toString().isEmpty()) {
             return "No swimmers have an UNPAID Payment status";
-        }
-        else {
+        } else {
             return overview.toString();
         }
 
@@ -253,9 +254,9 @@ public class Controller {
         membersList.loadCompSwimmers();
 
         StringBuilder overview = new StringBuilder();
-        for(Member member : membersList.getMembersList()){
+        for (Member member : membersList.getMembersList()) {
 
-            if(member.getAge() > 18 && member instanceof CompetitionSwimmer) {
+            if (member.getAge() > 18 && member instanceof CompetitionSwimmer) {
                 overview.append("Name: ").append(member.getName())
                         .append("\nAge: ").append(member.getAge())
                         .append("\nBreaststroke time: ").append(((CompetitionSwimmer) member).getBreastTime())
@@ -270,10 +271,9 @@ public class Controller {
 
             }
         }
-        if(overview.toString().isEmpty()) {
+        if (overview.toString().isEmpty()) {
             return "No senior competitive swimmers matches the search.";
-        }
-        else {
+        } else {
             return overview.toString();
         }
     }
@@ -282,15 +282,26 @@ public class Controller {
 
         membersList.loadCompSwimmers();
 
-        for(Member member : membersList.getMembersList()) {
-            if(member.getAge() > 18 && member instanceof CompetitionSwimmer && member.getName().equalsIgnoreCase(name)) {
+        for (Member member : membersList.getMembersList()) {
+            if (member.getAge() > 18 && member instanceof CompetitionSwimmer && member.getName().equalsIgnoreCase(name)) {
                 return member;
             }
         }
         return null;
     }
 
+    public ArrayList<CompetitionSwimmer> sortBreastTimeSenior() {
+        ArrayList<CompetitionSwimmer> list = new ArrayList<>();
+        membersList.loadCompSwimmers();
 
-
+        for (Member member : membersList.getMembersList()) {
+            if (member.getAge() >= 18 && member instanceof CompetitionSwimmer && ((CompetitionSwimmer) member).getBreastTime() != 0.0) {
+                list.add((CompetitionSwimmer) member);
+            }
+        }
+        Comparator<CompetitionSwimmer> comparator = new BreastTimeComparator();
+        list.sort(comparator);
+        return list;
+    }
 
 }

@@ -434,7 +434,9 @@ public class UserInterface {
         switch (input) {
             case "1", "see" -> viewCompSenior();// METODE FOR AT SE COMPETITION MEMBERS 18<
             case "2", "edit" -> editCompSenior();// METODE FOR AT REDIGERE I MEMBERS FX. SVØMMETIDER
-            case "3", "top" -> {}// METODE FOR AT SE TOP 5 SVØMMERE INDENFOR DEN VALGTE DISCIPLIN
+            case "3", "top" -> {
+                System.out.println(controller.sortBreastTimeSenior());
+            }// METODE FOR AT SE TOP 5 SVØMMERE INDENFOR DEN VALGTE DISCIPLIN
             case "4", "list", "view" -> {} // METODE FOR AT SE RESULTATERNE FOR DEN SIDSTE TURNERING
             case "5", "register" -> {}// METODE FOR AT REGISTRERE ET KOMMENDE STÆVNE, PLACERING OG TID
 
@@ -493,6 +495,7 @@ public class UserInterface {
         }
     }
 
+
     private void sara() {
         System.out.println("Welcome Sara." +
         "Here are your options: ");
@@ -511,4 +514,5 @@ public class UserInterface {
         System.out.println("Exiting the program. Goodbye!");
         running = false; // Stops the main program loop
     }
+
 }
