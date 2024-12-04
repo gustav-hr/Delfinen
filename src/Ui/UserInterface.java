@@ -148,12 +148,12 @@ public class UserInterface {
 
             int age = promptForValidAge(scanner);
 
-            double breastTime = promptForValidTime(scanner, "Breaststroke");
-            double crawlTime = promptForValidTime(scanner, "Crawl");
-            double backCrawlTime = promptForValidTime(scanner, "Back Crawl");
-            double butterflyTime = promptForValidTime(scanner, "Butterfly");
+//            double breastTime = promptForValidTime(scanner, "Breaststroke");
+//            double crawlTime = promptForValidTime(scanner, "Crawl");
+//            double backCrawlTime = promptForValidTime(scanner, "Back Crawl");
+//            double butterflyTime = promptForValidTime(scanner, "Butterfly");
 
-            controller.addCompetitive(name, status, age, breastTime, crawlTime, backCrawlTime, butterflyTime);
+            controller.addCompetitive(name, status, age, 0.0, 0.0, 0.0, 0.0);
             controller.saveCompSwimmerToList();
             System.out.println("Competitive swimmer added successfully!");
 
@@ -318,12 +318,12 @@ public class UserInterface {
                 int age = promptForValidAge(scanner);
                 memberEdit.setAge(age);
 
-                if (memberEdit instanceof CompetitionSwimmer compSwimmer) {
-                    compSwimmer.setBreastTime(promptForValidTime(scanner, "New breaststroke time: "));
-                    compSwimmer.setCrawlTime(promptForValidTime(scanner, "New crawl time: "));
-                    compSwimmer.setBackCrawlTime(promptForValidTime(scanner, "New back crawl time: "));
-                    compSwimmer.setButterflyTime(promptForValidTime(scanner, "New butterfly time: "));
-                }
+//                if (memberEdit instanceof CompetitionSwimmer compSwimmer) {
+//                    compSwimmer.setBreastTime(promptForValidTime(scanner, "New breaststroke time: "));
+//                    compSwimmer.setCrawlTime(promptForValidTime(scanner, "New crawl time: "));
+//                    compSwimmer.setBackCrawlTime(promptForValidTime(scanner, "New back crawl time: "));
+//                    compSwimmer.setButterflyTime(promptForValidTime(scanner, "New butterfly time: "));
+//                }
             }
             case "name" -> {
                 System.out.print("New name: ");
@@ -433,7 +433,7 @@ public class UserInterface {
     private void handleJoakimMenu(String input) {
         switch (input) {
             case "1", "see" -> viewCompSenior();// METODE FOR AT SE COMPETITION MEMBERS 18<
-            case "2", "edit" -> {editCompSenior();}// METODE FOR AT REDIGERE I MEMBERS FX. SVØMMETIDER
+            case "2", "edit" -> editCompSenior();// METODE FOR AT REDIGERE I MEMBERS FX. SVØMMETIDER
             case "3", "top" -> {}// METODE FOR AT SE TOP 5 SVØMMERE INDENFOR DEN VALGTE DISCIPLIN
             case "4", "list", "view" -> {} // METODE FOR AT SE RESULTATERNE FOR DEN SIDSTE TURNERING
             case "5", "register" -> {}// METODE FOR AT REGISTRERE ET KOMMENDE STÆVNE, PLACERING OG TID
@@ -504,13 +504,6 @@ public class UserInterface {
         System.out.println("Type 'back' to return to the main menu.");
         // Implement options for coach Sara
     }
-
-
-
-
-
-
-
 
 
 

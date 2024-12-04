@@ -259,7 +259,7 @@ public class Controller {
                 overview.append("Name: ").append(member.getName())
                         .append("\nAge: ").append(member.getAge())
                         .append("\nBreaststroke time: ").append(((CompetitionSwimmer) member).getBreastTime())
-                        .append("\nBreaststroke date: ").append(((CompetitionSwimmer) member).getButterflyTimeDate())
+                        .append("\nBreaststroke date: ").append(((CompetitionSwimmer) member).getBreastTimeDate())
                         .append("\nCrawl time: ").append(((CompetitionSwimmer) member).getCrawlTime())
                         .append("\nCrawl date: ").append(((CompetitionSwimmer) member).getCrawlTimeDate())
                         .append("\nBack crawl time: ").append(((CompetitionSwimmer) member).getBackCrawlTime())
