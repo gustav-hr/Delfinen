@@ -61,7 +61,7 @@ public class CompetitionSwimmer extends Member {
         this.breastTime = breastTime;
 
         LocalDate date = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:yy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy");
         setBreastTimeDate(date.format(formatter));
     }
 

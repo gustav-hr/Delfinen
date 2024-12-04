@@ -253,7 +253,7 @@ public class Controller {
         membersList.loadCompSwimmers();
 
         StringBuilder overview = new StringBuilder();
-        for(Member member : membersList.getMembersList()) {
+        for(Member member : membersList.getMembersList()){
 
             if(member.getAge() > 18 && member instanceof CompetitionSwimmer) {
                 overview.append("Name: ").append(member.getName())
@@ -265,11 +265,12 @@ public class Controller {
                         .append("\nBack crawl time: ").append(((CompetitionSwimmer) member).getBackCrawlTime())
                         .append("\nBack crawl date: ").append(((CompetitionSwimmer) member).getBackCrawlTimeDate())
                         .append("\nButterfly time: ").append(((CompetitionSwimmer) member).getButterflyTime())
-                        .append("\nButterfly date: ").append(((CompetitionSwimmer) member).getButterflyTimeDate());
+                        .append("\nButterfly date: ").append(((CompetitionSwimmer) member).getButterflyTimeDate())
+                        .append("\n--------------------------------------\n");
 
             }
         }
-        if(overview.isEmpty()) {
+        if(overview.toString().isEmpty()) {
             return "No senior competitive swimmers matches the search.";
         }
         else {

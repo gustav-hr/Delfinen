@@ -338,11 +338,11 @@ public class UserInterface {
                 int age = promptForValidAge(scanner);
                 memberEdit.setAge(age);
             }
-            case "breaststroke" -> updateSwimTime(memberEdit, "breaststroke");
-            case "crawl" -> updateSwimTime(memberEdit, "crawl");
-            case "back crawl" -> updateSwimTime(memberEdit, "back crawl");
-            case "butterfly" -> updateSwimTime(memberEdit, "butterfly");
-            default -> System.out.println("Invalid option. Please try again.");
+//            case "breaststroke" -> updateSwimTime(memberEdit, "breaststroke");
+//            case "crawl" -> updateSwimTime(memberEdit, "crawl");
+//            case "back crawl" -> updateSwimTime(memberEdit, "back crawl");
+//            case "butterfly" -> updateSwimTime(memberEdit, "butterfly");
+//            default -> System.out.println("Invalid option. Please try again.");
         }
 
         // Update fee and save changes
@@ -351,19 +351,19 @@ public class UserInterface {
         System.out.println("Member details have been updated successfully.");
     }
 
-    private void updateSwimTime(Member member, String discipline) {
-        if (member instanceof CompetitionSwimmer compSwimmer) {
-            double time = promptForValidTime(scanner, "New " + discipline + " time: ");
-            switch (discipline) {
-                case "breaststroke" -> compSwimmer.setBreastTime(time);
-                case "crawl" -> compSwimmer.setCrawlTime(time);
-                case "back crawl" -> compSwimmer.setBackCrawlTime(time);
-                case "butterfly" -> compSwimmer.setButterflyTime(time);
-            }
-        } else {
-            System.out.println("This member is not a competition swimmer.");
-        }
-    }
+//    private void updateSwimTime(Member member, String discipline) {
+//        if (member instanceof CompetitionSwimmer compSwimmer) {
+//            double time = promptForValidTime(scanner, "New " + discipline + " time: ");
+//            switch (discipline) {
+//                case "breaststroke" -> compSwimmer.setBreastTime(time);
+//                case "crawl" -> compSwimmer.setCrawlTime(time);
+//                case "back crawl" -> compSwimmer.setBackCrawlTime(time);
+//                case "butterfly" -> compSwimmer.setButterflyTime(time);
+//            }
+//        } else {
+//            System.out.println("This member is not a competition swimmer.");
+//        }
+//    }
 
 
     private void viewMembers() {
@@ -432,7 +432,7 @@ public class UserInterface {
 
     private void handleJoakimMenu(String input) {
         switch (input) {
-            case "1", "see" -> {viewCompSenior();}// METODE FOR AT SE COMPETITION MEMBERS 18<
+            case "1", "see" -> viewCompSenior();// METODE FOR AT SE COMPETITION MEMBERS 18<
             case "2", "edit" -> {editCompSenior();}// METODE FOR AT REDIGERE I MEMBERS FX. SVØMMETIDER
             case "3", "top" -> {}// METODE FOR AT SE TOP 5 SVØMMERE INDENFOR DEN VALGTE DISCIPLIN
             case "4", "list", "view" -> {} // METODE FOR AT SE RESULTATERNE FOR DEN SIDSTE TURNERING
@@ -443,7 +443,7 @@ public class UserInterface {
     }
 
     private void viewCompSenior() {
-        controller.viewCompSenior();
+        System.out.println(controller.viewCompSenior());
     }
     private void editCompSenior() {
 
@@ -478,22 +478,20 @@ public class UserInterface {
         }
     }
 
-    private void updateSwimCompTime(Member member, String discipline) {
+    private void updateSwimTime(Member member, String discipline) {
         if (member instanceof CompetitionSwimmer compSwimmer) {
             double time = promptForValidTime(scanner, "New " + discipline + " time: ");
             switch (discipline) {
-                case "breaststroke" -> {
-                    compSwimmer.setBreastTime(time);
-                }
+                case "breaststroke" -> compSwimmer.setBreastTime(time);
                 case "crawl" -> compSwimmer.setCrawlTime(time);
                 case "back crawl" -> compSwimmer.setBackCrawlTime(time);
                 case "butterfly" -> compSwimmer.setButterflyTime(time);
             }
+            controller.saveCompSwimmerToList();
         } else {
             System.out.println("This member is not a competition swimmer.");
         }
     }
-
 
     private void sara() {
         System.out.println("Welcome Sara." +
