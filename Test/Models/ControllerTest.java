@@ -31,7 +31,6 @@ class ControllerTest {
         Member alice = new WorkoutSwimmer("Alice", "passive", 20, controller.calculateFee(20,"passive"),PaymentStatus.PAID);
         mockMembers.add(alice);
 
-
         // Assert: Check if the total fee is calculated correctly
         assertEquals(3300, john.getFee() + jane.getFee() + alice.getFee()); // Expected total fee: 1600 + 1200 + 500
 
