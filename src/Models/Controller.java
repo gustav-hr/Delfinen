@@ -246,6 +246,50 @@ public class Controller {
     }
 
 
+    //  COACH SENIOR METHODS  -----------------------------------------------------------------------------
+
+    public String viewCompSenior() {
+
+        membersList.loadCompSwimmers();
+
+        StringBuilder overview = new StringBuilder();
+        for(Member member : membersList.getMembersList()) {
+
+            if(member.getAge() > 18 && member instanceof CompetitionSwimmer) {
+                overview.append("Name: ").append(member.getName())
+                        .append("\nAge: ").append(member.getAge())
+                        .append("\nBreaststroke time: ").append(((CompetitionSwimmer) member).getBreastTime())
+                        .append("\nBreaststroke date: ").append(((CompetitionSwimmer) member).getButterflyTimeDate())
+                        .append("\nCrawl time: ").append(((CompetitionSwimmer) member).getCrawlTime())
+                        .append("\nCrawl date: ").append(((CompetitionSwimmer) member).getCrawlTimeDate())
+                        .append("\nBack crawl time: ").append(((CompetitionSwimmer) member).getBackCrawlTime())
+                        .append("\nBack crawl date: ").append(((CompetitionSwimmer) member).getBackCrawlTimeDate())
+                        .append("\nButterfly time: ").append(((CompetitionSwimmer) member).getButterflyTime())
+                        .append("\nButterfly date: ").append(((CompetitionSwimmer) member).getButterflyTimeDate());
+
+            }
+        }
+        if(overview.isEmpty()) {
+            return "No senior competitive swimmers matches the search.";
+        }
+        else {
+            return overview.toString();
+        }
+    }
+
+    public Member editCompSenior(String name) {
+
+        membersList.loadCompSwimmers();
+
+        for(Member member : membersList.getMembersList()) {
+            if(member.getAge() > 18 && member instanceof CompetitionSwimmer && member.getName().equalsIgnoreCase(name)) {
+                return member;
+            }
+        }
+        return null;
+
+
+    }
 
 
 }

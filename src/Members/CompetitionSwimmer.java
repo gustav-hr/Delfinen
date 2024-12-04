@@ -8,12 +8,16 @@ import java.time.format.DateTimeFormatter;
 
 public class CompetitionSwimmer extends Member {
     private String coach;
+
     private double breastTime;
     private String breastTimeDate;
+
     private double crawlTime;
     private String crawlTimeDate;
+
     private double backCrawlTime;
     private String backCrawlTimeDate;
+
     private double butterflyTime;
     private String butterflyTimeDate;
 
@@ -55,6 +59,10 @@ public class CompetitionSwimmer extends Member {
 
     public void setBreastTime(double breastTime) {
         this.breastTime = breastTime;
+
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:yy");
+        setBreastTimeDate(date.format(formatter));
     }
 
     //CrawlTime
@@ -64,6 +72,10 @@ public class CompetitionSwimmer extends Member {
 
     public void setCrawlTime(double crawlTime) {
         this.crawlTime = crawlTime;
+
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:yy");
+        setCrawlTimeDate(date.format(formatter));
     }
 
     //ButterflyTime
@@ -73,6 +85,10 @@ public class CompetitionSwimmer extends Member {
 
     public void setButterflyTime(double butterflyTime) {
         this.butterflyTime = butterflyTime;
+
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:yy");
+        setButterflyTimeDate(date.format(formatter));
     }
 
     //BackCrawlTime
@@ -82,6 +98,10 @@ public class CompetitionSwimmer extends Member {
 
     public void setBackCrawlTime(double backCrawlTime) {
         this.backCrawlTime = backCrawlTime;
+
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:yy");
+        setBackCrawlTimeDate(date.format(formatter));
     }
 
     public String getBreastTimeDate() {

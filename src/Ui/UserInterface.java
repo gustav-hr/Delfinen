@@ -4,6 +4,8 @@ import Members.Member;
 import Members.CompetitionSwimmer;
 import Models.Controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -421,12 +423,17 @@ public class UserInterface {
         System.out.println("5. Register tournament: place and date. ");
         System.out.println("Type 'back' to return to the main menu.");
         // Implement options for coach Joakim
+
+
+        handleJoakimMenu(scanner.nextLine());
+
+
     }
 
     private void handleJoakimMenu(String input) {
         switch (input) {
-            case "1", "see" -> {}// METODE FOR AT SE COMPETITION MEMBERS 18<
-            case "2", "edit" -> {}// METODE FOR AT REDIGERE I MEMBERS FX. SVØMMETIDER
+            case "1", "see" -> {viewCompSenior();}// METODE FOR AT SE COMPETITION MEMBERS 18<
+            case "2", "edit" -> {editCompSenior();}// METODE FOR AT REDIGERE I MEMBERS FX. SVØMMETIDER
             case "3", "top" -> {}// METODE FOR AT SE TOP 5 SVØMMERE INDENFOR DEN VALGTE DISCIPLIN
             case "4", "list", "view" -> {} // METODE FOR AT SE RESULTATERNE FOR DEN SIDSTE TURNERING
             case "5", "register" -> {}// METODE FOR AT REGISTRERE ET KOMMENDE STÆVNE, PLACERING OG TID
@@ -435,6 +442,57 @@ public class UserInterface {
         }
     }
 
+    private void viewCompSenior() {
+        controller.viewCompSenior();
+    }
+    private void editCompSenior() {
+
+        System.out.println("Would you like to edit a swimmers (1)training time or (2)competition time?");
+
+        String trainingOrCompetition = scanner.nextLine();
+
+        if(trainingOrCompetition.contains("train") || trainingOrCompetition.equals("1")) {
+
+            System.out.println("Type out the name of the swimmer who's training time you want to change");
+            System.out.print("Name: ");
+            String name = scanner.nextLine();
+            Member memberEdit = controller.editCompSenior(name);
+
+            if (memberEdit == null) {
+                System.out.println("Member not found. Please try again.");
+                return;
+            }
+
+            System.out.println("What do you want to edit?\nOptions: breaststroke, crawl, back crawl, butterfly");
+            String editChoice = scanner.nextLine().toLowerCase();
+
+            switch (editChoice) {
+
+                case "breaststroke" -> updateSwimTime(memberEdit, "breaststroke");
+                case "crawl" -> updateSwimTime(memberEdit, "crawl");
+                case "back crawl" -> updateSwimTime(memberEdit, "back crawl");
+                case "butterfly" -> updateSwimTime(memberEdit, "butterfly");
+                default -> System.out.println("Invalid option. Please try again.");
+
+            }
+        }
+    }
+
+    private void updateSwimCompTime(Member member, String discipline) {
+        if (member instanceof CompetitionSwimmer compSwimmer) {
+            double time = promptForValidTime(scanner, "New " + discipline + " time: ");
+            switch (discipline) {
+                case "breaststroke" -> {
+                    compSwimmer.setBreastTime(time);
+                }
+                case "crawl" -> compSwimmer.setCrawlTime(time);
+                case "back crawl" -> compSwimmer.setBackCrawlTime(time);
+                case "butterfly" -> compSwimmer.setButterflyTime(time);
+            }
+        } else {
+            System.out.println("This member is not a competition swimmer.");
+        }
+    }
 
 
     private void sara() {
