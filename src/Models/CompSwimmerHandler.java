@@ -33,11 +33,19 @@ public class CompSwimmerHandler {
 
                     writer.write(((CompetitionSwimmer) member).getBreastTime() + ",");
 
+                    writer.write(((CompetitionSwimmer) member).getBreastTimeDate() + ",");
+
                     writer.write(((CompetitionSwimmer) member).getCrawlTime() + ",");
+
+                    writer.write(((CompetitionSwimmer) member).getCrawlTimeDate() + ",");
 
                     writer.write(((CompetitionSwimmer) member).getBackCrawlTime() + ",");
 
+                    writer.write(((CompetitionSwimmer) member).getBackCrawlTimeDate() + ",");
+
                     writer.write(((CompetitionSwimmer) member).getButterflyTime() + ",");
+
+                    writer.write(((CompetitionSwimmer) member).getButterflyTimeDate() + ",");
 
                     writer.write(member.getFee() + ",");
 
@@ -75,19 +83,24 @@ public class CompSwimmerHandler {
             scanner.nextLine();
             while (scanner.hasNextLine()) {
                 String[] attributes = scanner.nextLine().split(",");
-                if (attributes.length == 10) {
+                if (attributes.length == 14) {
                     String name = attributes[0];
                     String status = attributes[1];
                     int age = Integer.parseInt(attributes[2]);
                     String coach = attributes[3];
                     double breastTime = Double.parseDouble(attributes[4]);
-                    double crawlTime = Double.parseDouble(attributes[5]);
-                    double backCrawlTime = Double.parseDouble(attributes[6]);
-                    double butterflyTime = Double.parseDouble(attributes[7]);
-                    int fee = Integer.parseInt(attributes[8]);
-                    PaymentStatus paymentStatus = PaymentStatus.valueOf(attributes[9]);
+                    String breastTimeDate = attributes[5];
+                    double crawlTime = Double.parseDouble(attributes[6]);
+                    String crawlTimeDate = attributes[7];
+                    double backCrawlTime = Double.parseDouble(attributes[8]);
+                    String backCrawlTimeDate = attributes[9];
+                    double butterflyTime = Double.parseDouble(attributes[10]);
+                    String butterflyTimeDate = attributes[11];
+                    int fee = Integer.parseInt(attributes[12]);
+                    PaymentStatus paymentStatus = PaymentStatus.valueOf(attributes[13]);
 
-                    CompetitionSwimmer swimmer = new CompetitionSwimmer(name, status, age, coach, breastTime, crawlTime, backCrawlTime, butterflyTime, fee, paymentStatus);
+                    CompetitionSwimmer swimmer = new CompetitionSwimmer(name, status, age, coach, breastTime, breastTimeDate,
+                            crawlTime, crawlTimeDate, backCrawlTime, backCrawlTimeDate, butterflyTime, butterflyTimeDate, fee, paymentStatus);
                     memberList.add(swimmer);
                 }
             }
