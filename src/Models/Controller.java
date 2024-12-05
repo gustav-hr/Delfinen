@@ -290,7 +290,7 @@ public class Controller {
         return null;
     }
 
-    public ArrayList<CompetitionSwimmer> sortBreastTimeSenior() {
+    public String sortBreastTimeSenior() {
         ArrayList<CompetitionSwimmer> list = new ArrayList<>();
         membersList.loadCompSwimmers();
 
@@ -301,7 +301,17 @@ public class Controller {
         }
         Comparator<CompetitionSwimmer> comparator = new BreastTimeComparator();
         list.sort(comparator);
-        return list;
+        StringBuilder overview = new StringBuilder();
+
+        for (Member member : list){
+            overview.append("Name: ").append(member.getName())
+                    .append("\nAge: ").append(member.getAge())
+                    .append("\nBreaststroke time: ").append(((CompetitionSwimmer) member).getBreastTime())
+                    .append("\nBreaststroke date: ").append(((CompetitionSwimmer) member).getBreastTimeDate())
+                    .append("\n--------------------------------------\n");
+
+        }
+        return overview.toString();
     }
 
 }
