@@ -349,6 +349,7 @@ public class Controller {
         }
         return overview.toString();
     }
+
     //BACK CRAWL TIME
     public String sortBackCrawlSenior() {
         ArrayList<CompetitionSwimmer> list = new ArrayList<>();
@@ -377,6 +378,7 @@ public class Controller {
         }
         return overview.toString();
     }
+
     //BUTTERFLY TIME
     public String sortButterflyTimeSenior() {
         ArrayList<CompetitionSwimmer> list = new ArrayList<>();
@@ -398,11 +400,12 @@ public class Controller {
             if (count < 6) {
                 overview.append("Name: ").append(member.getName())
                         .append("\nAge: ").append(member.getAge())
-                        .append("\nCrawl time: ").append(((CompetitionSwimmer) member).getCrawlTime())
-                        .append("\nCrawl date: ").append(((CompetitionSwimmer) member).getCrawlTimeDate())
+                        .append("\nButterfly time: ").append(((CompetitionSwimmer) member).getCrawlTime())
+                        .append("\nButterfly date: ").append(((CompetitionSwimmer) member).getCrawlTimeDate())
                         .append("\n--------------------------------------\n");
             }
         }
         return overview.toString();
     }
+
 }
