@@ -441,11 +441,11 @@ public class UserInterface {
         switch (input) {
             case "1", "see" -> viewCompSenior();// METODE FOR AT SE COMPETITION MEMBERS 18<
             case "2", "edit" -> editCompSenior();// METODE FOR AT REDIGERE I MEMBERS FX. SVØMMETIDER
-            case "3", "top" -> {disciplinesJoakimMenu(input);
-            }// METODE FOR AT SE TOP 5 SVØMMERE INDENFOR DEN VALGTE DISCIPLIN
+            case "3", "top" -> {disciplinesJoakimMenu(input);}// METODE FOR AT SE TOP 5 SVØMMERE INDENFOR DEN VALGTE DISCIPLIN
             case "4", "list", "view" -> {} // METODE FOR AT SE RESULTATERNE FOR DEN SIDSTE TURNERING
             case "5", "register" -> {}// METODE FOR AT REGISTRERE ET KOMMENDE STÆVNE, PLACERING OG TID
-            case "6", "exit" -> {exit = "exit";}
+            case "6", "Team" -> {}
+            case "7", "exit" -> {exit = "exit";}
 
             default -> System.out.println("Invalid option. Please try again.");
         }
@@ -519,7 +519,24 @@ public class UserInterface {
             default -> System.out.println("Invalid option. Please try again.");
         }
     }
+    private void teamRankingSenior() {
+        System.out.println("Competition name: ");
 
+        //SCANNER FOR COMP NAME
+
+        System.out.println("Swimming discipline:");
+
+        //Discipline
+
+        System.out.println("Date");
+
+        //date
+
+        System.out.println("Ranking:");
+
+        //rank
+
+    }
 
 
     private void sara() {
