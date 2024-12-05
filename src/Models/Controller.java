@@ -385,11 +385,11 @@ public class Controller {
         membersList.loadCompSwimmers();
 
         for (Member member : membersList.getMembersList()) {
-            if (member.getAge() >= 18 && member instanceof CompetitionSwimmer && ((CompetitionSwimmer) member).getCrawlTime() != 0.0) {
+            if (member.getAge() >= 18 && member instanceof CompetitionSwimmer && ((CompetitionSwimmer) member).getButterflyTime() != 0.0) {
                 list.add((CompetitionSwimmer) member);
             }
         }
-        Comparator<CompetitionSwimmer> comparator = new CrawlTimeComparator();
+        Comparator<CompetitionSwimmer> comparator = new ButterflyTimeComparator();
         list.sort(comparator);
         StringBuilder overview = new StringBuilder();
 
@@ -400,8 +400,8 @@ public class Controller {
             if (count < 6) {
                 overview.append("Name: ").append(member.getName())
                         .append("\nAge: ").append(member.getAge())
-                        .append("\nButterfly time: ").append(((CompetitionSwimmer) member).getCrawlTime())
-                        .append("\nButterfly date: ").append(((CompetitionSwimmer) member).getCrawlTimeDate())
+                        .append("\nButterfly time: ").append(((CompetitionSwimmer) member).getButterflyTime())
+                        .append("\nButterfly date: ").append(((CompetitionSwimmer) member).getButterflyTimeDate())
                         .append("\n--------------------------------------\n");
             }
         }
