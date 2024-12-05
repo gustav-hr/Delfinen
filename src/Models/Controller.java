@@ -351,7 +351,7 @@ public class Controller {
     }
 
     //BACK CRAWL TIME
-    public String sortBackCrawlSenior() {
+    public String sortBackCrawlTimeSenior() {
         ArrayList<CompetitionSwimmer> list = new ArrayList<>();
         membersList.loadCompSwimmers();
 

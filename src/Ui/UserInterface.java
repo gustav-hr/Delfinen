@@ -441,8 +441,7 @@ public class UserInterface {
         switch (input) {
             case "1", "see" -> viewCompSenior();// METODE FOR AT SE COMPETITION MEMBERS 18<
             case "2", "edit" -> editCompSenior();// METODE FOR AT REDIGERE I MEMBERS FX. SVØMMETIDER
-            case "3", "top" -> {
-                System.out.println(controller.sortBreastTimeSenior());
+            case "3", "top" -> {disciplinesJoakimMenu(input);
             }// METODE FOR AT SE TOP 5 SVØMMERE INDENFOR DEN VALGTE DISCIPLIN
             case "4", "list", "view" -> {} // METODE FOR AT SE RESULTATERNE FOR DEN SIDSTE TURNERING
             case "5", "register" -> {}// METODE FOR AT REGISTRERE ET KOMMENDE STÆVNE, PLACERING OG TID
@@ -502,6 +501,25 @@ public class UserInterface {
             System.out.println("This member is not a competition swimmer.");
         }
     }
+    private void disciplinesJoakimMenu(String input) {
+        System.out.println("What discipline do you want to see?\n");
+        System.out.println("1. Breaststroke");
+        System.out.println("2. Crawl");
+        System.out.println("3. Butterfly");
+        System.out.println("4. Back crawl");
+
+        joakimTopDisciplines(scanner.nextLine());
+    }
+    private void joakimTopDisciplines(String input) {
+        switch (input) {
+            case "1", "breaststroke" -> System.out.println(controller.sortBreastTimeSenior());
+            case "2", "crawl" -> System.out.println(controller.sortCrawlTimeSenior());
+            case "3", "butterfly" -> System.out.println(controller.sortButterflyTimeSenior());
+            case "4", "backcrawl" -> System.out.println(controller.sortBackCrawlTimeSenior());
+            default -> System.out.println("Invalid option. Please try again.");
+        }
+    }
+
 
 
     private void sara() {
