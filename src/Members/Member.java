@@ -51,6 +51,7 @@ public abstract class Member {
     public void setFee(int fee) {
         this.fee = fee;
     }
+
     // GETTER & SETTER FOR PAYMENTSTATUS  ----------------------------------------------------------------------------
 
     public PaymentStatus getPaymentStatus() {

@@ -303,13 +303,17 @@ public class Controller {
         list.sort(comparator);
         StringBuilder overview = new StringBuilder();
 
-        for (Member member : list){
-            overview.append("Name: ").append(member.getName())
-                    .append("\nAge: ").append(member.getAge())
-                    .append("\nBreaststroke time: ").append(((CompetitionSwimmer) member).getBreastTime())
-                    .append("\nBreaststroke date: ").append(((CompetitionSwimmer) member).getBreastTimeDate())
-                    .append("\n--------------------------------------\n");
 
+        int count = 0;
+        for (Member member : list){
+            count++;
+            if(count < 6) {
+                overview.append("Name: ").append(member.getName())
+                        .append("\nAge: ").append(member.getAge())
+                        .append("\nBreaststroke time: ").append(((CompetitionSwimmer) member).getBreastTime())
+                        .append("\nBreaststroke date: ").append(((CompetitionSwimmer) member).getBreastTimeDate())
+                        .append("\n--------------------------------------\n");
+            }
         }
         return overview.toString();
     }
