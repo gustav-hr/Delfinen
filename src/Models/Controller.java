@@ -290,6 +290,9 @@ public class Controller {
         return null;
     }
 
+    //SENIOR SORTING BY CATEGORY
+
+    //BREASTTIME
     public String sortBreastTimeSenior() {
         ArrayList<CompetitionSwimmer> list = new ArrayList<>();
         membersList.loadCompSwimmers();
@@ -305,9 +308,9 @@ public class Controller {
 
 
         int count = 0;
-        for (Member member : list){
+        for (Member member : list) {
             count++;
-            if(count < 6) {
+            if (count < 6) {
                 overview.append("Name: ").append(member.getName())
                         .append("\nAge: ").append(member.getAge())
                         .append("\nBreaststroke time: ").append(((CompetitionSwimmer) member).getBreastTime())
@@ -318,4 +321,88 @@ public class Controller {
         return overview.toString();
     }
 
+    //CRAWLTIME
+    public String sortCrawlTimeSenior() {
+        ArrayList<CompetitionSwimmer> list = new ArrayList<>();
+        membersList.loadCompSwimmers();
+
+        for (Member member : membersList.getMembersList()) {
+            if (member.getAge() >= 18 && member instanceof CompetitionSwimmer && ((CompetitionSwimmer) member).getCrawlTime() != 0.0) {
+                list.add((CompetitionSwimmer) member);
+            }
+        }
+        Comparator<CompetitionSwimmer> comparator = new CrawlTimeComparator();
+        list.sort(comparator);
+        StringBuilder overview = new StringBuilder();
+
+
+        int count = 0;
+        for (Member member : list) {
+            count++;
+            if (count < 6) {
+                overview.append("Name: ").append(member.getName())
+                        .append("\nAge: ").append(member.getAge())
+                        .append("\nCrawl time: ").append(((CompetitionSwimmer) member).getCrawlTime())
+                        .append("\nCrawl date: ").append(((CompetitionSwimmer) member).getCrawlTimeDate())
+                        .append("\n--------------------------------------\n");
+            }
+        }
+        return overview.toString();
+    }
+    //BACK CRAWL TIME
+    public String sortBackCrawlSenior() {
+        ArrayList<CompetitionSwimmer> list = new ArrayList<>();
+        membersList.loadCompSwimmers();
+
+        for (Member member : membersList.getMembersList()) {
+            if (member.getAge() >= 18 && member instanceof CompetitionSwimmer && ((CompetitionSwimmer) member).getBackCrawlTime() != 0.0) {
+                list.add((CompetitionSwimmer) member);
+            }
+        }
+        Comparator<CompetitionSwimmer> comparator = new BackCrawlTimeComparator();
+        list.sort(comparator);
+        StringBuilder overview = new StringBuilder();
+
+
+        int count = 0;
+        for (Member member : list) {
+            count++;
+            if (count < 6) {
+                overview.append("Name: ").append(member.getName())
+                        .append("\nAge: ").append(member.getAge())
+                        .append("\nBack crawl time: ").append(((CompetitionSwimmer) member).getBackCrawlTime())
+                        .append("\nBack crawl date: ").append(((CompetitionSwimmer) member).getBackCrawlTimeDate())
+                        .append("\n--------------------------------------\n");
+            }
+        }
+        return overview.toString();
+    }
+    //BUTTERFLY TIME
+    public String sortButterflyTimeSenior() {
+        ArrayList<CompetitionSwimmer> list = new ArrayList<>();
+        membersList.loadCompSwimmers();
+
+        for (Member member : membersList.getMembersList()) {
+            if (member.getAge() >= 18 && member instanceof CompetitionSwimmer && ((CompetitionSwimmer) member).getCrawlTime() != 0.0) {
+                list.add((CompetitionSwimmer) member);
+            }
+        }
+        Comparator<CompetitionSwimmer> comparator = new CrawlTimeComparator();
+        list.sort(comparator);
+        StringBuilder overview = new StringBuilder();
+
+
+        int count = 0;
+        for (Member member : list) {
+            count++;
+            if (count < 6) {
+                overview.append("Name: ").append(member.getName())
+                        .append("\nAge: ").append(member.getAge())
+                        .append("\nCrawl time: ").append(((CompetitionSwimmer) member).getCrawlTime())
+                        .append("\nCrawl date: ").append(((CompetitionSwimmer) member).getCrawlTimeDate())
+                        .append("\n--------------------------------------\n");
+            }
+        }
+        return overview.toString();
+    }
 }
