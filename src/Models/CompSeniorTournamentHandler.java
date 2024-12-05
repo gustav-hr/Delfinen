@@ -1,93 +1,50 @@
 package Models;
 
-import Enums.PaymentStatus;
-import Members.CompetitionSwimmer;
-import Members.Member;
-
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.*;
 
 public class CompSeniorTournamentHandler {
+    private final String fileName;
 
-    private static final String fileName = "CompSeniorTournament.txt";
-
-
-    public static void saveCompSeniorTournamentSwimmerToFile(ArrayList<Member> memberList) {
-
-        System.out.println("Competition name: ");
-
-        //SCANNER FOR COMP NAME
-
-        System.out.println("Swimming discipline:");
-
-        //Discipline
-
-        System.out.println("Date");
-
-        //date
-
-        System.out.println("Ranking:");
-
-        //rank
-
-        String[] information = {
-
-            "Competition name: ",
-            "Swimming discipline",
-            "Date of competition",
-            "Swimmers ranking",
-
-        };
-
-        try (PrintStream output = new PrintStream(fileName)) {
-
-            output.print("Tournament: ");
-            output.print("Date: ");
-            output.print("discipline");
-            for (Member member : memberList) {
-                if (member instanceof CompetitionSwimmer) {
-
-                    output.println("Name: " + member.getName());
-                    output.println("Age: " + member.getAge());
-                    output.println("Tournament Time: ");
-                    output.println("Rank: ");
-                }
-            }
-        } catch (FileNotFoundException fnfe) {
-            throw new RuntimeException("Members could not be saved: " + fnfe.getMessage());
-        }
-
-
+    public CompSeniorTournamentHandler(String fileName) {
+        this.fileName = fileName;
     }
 
+    public void addTournamentData(String tournamentName, String date, String discipline, String[][] swimmers) {
+        try (FileWriter writer = new FileWriter(fileName, true)) {
+            // Skriv turneringsheader
+            writer.write("\nTournament: " + tournamentName + "    dato: " + date + "    *" + discipline + "*\n");
 
-    public static ArrayList<Member> loadCompSwimmerFromFile() {
-        ArrayList<Member> memberList = new ArrayList<>();
+            // Skriv svømmerens data
+            for (String[] swimmer : swimmers) {
+                String name = swimmer[0];
+                String time = swimmer[1];
+                String placement = swimmer[2];
+                writer.write(name + " Time: " + time + " Nr.: " + placement + "\n");
+            }
+
+            System.out.println("Tournament data saved successfully!");
+        } catch (IOException e) {
+            System.out.println("Error while saving tournament data: " + e.getMessage());
+        }
+    }
+
+    public void loadTournamentData() {
         File file = new File(fileName);
-        Controller controller = new Controller();
-
-        try (Scanner scanner = new Scanner(file)) {
-            while (scanner.hasNextLine()) {
-                String name = scanner.nextLine().replace("Name: ", "").trim();
-                String status = scanner.nextLine().replace("Status: ", "").trim();
-                int age = Integer.parseInt(scanner.nextLine().replace("Age: ", "").trim());
-                String coach = scanner.nextLine().replace("Coach: ", "").trim();
-                double breastTime = Double.parseDouble(scanner.nextLine().replace("Breaststroke time: ", "").trim());
-                double crawlTime = Double.parseDouble(scanner.nextLine().replace("Crawl time: ", "").trim());
-                double backCrawl = Double.parseDouble(scanner.nextLine().replace("Back crawl time: ", "").trim());
-                double butterfly = Double.parseDouble(scanner.nextLine().replace("Butterfly time: ", "").trim());
-                int fee = Integer.parseInt(scanner.nextLine().replace("Fee: ", "").trim());
-                String paymentStatusStr = scanner.nextLine().replace("PaymentStatus: ", "").trim();
-                PaymentStatus paymentStatus = PaymentStatus.valueOf(paymentStatusStr);
-
-            }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("File not found: " + e.getMessage());
+        if (!file.exists()) {
+            System.out.println("No tournament data found.");
+            return;
         }
-        return memberList;
-    }
 
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            System.out.println("\n--- Existing Tournament Data ---");
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+            System.out.println("--------------------------------");
+        } catch (IOException e) {
+            System.out.println("Error while reading tournament data: " + e.getMessage());
+        }
+    }
 }

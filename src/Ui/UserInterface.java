@@ -2,6 +2,7 @@ package Ui;
 
 import Members.Member;
 import Members.CompetitionSwimmer;
+import Models.CompSeniorTournamentHandler;
 import Models.Controller;
 
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ public class UserInterface {
     private final Scanner scanner = new Scanner(System.in); // Final scanner to use in the UI.
     private boolean running = true;
     Controller controller = new Controller();
+    private final CompSeniorTournamentHandler tournamentManager = new CompSeniorTournamentHandler("CompSeniorTournament.txt");
 
     public void startProgram() {
         System.out.println("Welcome to the Dolphin swimming club!");
@@ -426,7 +428,8 @@ public class UserInterface {
             System.out.println("3. See top 5 swimmers within your chosen discipline.");
             System.out.println("4. Watch the results of the last competition.");
             System.out.println("5. Register tournament: place and date. ");
-            System.out.println("6. exit the menu");
+            System.out.println("6. View all tournaments and results.");
+            System.out.println("7. exit the menu");
             System.out.println("Type 'back' to return to the main menu.");
             // Implement options for coach Joakim
 
@@ -442,13 +445,35 @@ public class UserInterface {
             case "1", "see" -> viewCompSenior();// METODE FOR AT SE COMPETITION MEMBERS 18<
             case "2", "edit" -> editCompSenior();// METODE FOR AT REDIGERE I MEMBERS FX. SVØMMETIDER
             case "3", "top" -> {disciplinesJoakimMenu(input);}// METODE FOR AT SE TOP 5 SVØMMERE INDENFOR DEN VALGTE DISCIPLIN
-            case "4", "list", "view" -> {} // METODE FOR AT SE RESULTATERNE FOR DEN SIDSTE TURNERING
-            case "5", "register" -> {}// METODE FOR AT REGISTRERE ET KOMMENDE STÆVNE, PLACERING OG TID
-            case "6", "Team" -> {}
+            case "4", "list", "view" -> tournamentManager.loadTournamentData(); // METODE FOR AT SE RESULTATERNE FOR DEN SIDSTE TURNERING
+            case "5", "register" -> registerTournament();// METODE FOR AT REGISTRERE ET KOMMENDE STÆVNE, PLACERING OG TID
+            case "6", "view tournaments" -> tournamentManager.loadTournamentData();
             case "7", "exit" -> {exit = "exit";}
 
             default -> System.out.println("Invalid option. Please try again.");
         }
+    }
+    private void registerTournament() {
+        String tournamentName = promptForInput("Enter tournament name: ");
+        String date = promptForInput("Enter date (dd/MM/yyyy): ");
+        String discipline = promptForInput("Enter discipline (e.g., Breast, Crawl): ");
+
+        // Indsaml data om 5 svømmere
+        String[][] swimmers = new String[5][3];
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Swimmer #" + (i + 1) + ":");
+            swimmers[i][0] = promptForInput("  Enter swimmer name: ");
+            swimmers[i][1] = promptForInput("  Enter swimmer time (e.g., 5.11): ");
+            swimmers[i][2] = promptForInput("  Enter swimmer placement (e.g., 1): ");
+        }
+
+        // Tilføj data til filen via TournamentManager
+        tournamentManager.addTournamentData(tournamentName, date, discipline, swimmers);
+    }
+
+    private String promptForInput(String prompt) {
+        System.out.print(prompt);
+        return scanner.nextLine().trim();
     }
 
     private void viewCompSenior() {
