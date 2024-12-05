@@ -413,20 +413,27 @@ public class UserInterface {
 
     }
 
+    String exit = "";
     private void joakim() {
         System.out.println("Welcome Joakim. " +
                 "Here are your options: ");
-        System.out.println("1. See competition members. ");
-        System.out.println("2. Edit competition members. ");
-        System.out.println("3. See top 5 swimmers within your chosen discipline.");
-        System.out.println("4. Watch the results of the last competition.");
-        System.out.println("5. Register tournament: place and date. ");
-        System.out.println("Type 'back' to return to the main menu.");
-        // Implement options for coach Joakim
 
 
-        handleJoakimMenu(scanner.nextLine());
+        while(!exit.equalsIgnoreCase("exit")) {
 
+            System.out.println("1. See competition members. ");
+            System.out.println("2. Edit competition members. ");
+            System.out.println("3. See top 5 swimmers within your chosen discipline.");
+            System.out.println("4. Watch the results of the last competition.");
+            System.out.println("5. Register tournament: place and date. ");
+            System.out.println("6. exit the menu");
+            System.out.println("Type 'back' to return to the main menu.");
+            // Implement options for coach Joakim
+
+            String input = scanner.nextLine();
+
+            handleJoakimMenu(input);
+        }
 
     }
 
@@ -439,6 +446,7 @@ public class UserInterface {
             }// METODE FOR AT SE TOP 5 SVØMMERE INDENFOR DEN VALGTE DISCIPLIN
             case "4", "list", "view" -> {} // METODE FOR AT SE RESULTATERNE FOR DEN SIDSTE TURNERING
             case "5", "register" -> {}// METODE FOR AT REGISTRERE ET KOMMENDE STÆVNE, PLACERING OG TID
+            case "6", "exit" -> {exit = "exit";}
 
             default -> System.out.println("Invalid option. Please try again.");
         }
