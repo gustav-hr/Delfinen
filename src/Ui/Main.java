@@ -1,4 +1,4 @@
-import Ui.UserInterface;
+package Ui;
 
 public class Main {
 
