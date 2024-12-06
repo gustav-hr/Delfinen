@@ -3,14 +3,12 @@ package ui;
 import domain.Member;
 import domain.CompetitionSwimmer;
 import services.Controller;
-
 import java.util.Scanner;
 
 public class UserInterface {
     private final Scanner scanner = new Scanner(System.in); // Final scanner to use in the UI.
     private boolean running = true;
     Controller controller = new Controller();
-    //private final CompSeniorTournamentHandler tournamentManager = new CompSeniorTournamentHandler("CompSeniorTournament.txt");
 
     public void startProgram() {
         System.out.println("Welcome to the Dolphin swimming club!");
@@ -72,7 +70,6 @@ public class UserInterface {
             default -> System.out.println("Invalid option. Please try again.");
         }
     }
-
 
     // Menu for the treasurer role
     private void treasurerMenu() {
