@@ -1,8 +1,8 @@
-package Models;
+package dao;
 
-import Enums.PaymentStatus;
-import Members.Member;
-import Members.CompetitionSwimmer;
+import domain.enums.PaymentStatus;
+import domain.Member;
+import domain.CompetitionSwimmer;
 
 import java.io.*;
 import java.util.ArrayList;

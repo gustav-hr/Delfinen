@@ -1,6 +1,6 @@
-package Models;
+package services.comparators;
 
-import Members.CompetitionSwimmer;
+import domain.CompetitionSwimmer;
 
 import java.util.Comparator;
 

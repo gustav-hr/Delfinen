@@ -1,9 +1,8 @@
-package Members;
+package domain;
 
-import Enums.PaymentStatus;
+import domain.enums.PaymentStatus;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class CompetitionSwimmer extends Member {

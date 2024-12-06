@@ -1,8 +1,8 @@
-package Members;
+package domain;
 
-import Enums.PaymentStatus;
-import Models.CompSwimmerHandler;
-import Models.WorkoutSwimmerHandler;
+import domain.enums.PaymentStatus;
+import dao.CompSwimmerHandler;
+import dao.WorkoutSwimmerHandler;
 
 import java.util.ArrayList;
 

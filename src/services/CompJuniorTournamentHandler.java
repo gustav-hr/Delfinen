@@ -1,12 +1,12 @@
-package Models;
+package services;
 
 import java.io.File;
 import java.io.*;
 
-public class CompSeniorTournamentHandler {
-    private final String fileName = "CompSeniorTournament.txt";
+public class CompJuniorTournamentHandler {
+    private final String fileName = "CompJuniorTournament.txt";
 
-    public void addSeniorTournamentData(String tournamentName, String date, String discipline, String[][] swimmers) {
+    public void addJuniorTournamentData(String tournamentName, String date, String discipline, String[][] swimmers) {
         try (FileWriter writer = new FileWriter(fileName, true)) {
             // Skriv turneringsheader
             writer.write("\nTournament: " + tournamentName + "    dato: " + date + "    *" + discipline + "*\n");
@@ -23,7 +23,7 @@ public class CompSeniorTournamentHandler {
         }
     }
 
-    public String loadSeniorTournamentData() {
+    public String loadJuniorTournamentData() {
         File file = new File(fileName);
         if (!file.exists()) {
             return "No tournament data found.";

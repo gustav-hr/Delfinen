@@ -1,10 +1,11 @@
-package Models;
+package dao;
 
-import Enums.PaymentStatus;
-import Members.Member;
-import Members.MembersList;
-import Members.WorkoutSwimmer;
+import domain.enums.PaymentStatus;
+import domain.Member;
+import domain.MembersList;
+import domain.WorkoutSwimmer;
 import org.junit.jupiter.api.Test;
+import services.Controller;
 
 import java.util.ArrayList;
 

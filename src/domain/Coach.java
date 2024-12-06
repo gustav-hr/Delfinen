@@ -1,4 +1,4 @@
-package Profiles;
+package domain;
 
 public class Coach {
 

@@ -1,8 +1,8 @@
-package Ui;
+package ui;
 
-import Members.Member;
-import Members.CompetitionSwimmer;
-import Models.Controller;
+import domain.Member;
+import domain.CompetitionSwimmer;
+import services.Controller;
 
 import java.util.Scanner;
 

@@ -1,6 +1,6 @@
-package Members;
+package domain;
 
-import Enums.PaymentStatus;
+import domain.enums.PaymentStatus;
 
 public abstract class Member {
 

@@ -1,10 +1,14 @@
-package Models;
+package services;
 
-import Enums.PaymentStatus;
-import Members.CompetitionSwimmer;
-import Members.Member;
-import Members.MembersList;
-import Profiles.Coach;
+import domain.enums.PaymentStatus;
+import domain.CompetitionSwimmer;
+import domain.Member;
+import domain.MembersList;
+import services.comparators.BackCrawlTimeComparator;
+import services.comparators.BreastTimeComparator;
+import services.comparators.ButterflyTimeComparator;
+import services.comparators.CrawlTimeComparator;
+import domain.Coach;
 
 import java.util.ArrayList;
 import java.util.Comparator;

@@ -1,4 +1,4 @@
-package Enums;
+package domain.enums;
 
 public enum PaymentStatus {
     PAID,
