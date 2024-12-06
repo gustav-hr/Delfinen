@@ -1,0 +1,28 @@
+
+Tournament: Aalborg shutdown    dato: 29/11/2021    *Crawl*
+ida Time: 56.2 Nr.: 5
+frederik Time: 22.10 Nr.: 1
+hugo Time: 40.3 Nr.: 3
+noah Time: 32.45 Nr.: 2
+william Time: 37.0 Nr.: 4
+
+Tournament: Odense brystmesterskab    dato: 11/09/2001    *breast*
+Johan Time: 6.4 Nr.: 1
+Gustav Time: 90.0 Nr.: 5
+Guffe Time: 10 Nr.: 2
+Bertram Time: 92 Nr.: 4
+Mathias Time: 20 Nr.: 3
+
+Tournament: honde    dato: 11/11/2011    *crawl*
+john Time: 123 Nr.: 1
+asda Time: 123 Nr.: 12
+asda Time: 2133 Nr.: 4
+asdagr Time: 23 Nr.: 4
+adfsh Time: 45 Nr.: 45
+
+Tournament: RandersCup    dato: 29/12/2002    *butterfly*
+johannes Time: 23 Nr.: 4
+gustav Time: 23 Nr.: 2
+guffe Time: 19.23 Nr.: 3
+bertram Time: 23 Nr.: 25
+benny Time: 11.23 Nr.: 2

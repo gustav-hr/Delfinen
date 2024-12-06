@@ -74,7 +74,7 @@ public class CompetitionSwimmer extends Member {
         this.crawlTime = crawlTime;
 
         LocalDate date = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:yy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy");
         setCrawlTimeDate(date.format(formatter));
     }
 
@@ -87,7 +87,7 @@ public class CompetitionSwimmer extends Member {
         this.butterflyTime = butterflyTime;
 
         LocalDate date = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:yy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy");
         setButterflyTimeDate(date.format(formatter));
     }
 
@@ -100,7 +100,7 @@ public class CompetitionSwimmer extends Member {
         this.backCrawlTime = backCrawlTime;
 
         LocalDate date = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:yy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy");
         setBackCrawlTimeDate(date.format(formatter));
     }
 

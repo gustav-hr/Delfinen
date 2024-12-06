@@ -4,13 +4,9 @@ import java.io.File;
 import java.io.*;
 
 public class CompSeniorTournamentHandler {
-    private final String fileName;
+    private final String fileName = "CompSeniorTournament.txt";
 
-    public CompSeniorTournamentHandler(String fileName) {
-        this.fileName = fileName;
-    }
-
-    public void addTournamentData(String tournamentName, String date, String discipline, String[][] swimmers) {
+    public void addSeniorTournamentData(String tournamentName, String date, String discipline, String[][] swimmers) {
         try (FileWriter writer = new FileWriter(fileName, true)) {
             // Skriv turneringsheader
             writer.write("\nTournament: " + tournamentName + "    dato: " + date + "    *" + discipline + "*\n");
@@ -22,29 +18,30 @@ public class CompSeniorTournamentHandler {
                 String placement = swimmer[2];
                 writer.write(name + " Time: " + time + " Nr.: " + placement + "\n");
             }
-
-            System.out.println("Tournament data saved successfully!");
         } catch (IOException e) {
-            System.out.println("Error while saving tournament data: " + e.getMessage());
+            throw new RuntimeException("Error while saving tournament data: " + e.getMessage());
         }
     }
 
-    public void loadTournamentData() {
+    public String loadSeniorTournamentData() {
         File file = new File(fileName);
         if (!file.exists()) {
-            System.out.println("No tournament data found.");
-            return;
+            return "No tournament data found.";
         }
+
+        StringBuilder tournamentData = new StringBuilder();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
-            System.out.println("\n--- Existing Tournament Data ---");
+            tournamentData.append("--- Existing Tournament Data ---\n");
             while ((line = reader.readLine()) != null) {
-                System.out.println(line);
+                tournamentData.append(line).append("\n");
             }
-            System.out.println("--------------------------------");
+            tournamentData.append("--------------------------------");
         } catch (IOException e) {
-            System.out.println("Error while reading tournament data: " + e.getMessage());
+            throw new RuntimeException("Error while reading tournament data: " + e.getMessage(), e);
         }
+
+        return tournamentData.toString();
     }
 }

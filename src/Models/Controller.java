@@ -7,7 +7,6 @@ import Members.MembersList;
 import Profiles.Coach;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 
 public class Controller {
@@ -408,4 +407,13 @@ public class Controller {
         return overview.toString();
     }
 
+    public void addTournament(String tournamentName, String date, String discipline, String[][] swimmers) {
+        CompSeniorTournamentHandler handler = new CompSeniorTournamentHandler();
+        handler.addSeniorTournamentData(tournamentName, date, discipline, swimmers);
+    }
+
+    public String loadTournaments() {
+        CompSeniorTournamentHandler handler = new CompSeniorTournamentHandler();
+        return handler.loadSeniorTournamentData();
+    }
 }

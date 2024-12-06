@@ -13,7 +13,7 @@ public class UserInterface {
     private final Scanner scanner = new Scanner(System.in); // Final scanner to use in the UI.
     private boolean running = true;
     Controller controller = new Controller();
-    private final CompSeniorTournamentHandler tournamentManager = new CompSeniorTournamentHandler("CompSeniorTournament.txt");
+    //private final CompSeniorTournamentHandler tournamentManager = new CompSeniorTournamentHandler("CompSeniorTournament.txt");
 
     public void startProgram() {
         System.out.println("Welcome to the Dolphin swimming club!");
@@ -319,13 +319,6 @@ public class UserInterface {
 
                 int age = promptForValidAge(scanner);
                 memberEdit.setAge(age);
-
-//                if (memberEdit instanceof CompetitionSwimmer compSwimmer) {
-//                    compSwimmer.setBreastTime(promptForValidTime(scanner, "New breaststroke time: "));
-//                    compSwimmer.setCrawlTime(promptForValidTime(scanner, "New crawl time: "));
-//                    compSwimmer.setBackCrawlTime(promptForValidTime(scanner, "New back crawl time: "));
-//                    compSwimmer.setButterflyTime(promptForValidTime(scanner, "New butterfly time: "));
-//                }
             }
             case "name" -> {
                 System.out.print("New name: ");
@@ -340,11 +333,6 @@ public class UserInterface {
                 int age = promptForValidAge(scanner);
                 memberEdit.setAge(age);
             }
-//            case "breaststroke" -> updateSwimTime(memberEdit, "breaststroke");
-//            case "crawl" -> updateSwimTime(memberEdit, "crawl");
-//            case "back crawl" -> updateSwimTime(memberEdit, "back crawl");
-//            case "butterfly" -> updateSwimTime(memberEdit, "butterfly");
-//            default -> System.out.println("Invalid option. Please try again.");
         }
 
         // Update fee and save changes
@@ -352,21 +340,6 @@ public class UserInterface {
         controller.saveCompSwimmerToList();
         System.out.println("Member details have been updated successfully.");
     }
-
-//    private void updateSwimTime(Member member, String discipline) {
-//        if (member instanceof CompetitionSwimmer compSwimmer) {
-//            double time = promptForValidTime(scanner, "New " + discipline + " time: ");
-//            switch (discipline) {
-//                case "breaststroke" -> compSwimmer.setBreastTime(time);
-//                case "crawl" -> compSwimmer.setCrawlTime(time);
-//                case "back crawl" -> compSwimmer.setBackCrawlTime(time);
-//                case "butterfly" -> compSwimmer.setButterflyTime(time);
-//            }
-//        } else {
-//            System.out.println("This member is not a competition swimmer.");
-//        }
-//    }
-
 
     private void viewMembers() {
         System.out.println("1. Competitive");
@@ -416,59 +389,58 @@ public class UserInterface {
     }
 
     String exit = "";
+
     private void joakim() {
-        System.out.println("Welcome Joakim. " +
+        System.out.println("\nWelcome Joakim. " +
                 "Here are your options: ");
 
 
-        while(!exit.equalsIgnoreCase("exit")) {
+        while(!exit.equalsIgnoreCase("back")) {
 
             System.out.println("1. See competition members. ");
             System.out.println("2. Edit competition members. ");
             System.out.println("3. See top 5 swimmers within your chosen discipline.");
-            System.out.println("4. Watch the results of the last competition.");
-            System.out.println("5. Register tournament: place and date. ");
-            System.out.println("6. View all tournaments and results.");
-            System.out.println("7. exit the menu");
+            System.out.println("4. Register tournament: place and date. ");
+            System.out.println("5. View all tournaments and results.");
             System.out.println("Type 'back' to return to the main menu.");
-            // Implement options for coach Joakim
 
+            //input for handling joakimMenu
             String input = scanner.nextLine();
-
+            if (input.equals("back")) break;
             handleJoakimMenu(input);
+
         }
 
     }
 
     private void handleJoakimMenu(String input) {
+
         switch (input) {
             case "1", "see" -> viewCompSenior();// METODE FOR AT SE COMPETITION MEMBERS 18<
             case "2", "edit" -> editCompSenior();// METODE FOR AT REDIGERE I MEMBERS FX. SVØMMETIDER
-            case "3", "top" -> {disciplinesJoakimMenu(input);}// METODE FOR AT SE TOP 5 SVØMMERE INDENFOR DEN VALGTE DISCIPLIN
-            case "4", "list", "view" -> tournamentManager.loadTournamentData(); // METODE FOR AT SE RESULTATERNE FOR DEN SIDSTE TURNERING
-            case "5", "register" -> registerTournament();// METODE FOR AT REGISTRERE ET KOMMENDE STÆVNE, PLACERING OG TID
-            case "6", "view tournaments" -> tournamentManager.loadTournamentData();
-            case "7", "exit" -> {exit = "exit";}
-
+            case "3", "top" -> disciplinesJoakimMenu(input);// METODE FOR AT SE TOP 5 SVØMMERE INDENFOR DEN VALGTE DISCIPLIN
+            case "4", "register" -> registerTournament();// METODE FOR AT REGISTRERE ET KOMMENDE STÆVNE, PLACERING OG TID
+            case "5", "view tournaments" -> System.out.println(controller.loadTournaments());
             default -> System.out.println("Invalid option. Please try again.");
         }
     }
     private void registerTournament() {
         String tournamentName = promptForInput("Enter tournament name: ");
         String date = promptForInput("Enter date (dd/MM/yyyy): ");
-        String discipline = promptForInput("Enter discipline (e.g., Breast, Crawl): ");
+        String discipline = promptForInput("Enter discipline (Breaststroke, Crawl, Back crawl, Butterfly): ");
 
-        // Indsaml data om 5 svømmere
+        // Gather data for 5 swimmers.
+        //2D array method found on https://www.w3schools.com/c/c_arrays_multi.php
         String[][] swimmers = new String[5][3];
         for (int i = 0; i < 5; i++) {
             System.out.println("Swimmer #" + (i + 1) + ":");
             swimmers[i][0] = promptForInput("  Enter swimmer name: ");
-            swimmers[i][1] = promptForInput("  Enter swimmer time (e.g., 5.11): ");
-            swimmers[i][2] = promptForInput("  Enter swimmer placement (e.g., 1): ");
+            swimmers[i][1] = promptForInput("  Enter swimmer time in seconds: ");
+            swimmers[i][2] = promptForInput("  Enter swimmer placement: ");
         }
 
-        // Tilføj data til filen via TournamentManager
-        tournamentManager.addTournamentData(tournamentName, date, discipline, swimmers);
+        // Add data to file via controller.
+        controller.addTournament(tournamentName, date, discipline, swimmers);
     }
 
     private String promptForInput(String prompt) {
@@ -480,12 +452,6 @@ public class UserInterface {
         System.out.println(controller.viewCompSenior());
     }
     private void editCompSenior() {
-
-        System.out.println("Would you like to edit a swimmers (1)training time or (2)competition time?");
-
-        String trainingOrCompetition = scanner.nextLine();
-
-        if(trainingOrCompetition.contains("train") || trainingOrCompetition.equals("1")) {
 
             System.out.println("Type out the name of the swimmer who's training time you want to change");
             System.out.print("Name: ");
@@ -510,11 +476,11 @@ public class UserInterface {
 
             }
         }
-    }
+
 
     private void updateSwimTime(Member member, String discipline) {
         if (member instanceof CompetitionSwimmer compSwimmer) {
-            double time = promptForValidTime(scanner, "New " + discipline + " time: ");
+            double time = promptForValidTime(scanner, "new " + discipline);
             switch (discipline) {
                 case "breaststroke" -> compSwimmer.setBreastTime(time);
                 case "crawl" -> compSwimmer.setCrawlTime(time);
@@ -544,26 +510,6 @@ public class UserInterface {
             default -> System.out.println("Invalid option. Please try again.");
         }
     }
-    private void teamRankingSenior() {
-        System.out.println("Competition name: ");
-
-        //SCANNER FOR COMP NAME
-
-        System.out.println("Swimming discipline:");
-
-        //Discipline
-
-        System.out.println("Date");
-
-        //date
-
-        System.out.println("Ranking:");
-
-        //rank
-
-    }
-
-
     private void sara() {
         System.out.println("Welcome Sara." +
         "Here are your options: ");
