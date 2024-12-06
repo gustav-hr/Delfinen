@@ -2,11 +2,8 @@ package Ui;
 
 import Members.Member;
 import Members.CompetitionSwimmer;
-import Models.CompSeniorTournamentHandler;
 import Models.Controller;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -149,11 +146,6 @@ public class UserInterface {
             String status = promptForValidStatus(scanner);
 
             int age = promptForValidAge(scanner);
-
-//            double breastTime = promptForValidTime(scanner, "Breaststroke");
-//            double crawlTime = promptForValidTime(scanner, "Crawl");
-//            double backCrawlTime = promptForValidTime(scanner, "Back Crawl");
-//            double butterflyTime = promptForValidTime(scanner, "Butterfly");
 
             controller.addCompetitive(name, status, age, 0.0, 0.0, 0.0, 0.0);
             controller.saveCompSwimmerToList();
@@ -395,7 +387,7 @@ public class UserInterface {
                 "Here are your options: ");
 
 
-        while(!exit.equalsIgnoreCase("back")) {
+        while (!exit.equalsIgnoreCase("back")) {
 
             System.out.println("1. See competition members. ");
             System.out.println("2. Edit competition members. ");
@@ -419,12 +411,13 @@ public class UserInterface {
             case "1", "see" -> viewCompSenior();// METODE FOR AT SE COMPETITION MEMBERS 18<
             case "2", "edit" -> editCompSenior();// METODE FOR AT REDIGERE I MEMBERS FX. SVØMMETIDER
             case "3", "top" -> disciplinesJoakimMenu(input);// METODE FOR AT SE TOP 5 SVØMMERE INDENFOR DEN VALGTE DISCIPLIN
-            case "4", "register" -> registerTournament();// METODE FOR AT REGISTRERE ET KOMMENDE STÆVNE, PLACERING OG TID
+            case "4", "register" -> registerSeniorTournament();// METODE FOR AT REGISTRERE ET KOMMENDE STÆVNE, PLACERING OG TID
             case "5", "view tournaments" -> System.out.println(controller.loadTournaments());
             default -> System.out.println("Invalid option. Please try again.");
         }
     }
-    private void registerTournament() {
+
+    private void registerSeniorTournament() {
         String tournamentName = promptForInput("Enter tournament name: ");
         String date = promptForInput("Enter date (dd/MM/yyyy): ");
         String discipline = promptForInput("Enter discipline (Breaststroke, Crawl, Back crawl, Butterfly): ");
@@ -451,31 +444,32 @@ public class UserInterface {
     private void viewCompSenior() {
         System.out.println(controller.viewCompSenior());
     }
+
     private void editCompSenior() {
 
-            System.out.println("Type out the name of the swimmer who's training time you want to change");
-            System.out.print("Name: ");
-            String name = scanner.nextLine();
-            Member memberEdit = controller.editCompSenior(name);
+        System.out.println("Type out the name of the swimmer who's training time you want to change");
+        System.out.print("Name: ");
+        String name = scanner.nextLine();
+        Member memberEdit = controller.editCompSenior(name);
 
-            if (memberEdit == null) {
-                System.out.println("Member not found. Please try again.");
-                return;
-            }
-
-            System.out.println("What do you want to edit?\nOptions: breaststroke, crawl, back crawl, butterfly");
-            String editChoice = scanner.nextLine().toLowerCase();
-
-            switch (editChoice) {
-
-                case "breaststroke" -> updateSwimTime(memberEdit, "breaststroke");
-                case "crawl" -> updateSwimTime(memberEdit, "crawl");
-                case "back crawl" -> updateSwimTime(memberEdit, "back crawl");
-                case "butterfly" -> updateSwimTime(memberEdit, "butterfly");
-                default -> System.out.println("Invalid option. Please try again.");
-
-            }
+        if (memberEdit == null) {
+            System.out.println("Member not found. Please try again.");
+            return;
         }
+
+        System.out.println("What do you want to edit?\nOptions: breaststroke, crawl, back crawl, butterfly");
+        String editChoice = scanner.nextLine().toLowerCase();
+
+        switch (editChoice) {
+
+            case "breaststroke" -> updateSwimTime(memberEdit, "breaststroke");
+            case "crawl" -> updateSwimTime(memberEdit, "crawl");
+            case "back crawl" -> updateSwimTime(memberEdit, "back crawl");
+            case "butterfly" -> updateSwimTime(memberEdit, "butterfly");
+            default -> System.out.println("Invalid option. Please try again.");
+
+        }
+    }
 
 
     private void updateSwimTime(Member member, String discipline) {
@@ -492,6 +486,7 @@ public class UserInterface {
             System.out.println("This member is not a competition swimmer.");
         }
     }
+
     private void disciplinesJoakimMenu(String input) {
         System.out.println("What discipline do you want to see?\n");
         System.out.println("1. Breaststroke");
@@ -501,6 +496,7 @@ public class UserInterface {
 
         joakimTopDisciplines(scanner.nextLine());
     }
+
     private void joakimTopDisciplines(String input) {
         switch (input) {
             case "1", "breaststroke" -> System.out.println(controller.sortBreastTimeSenior());
@@ -510,19 +506,101 @@ public class UserInterface {
             default -> System.out.println("Invalid option. Please try again.");
         }
     }
+
+
     private void sara() {
-        System.out.println("Welcome Sara." +
-        "Here are your options: ");
-        System.out.println("1. See competition members. ");
-        System.out.println("2. Edit competition members. ");
-        System.out.println("3. See top 5 swimmers within your chosen discipline.");
-        System.out.println("4. Watch the results of the last competition.");
-        System.out.println("5. Register tournament: place and date. ");
-        System.out.println("Type 'back' to return to the main menu.");
-        // Implement options for coach Sara
+        System.out.println("\nWelcome Sara. " +
+                "Here are your options: ");
+
+        while (!exit.equalsIgnoreCase("back")) {
+            System.out.println("\n1. See competition members. ");
+            System.out.println("2. Edit competition members. ");
+            System.out.println("3. See top 5 swimmers within your chosen discipline.");
+            System.out.println("4. Register tournament: place and date. ");
+            System.out.println("5. View all tournaments and results.");
+            System.out.println("Type 'back' to return to the main menu.");
+            // Implement options for coach Sara
+
+            String input = scanner.nextLine();
+            if (input.equals("back")) break;
+            handleSaraMenu(input);
+        }
     }
 
+    private void handleSaraMenu(String input) {
+        switch (input) {
+            case "1", "see" -> viewCompJunior();// METODE FOR AT SE COMPETITION MEMBERS 18<
+            case "2", "edit" -> editCompJunior();// METODE FOR AT REDIGERE I MEMBERS FX. SVØMMETIDER
+            case "3", "top" -> disciplinesSaraMenu(input);// METODE FOR AT SE TOP 5 SVØMMERE INDENFOR DEN VALGTE DISCIPLIN
+            case "4", "register" -> registerJuniorTournament();// METODE FOR AT REGISTRERE ET KOMMENDE STÆVNE, PLACERING OG TID
+            case "5", "view tournaments" -> System.out.println(controller.loadJuniorTournaments());
+            default -> System.out.println("Invalid option. Please try again.");
+        }
+    }
+    private void viewCompJunior() {
+        System.out.println(controller.viewCompJunior());
+    }
+    private void editCompJunior() {
 
+        System.out.println("Type out the name of the swimmer who's training time you want to change");
+        System.out.print("Name: ");
+        String name = scanner.nextLine();
+        Member memberEdit = controller.editCompJunior(name);
+
+        if (memberEdit == null) {
+            System.out.println("Member not found. Please try again.");
+            return;
+        }
+
+        System.out.println("What do you want to edit?\nOptions: breaststroke, crawl, back crawl, butterfly");
+        String editChoice = scanner.nextLine().toLowerCase();
+
+        switch (editChoice) {
+
+            case "breaststroke" -> updateSwimTime(memberEdit, "breaststroke");
+            case "crawl" -> updateSwimTime(memberEdit, "crawl");
+            case "back crawl" -> updateSwimTime(memberEdit, "back crawl");
+            case "butterfly" -> updateSwimTime(memberEdit, "butterfly");
+            default -> System.out.println("Invalid option. Please try again.");
+
+        }
+    }
+    private void disciplinesSaraMenu(String input) {
+        System.out.println("What discipline do you want to see?\n");
+        System.out.println("1. Breaststroke");
+        System.out.println("2. Crawl");
+        System.out.println("3. Butterfly");
+        System.out.println("4. Back crawl");
+
+        saraTopDisciplines(scanner.nextLine());
+    }
+    private void saraTopDisciplines(String input) {
+        switch (input) {
+            case "1", "breaststroke" -> System.out.println(controller.sortBreastTimeJunior());
+            case "2", "crawl" -> System.out.println(controller.sortCrawlTimeJunior());
+            case "3", "butterfly" -> System.out.println(controller.sortButterflyTimeJunior());
+            case "4", "backcrawl" -> System.out.println(controller.sortBackCrawlTimeJunior());
+            default -> System.out.println("Invalid option. Please try again.");
+        }
+    }
+    private void registerJuniorTournament() {
+        String tournamentName = promptForInput("Enter tournament name: ");
+        String date = promptForInput("Enter date (dd/MM/yyyy): ");
+        String discipline = promptForInput("Enter discipline (Breaststroke, Crawl, Back crawl, Butterfly): ");
+
+        // Gather data for 5 swimmers.
+        //2D array method found on https://www.w3schools.com/c/c_arrays_multi.php
+        String[][] swimmers = new String[5][3];
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Swimmer #" + (i + 1) + ":");
+            swimmers[i][0] = promptForInput("  Enter swimmer name: ");
+            swimmers[i][1] = promptForInput("  Enter swimmer time in seconds: ");
+            swimmers[i][2] = promptForInput("  Enter swimmer placement: ");
+        }
+
+        // Add data to file via controller.
+        controller.addJuniorTournament(tournamentName, date, discipline, swimmers);
+    }
 
     private void exitProgram() {
         System.out.println("Exiting the program. Goodbye!");
