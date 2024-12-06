@@ -383,6 +383,7 @@ public class UserInterface {
     String exit = "";
 
     private void joakim() {
+
         System.out.println("\nWelcome Joakim. " +
                 "Here are your options: ");
 
@@ -433,7 +434,7 @@ public class UserInterface {
         }
 
         // Add data to file via controller.
-        controller.addTournament(tournamentName, date, discipline, swimmers);
+        controller.addSeniorTournament(tournamentName, date, discipline, swimmers);
     }
 
     private String promptForInput(String prompt) {
