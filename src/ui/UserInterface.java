@@ -138,7 +138,6 @@ public class UserInterface {
             // Add competitive swimmer
             System.out.print("Name: ");
             String name = scanner.nextLine().toLowerCase();
-            ;
 
             String status = promptForValidStatus(scanner);
 
