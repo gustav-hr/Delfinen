@@ -1,5 +1,3 @@
-package dao;
-
 import domain.enums.PaymentStatus;
 import domain.Member;
 import domain.MembersList;

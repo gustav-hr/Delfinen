@@ -15,7 +15,7 @@ import java.util.Comparator;
 
 public class Controller {
 
-    MembersList membersList = new MembersList();
+    public MembersList membersList = new MembersList();
     Coach joachim = new Coach("Joachim");
     Coach sara = new Coach("Sara");
 
