@@ -6,12 +6,13 @@ import java.io.*;
 public class CompSeniorTournamentHandler {
     private final String fileName = "CompSeniorTournament.txt";
 
+    // FROM CONSOLE TO FILE --------------------------------------------------------------------------------------------
     public void addSeniorTournamentData(String tournamentName, String date, String discipline, String[][] swimmers) {
         try (FileWriter writer = new FileWriter(fileName, true)) {
-            // Skriv turneringsheader
+            // writes tournament header
             writer.write("\nTournament: " + tournamentName + "    dato: " + date + "    *" + discipline + "*\n");
 
-            // Skriv svømmerens data
+            // Write swimmers data
             for (String[] swimmer : swimmers) {
                 String name = swimmer[0];
                 String time = swimmer[1];
@@ -23,6 +24,7 @@ public class CompSeniorTournamentHandler {
         }
     }
 
+    // FROM FILE TO CONSOLE --------------------------------------------------------------------------------------------
     public String loadSeniorTournamentData() {
         File file = new File(fileName);
         if (!file.exists()) {

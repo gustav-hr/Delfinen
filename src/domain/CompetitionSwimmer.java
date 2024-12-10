@@ -24,6 +24,7 @@ public class CompetitionSwimmer extends Member {
     public CompetitionSwimmer(String name, String status, int age, String coach, double breastTime, String breastTimeDate,
                               double crawlTime, String crawlTimeDate, double backCrawlTime, String backCrawlTimeDate,
                               double butterflyTime, String butterflyTimeDate, int fee, PaymentStatus paymentStatus) {
+
         super(name, status, age, fee, paymentStatus);
         this.coach = coach;
         this.breastTime = breastTime;
@@ -40,18 +41,14 @@ public class CompetitionSwimmer extends Member {
     }
 
 
-    //getter & setter specifics for competitionSwimmer
+    // GETTER AND SETTER FOR COMPETITION SWIMMER------------------------------------------------------------------------
 
-    //coach
+    // COACH -----------------------------------------------------------------------------------------------------------
     public String getCoach() {
         return coach;
     }
 
-    public void setCoach(String coach) {
-        this.coach = coach;
-    }
-
-    //BreastTime
+    // BREAST TIME -----------------------------------------------------------------------------------------------------
     public double getBreastTime() {
         return breastTime;
     }
@@ -64,7 +61,7 @@ public class CompetitionSwimmer extends Member {
         setBreastTimeDate(date.format(formatter));
     }
 
-    //CrawlTime
+    // CRAWL TIME ------------------------------------------------------------------------------------------------------
     public double getCrawlTime() {
         return crawlTime;
     }
@@ -77,7 +74,7 @@ public class CompetitionSwimmer extends Member {
         setCrawlTimeDate(date.format(formatter));
     }
 
-    //ButterflyTime
+    //BUTTERFLY TIME ---------------------------------------------------------------------------------------------------
     public double getButterflyTime() {
         return butterflyTime;
     }
@@ -90,7 +87,7 @@ public class CompetitionSwimmer extends Member {
         setButterflyTimeDate(date.format(formatter));
     }
 
-    //BackCrawlTime
+    //BACK CRAWL TIME --------------------------------------------------------------------------------------------------
     public double getBackCrawlTime() {
         return backCrawlTime;
     }
@@ -103,6 +100,7 @@ public class CompetitionSwimmer extends Member {
         setBackCrawlTimeDate(date.format(formatter));
     }
 
+    // BREAST TIME DATE ------------------------------------------------------------------------------------------------
     public String getBreastTimeDate() {
         return breastTimeDate;
     }
@@ -111,6 +109,7 @@ public class CompetitionSwimmer extends Member {
         this.breastTimeDate = breastTimeDate;
     }
 
+    // CRAWL TIME DATE -------------------------------------------------------------------------------------------------
     public String getCrawlTimeDate() {
         return crawlTimeDate;
     }
@@ -119,6 +118,7 @@ public class CompetitionSwimmer extends Member {
         this.crawlTimeDate = crawlTimeDate;
     }
 
+    // BACK CRAWL TIME DATE --------------------------------------------------------------------------------------------
     public String getBackCrawlTimeDate() {
         return backCrawlTimeDate;
     }
@@ -127,6 +127,7 @@ public class CompetitionSwimmer extends Member {
         this.backCrawlTimeDate = backCrawlTimeDate;
     }
 
+    // BUTTERFLY TIME DATE ---------------------------------------------------------------------------------------------
     public String getButterflyTimeDate() {
         return butterflyTimeDate;
     }

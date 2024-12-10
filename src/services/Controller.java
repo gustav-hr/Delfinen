@@ -123,22 +123,6 @@ public class Controller {
             }
         }
     }
-//    public int calculateAllFees() {
-//        membersList.loadAllMembers(); // Indlæs alle medlemmer
-//
-//        System.out.println("Antal medlemmer: " + membersList.getMembersList().size()); // Debugging
-//        for (Member member : membersList.getMembersList()) {
-//            System.out.println("Medlem: " + member.getName() + ", Status: " + member.getStatus() + ", Fee: " + member.getFee());
-//        }
-//
-//        int totalFee = 0;
-//        for (Member member : membersList.getMembersList()) {
-//            totalFee += member.getFee(); // Summér gebyrerne
-//        }
-//
-//        System.out.println("Total gebyrer: " + totalFee); // Debugging-output
-//        return totalFee;
-//    }
 
     public int calculateAllFees() {
         membersList.loadAllMembers(); // Indlæs alle medlemmer
@@ -153,15 +137,6 @@ public class Controller {
     public String Overview() {
         // Loading all members from the txt files:
         membersList.loadAllMembers();
-//        for(Member member : membersList.getAllMembers()) {
-//            return "Name: " + member.getName() +
-//                    "\nStatus: " + member.getStatus() +
-//                    "\nAge: " + member.getAge() +
-//                    "\nFee: " + member.getFee() +
-//                    "\nPayment Status: " + member.getPaymentStatus() +
-//                    "\n-----------------------------------------\n";
-//        }
-//        return "";
 
         StringBuilder overview = new StringBuilder();
         for (Member member : membersList.getAllMembers()) {
@@ -212,13 +187,6 @@ public class Controller {
         } else {
             member.setPaymentStatus(PaymentStatus.PAID);
         }
-
-//        if(member.getPaymentStatus().equalsIgnoreCase("PAID")) {
-//            member.setPaymentStatus("UNPAID");
-//        }
-//        else {
-//            member.setPaymentStatus("PAID");
-//        }
     }
 
     // VIEW UNPAID USERS ONLY ---------------------------------------------------------------------------
@@ -323,6 +291,7 @@ public class Controller {
         }
         return overview.toString();
     }
+
     public String sortBreastTimeJunior() {
         ArrayList<CompetitionSwimmer> list = new ArrayList<>();
         membersList.loadCompSwimmers();
@@ -379,6 +348,7 @@ public class Controller {
         }
         return overview.toString();
     }
+
     public String sortCrawlTimeJunior() {
         ArrayList<CompetitionSwimmer> list = new ArrayList<>();
         membersList.loadCompSwimmers();
@@ -406,6 +376,7 @@ public class Controller {
         }
         return overview.toString();
     }
+
     //BACK CRAWL TIME
     public String sortBackCrawlTimeSenior() {
         ArrayList<CompetitionSwimmer> list = new ArrayList<>();
@@ -434,6 +405,7 @@ public class Controller {
         }
         return overview.toString();
     }
+
     public String sortBackCrawlTimeJunior() {
         ArrayList<CompetitionSwimmer> list = new ArrayList<>();
         membersList.loadCompSwimmers();
@@ -461,6 +433,7 @@ public class Controller {
         }
         return overview.toString();
     }
+
     //BUTTERFLY TIME
     public String sortButterflyTimeSenior() {
         ArrayList<CompetitionSwimmer> list = new ArrayList<>();
@@ -489,6 +462,7 @@ public class Controller {
         }
         return overview.toString();
     }
+
     public String sortButterflyTimeJunior() {
         ArrayList<CompetitionSwimmer> list = new ArrayList<>();
         membersList.loadCompSwimmers();
@@ -516,6 +490,7 @@ public class Controller {
         }
         return overview.toString();
     }
+
     public void addSeniorTournament(String tournamentName, String date, String discipline, String[][] swimmers) {
         CompSeniorTournamentHandler handler = new CompSeniorTournamentHandler();
         handler.addSeniorTournamentData(tournamentName, date, discipline, swimmers);
@@ -566,6 +541,7 @@ public class Controller {
             return overview.toString();
         }
     }
+
     public Member editCompJunior(String name) {
 
         membersList.loadCompSwimmers();

@@ -9,9 +9,11 @@ import java.util.ArrayList;
 public class MembersList {
 
     private ArrayList<Member> members = new ArrayList<>();
-    private ArrayList<Member> allMembers = new ArrayList<>();
-    // This is the ArrayList where we gather the added members.
 
+    // This is the ArrayList where we gather the added members.
+    private ArrayList<Member> allMembers = new ArrayList<>();
+
+    // ADD METHODS FOR WORKOUT SWIMMERS AND COMPETITION SWIMMER --------------------------------------------------------
     public void addWorkoutSwimmer(String name, String status, int age, int fee) {
         Member member = new WorkoutSwimmer(name, status, age, fee, PaymentStatus.PAID);
         members.add(member);
@@ -21,8 +23,8 @@ public class MembersList {
         Member member = new CompetitionSwimmer(name, status, age, coach, breastTime, "00/00/00", crawlTime, "00/00/00", backCrawlTime, "00/00/00", butterflyTime, "00/00/00", fee, PaymentStatus.PAID);
         members.add(member);
     }
-    // To show the members if we need that somewhere in the code. Will need most likely sometime.
 
+    // GETTER FOR BOTH ARRAY LISTS -------------------------------------------------------------------------------------
     public ArrayList<Member> getMembersList() {
         return members;
     }
@@ -30,19 +32,22 @@ public class MembersList {
     public ArrayList<Member> getAllMembers() {
         return allMembers;
     }
+
+    // Loading method for all members
     public void loadAllMembers() {
-        // Tøm listen først, hvis der allerede er data
+        // Empties list
         allMembers.clear();
 
-        // Indlæs træningssvømmere
+        // Loads workout swimmer
         ArrayList<Member> workoutMembers = WorkoutSwimmerHandler.loadWorkoutFromFile();
         allMembers.addAll(workoutMembers);
 
-        // Indlæs konkurrencesvømmere
+        // Loads competition members
         ArrayList<Member> compMembers = CompSwimmerHandler.loadCompSwimmerFromFile();
         allMembers.addAll(compMembers);
     }
 
+    // Removes member
     public boolean removeMember(String name) {
 
         loadCompSwimmers();
@@ -64,18 +69,22 @@ public class MembersList {
         return false;
     }
 
+    // Reaches FileHandler
     public void saveCompSwimmers() {
         CompSwimmerHandler.saveCompSwimmerToFile(members);
     }
 
+    // Reaches FileHandler
     public void loadCompSwimmers() {
         members = CompSwimmerHandler.loadCompSwimmerFromFile();
     }
 
+    // Reaches FileHandler
     public void saveWorkoutSwimmers() {
         WorkoutSwimmerHandler.saveWorkoutSwimmerToFile(members);
     }
 
+    // Reaches FileHandler
     public void loadWorkoutSwimmers() {
         members = WorkoutSwimmerHandler.loadWorkoutFromFile();
     }

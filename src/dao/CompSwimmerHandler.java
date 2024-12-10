@@ -11,9 +11,7 @@ import java.util.Scanner;
 public class CompSwimmerHandler {
     private static final String fileName = "CompSwimmers.csv";
 
-
-    //method for saving members to txt file. Needs to be implicit and not a dedicated feature in UserInterface.
-
+    // FROM CONSOLE TO FILE --------------------------------------------------------------------------------------------
     public static void saveCompSwimmerToFile(ArrayList<Member> memberList) {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, false))) {
@@ -69,7 +67,7 @@ public class CompSwimmerHandler {
     }
 
 
-
+    // FROM FILE TO CONSOLE --------------------------------------------------------------------------------------------
     public static ArrayList<Member> loadCompSwimmerFromFile() {
         ArrayList<Member> memberList = new ArrayList<>();
         File file = new File(fileName);

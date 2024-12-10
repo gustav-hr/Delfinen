@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class WorkoutSwimmerHandler {
     private static final String fileName = "WorkoutSwimmers.csv";
 
-    // Metode til at gemme WorkoutSwimmers til en tekstfil
+    // FROM CONSOLE TO FILE --------------------------------------------------------------------------------------------
     public static void saveWorkoutSwimmerToFile(ArrayList<Member> memberList) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, false))) {
             // Skriv header
@@ -32,7 +32,7 @@ public class WorkoutSwimmerHandler {
         }
     }
 
-    // Metode til at indlæse WorkoutSwimmers fra en tekstfil
+    // FROM FILE TO CONSOLE --------------------------------------------------------------------------------------------
     public static ArrayList<Member> loadWorkoutFromFile() {
         ArrayList<Member> memberList = new ArrayList<>();
         File file = new File(fileName);

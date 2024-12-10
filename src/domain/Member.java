@@ -17,6 +17,7 @@ public abstract class Member {
         this.fee = fee;
         this.paymentStatus = paymentStatus;
     }
+
     // GETTER & SETTER FOR NAME ------------------------------------------------------------------------------------
     public String getName() {
         return name;
@@ -25,6 +26,7 @@ public abstract class Member {
     public void setName(String name) {
         this.name = name;
     }
+
     // GETTER & SETTER FOR AGE ------------------------------------------------------------------------------------
     public int getAge() {
         return age;
@@ -33,8 +35,8 @@ public abstract class Member {
     public void setAge(int age) {
         this.age = age;
     }
-    // GETTER & SETTER FOR STATUS ------------------------------------------------------------------------------------
 
+    // GETTER & SETTER FOR STATUS ------------------------------------------------------------------------------------
     public String getStatus() {
         return status;
     }
@@ -44,7 +46,6 @@ public abstract class Member {
     }
 
     // GETTER & SETTER FOR FEE ---------------------------------------------------------------------------------------
-
     public int getFee() {
         return fee;
     }
@@ -53,7 +54,6 @@ public abstract class Member {
     }
 
     // GETTER & SETTER FOR PAYMENTSTATUS  ----------------------------------------------------------------------------
-
     public PaymentStatus getPaymentStatus() {
         return paymentStatus;
     }
